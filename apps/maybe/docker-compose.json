@@ -37,7 +37,7 @@
       },
       {
         "name": "worker",
-        "image": "ghcr.io/maybe-finance/maybe:0.5.0",
+        "image": "ghcr.io/maybe-finance/maybe:sha-dab693d74f5c2a70f914119a9235f28c7fb9264e",
         "command": ["bundle", "exec", "sidekiq"],
         "dependsOn": {
           "redis": {
