@@ -12,7 +12,8 @@
           "FEATURES": "${FEATURES}",
           "OPENAI_API_KEY": "${OPENAI_API_KEY}",
           "OPENAI_MODEL":  "${OPENAI_MODEL}",
-          "OPENAI_BASE_URL": "${OPENAI_BASE_URL}"
+          "OPENAI_BASE_URL": "${OPENAI_BASE_URL}",
+          "CLASSIFICATION_SCHEDULE_CRON": "${CLASSIFICATION_SCHEDULE_CRON}"
 
         }
       }

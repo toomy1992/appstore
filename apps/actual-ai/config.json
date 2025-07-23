@@ -7,7 +7,7 @@
     "dynamic_config": true,
     "id": "Actual AI",
     "description": "This is a project that allows you to categorize uncategorized transactions for Actual Budget using OpenAI, Anthropic, Google Generative AI, Ollama or any other compatible API.",
-    "tipi_version": 1,
+    "tipi_version": 2,
     "version": "2.2.1",
     "categories": ["ai"],
     "short_desc": "AI for Actual Budget.",
@@ -54,7 +54,13 @@
       "type": "text",
       "label": "OPENAI BASE URL",
       "env_variable": "OPENAI_BASE_URL"
+    },
+    {
+      "type": "text",
+      "label": "CRON Schedule",
+      "env_variable": "CLASSIFICATION_SCHEDULE_CRON"
     }
+    
     ],
     "supported_architectures": [ "amd64"],
     "created_at": 1746019505000,
