@@ -9,7 +9,7 @@
     "description": "This is a project that allows you to categorize uncategorized transactions for Actual Budget using OpenAI, Anthropic, Google Generative AI, Ollama or any other compatible API.",
     "tipi_version": 1,
     "version": "2.2.1",
-    "categories": ["AI"],
+    "categories": ["ai"],
     "short_desc": "AI for Actual Budget.",
     "author": "sakowicz",
     "source": "https://github.com/sakowicz/actual-ai",
