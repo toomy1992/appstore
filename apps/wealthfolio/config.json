@@ -2,7 +2,7 @@
   "name": "Wealthfolio",
   "id": "wealthfolio",
   "available": true,
-  "port": 9105,
+  "port": 8088,
   "exposable": true,
   "dynamic_config": true,
   "description": "A local-first investment tracking app with portfolio tracking, analytics, and goal planning.",

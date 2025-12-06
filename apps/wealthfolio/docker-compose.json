@@ -6,9 +6,9 @@
       "name": "wealthfolio",
       "isMain": true,
       "image": "docker.io/afadil/wealthfolio:2.1.0",
-      "internalPort": 9105,
+      "internalPort": 8088,
       "healthCheck": {
-        "test": "curl -fs -S --max-time 2 http://localhost:9105 || exit 1",
+        "test": "curl -fs -S --max-time 2 http://localhost:8088 || exit 1",
         "interval": "10s",
         "timeout": "5s",
         "retries": 3,
