@@ -33,14 +33,6 @@
     },
     {
       "type": "text",
-      "label": "Server Address",
-      "env_variable": "WF_LISTEN_ADDR",
-      "required": true,
-      "default": "0.0.0.0:8088",
-      "hint": "Address and port for the Wealthfolio server."
-    },
-    {
-      "type": "text",
       "label": "CORS Allowed Origins",
       "env_variable": "WF_CORS_ALLOW_ORIGINS",
       "required": false,
