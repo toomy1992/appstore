@@ -6,15 +6,15 @@
             "name": "actual-ai",
             "image": "docker.io/sakowicz/actual-ai:2.2.5",
             "environment": [
-                { "key": "ACTUAL_SERVER_URL", "value":  "${ACTUAL_SERVER_URL}"},
-                { "key": "ACTUAL_PASSWORD", "value":  "${ACTUAL_PASSWORD}"},
-                { "key": "ACTUAL_BUDGET_ID", "value":  "${ACTUAL_BUDGET_ID}"},
-                { "key": "LLM_PROVIDER", "value":  "${LLM_PROVIDER}"},
-                { "key": "FEATURES", "value":  "${FEATURES}"},
-                { "key": "OPENAI_API_KEY", "value":  "${OPENAI_API_KEY}"},
-                { "key": "OPENAI_MODEL", "value":  "${OPENAI_MODEL}"},
-                { "key": "OPENAI_BASE_URL", "value":  "${OPENAI_BASE_URL}"},
-                { "key": "CLASSIFICATION_SCHEDULE_CRON", "value":  "${CLASSIFICATION_SCHEDULE_CRON}"}
+                "ACTUAL_SERVER_URL=${ACTUAL_SERVER_URL}",
+                "ACTUAL_PASSWORD=${ACTUAL_PASSWORD}",
+                "ACTUAL_BUDGET_ID=${ACTUAL_BUDGET_ID}",
+                "LLM_PROVIDER=${LLM_PROVIDER}",
+                "FEATURES=${FEATURES}",
+                "OPENAI_API_KEY=${OPENAI_API_KEY}",
+                "OPENAI_MODEL=${OPENAI_MODEL}",
+                "OPENAI_BASE_URL=${OPENAI_BASE_URL}",
+                "CLASSIFICATION_SCHEDULE_CRON=${CLASSIFICATION_SCHEDULE_CRON}"
             ]
         }
     ]
