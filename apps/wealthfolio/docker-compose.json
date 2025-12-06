@@ -26,7 +26,6 @@
       ],
       "environment": [
         { "key": "WF_DB_PATH", "value": "/data/wealthfolio.db" },
-        { "key": "WF_LISTEN_ADDR", "value": "127.0.0.1:8080" },
         { "key": "WF_CORS_ALLOW_ORIGINS", "value": "*" },
         { "key": "WF_SECRET_KEY", "value": "${WF_SECRET_KEY}" }
       ]
