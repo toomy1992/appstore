@@ -7,13 +7,6 @@
       "isMain": true,
       "image": "docker.io/afadil/wealthfolio:2.1.0",
       "internalPort": 8088,
-      "healthCheck": {
-        "test": "curl -fs -S --max-time 2 http://localhost:8088 || exit 1",
-        "interval": "10s",
-        "timeout": "5s",
-        "retries": 3,
-        "startPeriod": "30s"
-      },
       "volumes": [
         {
           "hostPath": "${APP_DATA_DIR}/wealthfolio/data",

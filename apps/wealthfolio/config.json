@@ -25,7 +25,9 @@
       "hint": "Optional. Path to the SQLite database file. If not provided, Wealthfolio will generate one automatically."
     },
     {
-      "type": "password",
+      "type": "random",
+      "min": 32,
+      "max": 32,
       "label": "Authentication Password Hash",
       "env_variable": "WF_AUTH_PASSWORD_HASH",
       "required": false,
@@ -40,8 +42,10 @@
       "hint": "Comma-separated list of allowed CORS origins."
     },
     {
-      "type": "password",
-      "label": "Secret Key",
+      "type": "random",
+      "min": 32,
+      "max": 32,
+      "label": "JSON Web Tokens secret key",
       "env_variable": "WF_SECRET_KEY",
       "required": false,
       "hint": "32-byte key for encryption and JWT signing."
