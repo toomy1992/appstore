@@ -51,7 +51,7 @@
       "type": "password",
       "label": "Secret Key",
       "env_variable": "WF_SECRET_KEY",
-      "required": true,
+      "required": false,
       "hint": "32-byte key for encryption and JWT signing."
     }
   ],
