@@ -42,12 +42,10 @@
       "hint": "Comma-separated list of allowed CORS origins."
     },
     {
-      "type": "random",
-      "min": 44,
-      "max": 44,
-      "label": "JSON Web Tokens secret key",
+      "type": "password",
+      "label": "Secret Key",
       "env_variable": "WF_SECRET_KEY",
-      "required": false,
+      "required": true,
       "hint": "32-byte key for encryption and JWT signing."
     }
   ],
