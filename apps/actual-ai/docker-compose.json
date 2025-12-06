@@ -1,21 +1,20 @@
 {
     "$schema": "https://raw.githubusercontent.com/runtipi/runtipi-appstore/refs/heads/master/apps/dynamic-compose-schema.json",
     "services": [
-      {
-        "name": "actual-ai",
-        "image": "docker.io/sakowicz/actual-ai:2.2.3",
-        "environment": {
-          "ACTUAL_SERVER_URL": "${ACTUAL_SERVER_URL}",
-          "ACTUAL_PASSWORD": "${ACTUAL_PASSWORD}",
-          "ACTUAL_BUDGET_ID": "${ACTUAL_BUDGET_ID}",
-          "LLM_PROVIDER": "${LLM_PROVIDER}",
-          "FEATURES": "${FEATURES}",
-          "OPENAI_API_KEY": "${OPENAI_API_KEY}",
-          "OPENAI_MODEL":  "${OPENAI_MODEL}",
-          "OPENAI_BASE_URL": "${OPENAI_BASE_URL}",
-          "CLASSIFICATION_SCHEDULE_CRON": "${CLASSIFICATION_SCHEDULE_CRON}"
-
+        {
+            "name": "actual-ai",
+            "image": "docker.io/sakowicz/actual-ai:2.2.3",
+            "environment": {
+                "ACTUAL_SERVER_URL": "${ACTUAL_SERVER_URL}",
+                "ACTUAL_PASSWORD": "${ACTUAL_PASSWORD}",
+                "ACTUAL_BUDGET_ID": "${ACTUAL_BUDGET_ID}",
+                "LLM_PROVIDER": "${LLM_PROVIDER}",
+                "FEATURES": "${FEATURES}",
+                "OPENAI_API_KEY": "${OPENAI_API_KEY}",
+                "OPENAI_MODEL": "${OPENAI_MODEL}",
+                "OPENAI_BASE_URL": "${OPENAI_BASE_URL}",
+                "CLASSIFICATION_SCHEDULE_CRON": "${CLASSIFICATION_SCHEDULE_CRON}"
+            }
         }
-      }
     ]
-  }
+}
