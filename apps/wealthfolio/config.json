@@ -43,8 +43,8 @@
     },
     {
       "type": "random",
-      "min": 32,
-      "max": 32,
+      "min": 64,
+      "max": 64,
       "label": "JSON Web Tokens secret key",
       "env_variable": "WF_SECRET_KEY",
       "required": false,
