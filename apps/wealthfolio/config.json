@@ -1,0 +1,55 @@
+{
+  "name": "Wealthfolio",
+  "id": "wealthfolio",
+  "available": true,
+  "port": 8088,
+  "exposable": true,
+  "dynamic_config": true,
+  "description": "A local-first investment tracking app with portfolio tracking, analytics, and goal planning.",
+  "tipi_version": 4,
+  "version": "2.1.0",
+  "categories": [
+    "finance",
+    "investment"
+  ],
+  "short_desc": "Investment tracking app.",
+  "author": "afadil",
+  "source": "https://github.com/afadil/wealthfolio",
+  "website": "https://wealthfolio.app/",
+  "form_fields": [
+    {
+      "type": "text",
+      "label": "Database Path",
+      "env_variable": "WF_DB_PATH",
+      "required": true,
+      "hint": "Path to the SQLite database file."
+    },
+    {
+      "type": "text",
+      "label": "Server Address",
+      "env_variable": "WF_LISTEN_ADDR",
+      "required": true,
+      "default": "0.0.0.0:8088",
+      "hint": "Address and port for the Wealthfolio server."
+    },
+    {
+      "type": "text",
+      "label": "CORS Allowed Origins",
+      "env_variable": "WF_CORS_ALLOW_ORIGINS",
+      "required": false,
+      "default": "*",
+      "hint": "Comma-separated list of allowed CORS origins."
+    },
+    {
+      "type": "password",
+      "label": "Secret Key",
+      "env_variable": "WF_SECRET_KEY",
+      "required": true,
+      "hint": "32-byte key for encryption and JWT signing."
+    }
+  ],
+  "supported_architectures": [
+    "amd64",
+    "arm64"
+  ]
+}

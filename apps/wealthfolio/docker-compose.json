@@ -1,0 +1,35 @@
+{
+  "$schema": "https://schemas.runtipi.io/v2/dynamic-compose.json",
+  "schemaVersion": 2,
+  "services": [
+    {
+      "name": "wealthfolio",
+      "isMain": true,
+      "image": "docker.io/afadil/wealthfolio:latest",
+      "internalPort": 8088,
+      "healthCheck": {
+        "test": "curl -fs -S --max-time 2 http://localhost:8088 || exit 1",
+        "interval": "10s",
+        "timeout": "5s",
+        "retries": 3,
+        "startPeriod": "30s"
+      },
+      "volumes": [
+        {
+          "hostPath": "${APP_DATA_DIR}/wealthfolio/data",
+          "containerPath": "/data"
+        },
+        {
+          "hostPath": "${APP_DATA_DIR}/wealthfolio/secrets",
+          "containerPath": "/secrets"
+        }
+      ],
+      "environment": [
+        { "key": "WF_DB_PATH", "value": "/data/wealthfolio.db" },
+        { "key": "WF_LISTEN_ADDR", "value": "0.0.0.0:8088" },
+        { "key": "WF_CORS_ALLOW_ORIGINS", "value": "*" },
+        { "key": "WF_SECRET_KEY", "value": "${WF_SECRET_KEY}" }
+      ]
+    }
+  ]
+}
