@@ -3,7 +3,7 @@
     "services": [
         {
             "name": "actual-ai",
-            "image": "docker.io/sakowicz/actual-ai:2.2.3",
+            "image": "docker.io/sakowicz/actual-ai:2.2.5",
             "environment": {
                 "ACTUAL_SERVER_URL": "${ACTUAL_SERVER_URL}",
                 "ACTUAL_PASSWORD": "${ACTUAL_PASSWORD}",

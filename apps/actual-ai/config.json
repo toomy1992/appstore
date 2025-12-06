@@ -1,41 +1,43 @@
 {
-    "$schema": "https://raw.githubusercontent.com/runtipi/runtipi-appstore/refs/heads/master/apps/app-info-schema.json",
-    "name": "Actual AI",
-    "available": true,
-    "port": 8549,
-    "exposable": false,
-    "dynamic_config": true,
-    "id": "Actual AI",
-    "description": "This is a project that allows you to categorize uncategorized transactions for Actual Budget using OpenAI, Anthropic, Google Generative AI, Ollama or any other compatible API.",
-    "tipi_version": 3,
-    "version": "2.2.3",
-    "categories": ["ai"],
-    "short_desc": "AI for Actual Budget.",
-    "author": "sakowicz",
-    "source": "https://github.com/sakowicz/actual-ai",
-    "website": "https://actualbudget.org/",
-    "form_fields": [
-      {
-        "type": "password",
-        "env_variable": "ACTUAL_PASSWORD",
-        "label": "Actual Budget Password"
-      },
-      {
-        "type": "password",
-        "env_variable": "ACTUAL_BUDGET_ID",
-        "label": "Actual Budget ID"
-      },      
-      {
-        "type": "password",
-        "env_variable": "OPENAI_API_KEY",
-        "label": "OPENAI API KEY"
-      },
-      {
+  "$schema": "https://raw.githubusercontent.com/runtipi/runtipi-appstore/refs/heads/master/apps/app-info-schema.json",
+  "name": "Actual AI",
+  "available": true,
+  "port": 8549,
+  "exposable": false,
+  "dynamic_config": true,
+  "id": "Actual AI",
+  "description": "This is a project that allows you to categorize uncategorized transactions for Actual Budget using OpenAI, Anthropic, Google Generative AI, Ollama or any other compatible API.",
+  "tipi_version": 4,
+  "version": "2.2.5",
+  "categories": [
+    "ai"
+  ],
+  "short_desc": "AI for Actual Budget.",
+  "author": "sakowicz",
+  "source": "https://github.com/sakowicz/actual-ai",
+  "website": "https://actualbudget.org/",
+  "form_fields": [
+    {
+      "type": "password",
+      "env_variable": "ACTUAL_PASSWORD",
+      "label": "Actual Budget Password"
+    },
+    {
+      "type": "password",
+      "env_variable": "ACTUAL_BUDGET_ID",
+      "label": "Actual Budget ID"
+    },
+    {
+      "type": "password",
+      "env_variable": "OPENAI_API_KEY",
+      "label": "OPENAI API KEY"
+    },
+    {
       "type": "text",
       "label": "Actual Budget URL",
       "env_variable": "ACTUAL_SERVER_URL"
     },
-      {
+    {
       "type": "text",
       "label": "LLM PROVIDER",
       "env_variable": "LLM_PROVIDER"
@@ -60,9 +62,10 @@
       "label": "CRON Schedule",
       "env_variable": "CLASSIFICATION_SCHEDULE_CRON"
     }
-    
-    ],
-    "supported_architectures": [ "amd64"],
-    "created_at": 1746019505000,
-    "updated_at": 1746019505000
-  }
+  ],
+  "supported_architectures": [
+    "amd64"
+  ],
+  "created_at": 1746019505000,
+  "updated_at": 1765023191074
+}
