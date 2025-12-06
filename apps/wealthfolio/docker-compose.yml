@@ -1,0 +1,27 @@
+version: "3.7"
+
+services:
+  wealthfolio:
+    image: afadil/wealthfolio:latest
+    container_name: wealthfolio
+    environment:
+      - WF_DB_PATH=/data/wealthfolio.db
+      - WF_SECRET_KEY=${WF_SECRET_KEY}
+      - WF_AUTH_PASSWORD_HASH=${WF_AUTH_PASSWORD_HASH}
+      - WF_DOMAIN=${APP_PROTOCOL:-http}://${APP_DOMAIN}
+    restart: unless-stopped
+    volumes:
+      - ${APP_DATA_DIR}/wealthfolio/data:/data
+    networks:
+      - tipi_main_network
+    labels:
+      # Traefik configuration
+      traefik.enable: true
+      traefik.http.routers.wealthfolio.rule: Host(`${APP_DOMAIN}`)
+      traefik.http.routers.wealthfolio.entrypoints: websecure
+      traefik.http.routers.wealthfolio.tls.certresolver: myresolver
+      traefik.http.services.wealthfolio.loadbalancer.server.port: 8088
+
+networks:
+  tipi_main_network:
+    external: true
