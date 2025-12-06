@@ -21,8 +21,15 @@
       "type": "text",
       "label": "Database Path",
       "env_variable": "WF_DB_PATH",
-      "required": true,
-      "hint": "Path to the SQLite database file."
+      "required": false,
+      "hint": "Optional. Path to the SQLite database file. If not provided, Wealthfolio will generate one automatically."
+    },
+    {
+      "type": "password",
+      "label": "Authentication Password Hash",
+      "env_variable": "WF_AUTH_PASSWORD_HASH",
+      "required": false,
+      "hint": "Optional. If empty, a password hash will be generated automatically."
     },
     {
       "type": "text",
