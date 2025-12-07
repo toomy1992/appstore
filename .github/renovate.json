@@ -1,0 +1,89 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "enabledManagers": [
+    "custom.regex"
+  ],
+  "schedule": [
+    "* */1 * * *"
+  ],
+  "timezone": "Europe/Paris",
+  "automerge": false,
+  "dependencyDashboard": true,
+  "rebaseWhen": "behind-base-branch",
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/^.*docker-compose\\.json$/"
+      ],
+      "matchStrings": [
+        "\"image\": \"(?<depName>.*?):(?<currentValue>.*?)\","
+      ],
+      "datasourceTemplate": "docker"
+    }
+  ],
+  "prConcurrentLimit": 10,
+  "prHourlyLimit": 0,
+  "packageRules": [
+    {
+      "matchFileNames": [
+        "apps/**"
+      ],
+      "groupName": "{{packageFileDir}}",
+      "groupSlug": "app-{{packageFileDir}}"
+    },
+    {
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "assignees": [
+        "toomy1992"
+      ]
+    },
+    {
+      "matchUpdateTypes": [
+        "major"
+      ],
+      "addLabels": [
+        "breaking-change",
+        "ready-to-review"
+      ],
+      "reviewers": [
+        "toomy1992"
+      ],
+      "assignees": [
+        "toomy1992"
+      ]
+    },
+    {
+      "matchDepTypes": [
+        "devDependencies"
+      ],
+      "automerge": false
+    },
+    {
+      "matchPackageNames": [
+        "ghcr.io/linuxserver/overseerr",
+        "ghcr.io/linuxserver/plex",
+        "ghcr.io/linuxserver/tautulli",
+        "ghcr.io/linuxserver/kometa"
+      ],
+      "versioning": "semver",
+      "allowedVersions": "<100"
+    },
+    {
+      "matchPackageNames": [
+        "mariadb",
+        "mysql",
+        "mongodb",
+        "postgres",
+        "redis"
+      ],
+      "enabled": false
+    }
+  ]
+}
