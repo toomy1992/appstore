@@ -1,29 +1,37 @@
 {
     "$schema": "https://schemas.runtipi.io/v2/dynamic-compose.json",
+    "schemaVersion": 2,
     "services": [
         {
             "name": "openbb",
             "image": "ghcr.io/openbb-finance/openbb-platform:1.5.6",
-            "isMain": true,
-            "internalPort": 6900,
-            "environment": {
-                "OPENBB_API_KEY": "${OPENBB_API_KEY}",
-                "TZ": "${TZ}",
-                "PUID": "1000",
-                "PGID": "1000"
-            },
+            "environment": [
+                {
+                    "key": "OPENBB_API_KEY",
+                    "value": "${OPENBB_API_KEY}"
+                },
+                {
+                    "key": "TZ",
+                    "value": "${TZ}"
+                },
+                {
+                    "key": "PUID",
+                    "value": "1000"
+                },
+                {
+                    "key": "PGID",
+                    "value": "1000"
+                }
+            ],
             "volumes": [
                 {
                     "hostPath": "${APP_DATA_DIR}/data",
-                    "containerPath": "/app/data"
+                    "containerPath": "/app/data",
+                    "readOnly": false,
+                    "shared": false,
+                    "private": false
                 }
-            ],
-            "healthCheck": {
-                "test": "curl -f http://localhost:6900 || exit 1",
-                "interval": "30s",
-                "timeout": "10s",
-                "retries": 3
-            }
+            ]
         }
     ]
 }
