@@ -4,7 +4,7 @@
     "services": [
         {
             "name": "openbb",
-            "image": "ghcr.io/openbb-finance/openbb-platform:1.5.6",
+            "image": "ghcr.io/openbb-finance/openbb-platform:latest",
             "environment": [
                 {
                     "key": "OPENBB_API_KEY",
