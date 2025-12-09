@@ -1,4 +1,5 @@
 {
+    "$schema": "https://schemas.runtipi.io/v2/dynamic-compose.json",
     "schemaVersion": 2,
     "services": [
         {
