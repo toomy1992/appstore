@@ -1,5 +1,4 @@
 {
-    "$schema": "https://schemas.runtipi.io/v2/app-info.json",
     "id": "openbb",
     "available": true,
     "port": 6900,
