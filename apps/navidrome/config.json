@@ -1,0 +1,210 @@
+{
+    "$schema": "https://schemas.runtipi.io/v2/app-info.json",
+    "id": "navidrome",
+    "available": true,
+    "port": 4533,
+    "name": "Navidrome",
+    "description": "A modern, lightweight music server and streamer with compatibility for all Subsonic-compatible clients",
+    "version": "0.59.0",
+    "tipi_version": 1,
+    "short_desc": "Music streaming server",
+    "author": "deluan",
+    "source": "https://github.com/navidrome/navidrome",
+    "website": "https://www.navidrome.org",
+    "categories": [
+        "media"
+    ],
+    "form_fields": [
+        {
+            "type": "text",
+            "label": "Log Level",
+            "hint": "Application log level for debugging (error, warn, info, debug, trace)",
+            "required": false,
+            "default": "info",
+            "env_variable": "NAVIDROME_LOGLEVEL",
+            "placeholder": "info"
+        },
+        {
+            "type": "boolean",
+            "label": "Enable Artwork Precache",
+            "hint": "Enable automatic image pre-caching when new music is added",
+            "required": false,
+            "default": true,
+            "env_variable": "NAVIDROME_ENABLEARTWORKPRECACHE"
+        },
+        {
+            "type": "boolean",
+            "label": "Enable User Editing",
+            "hint": "Allow regular users to edit their profile and change passwords",
+            "required": false,
+            "default": true,
+            "env_variable": "NAVIDROME_ENABLEUSEREDITING"
+        },
+        {
+            "type": "boolean",
+            "label": "Enable Downloads",
+            "hint": "Enable the option to download music from the server",
+            "required": false,
+            "default": true,
+            "env_variable": "NAVIDROME_ENABLEDOWNLOADS"
+        },
+        {
+            "type": "boolean",
+            "label": "Enable Sharing",
+            "hint": "Enable the sharing feature to create public links for music",
+            "required": false,
+            "default": false,
+            "env_variable": "NAVIDROME_ENABLESHARING"
+        },
+        {
+            "type": "boolean",
+            "label": "Enable Transcoding Config",
+            "hint": "Enable transcoding configuration in the UI (requires ffmpeg)",
+            "required": false,
+            "default": false,
+            "env_variable": "NAVIDROME_ENABLETRANSCODINGCONFIG"
+        },
+        {
+            "type": "text",
+            "label": "Session Timeout",
+            "hint": "How long until idle web UI sessions are closed (e.g., 48h, 24h)",
+            "required": false,
+            "default": "48h",
+            "env_variable": "NAVIDROME_SESSIONTIMEOUT",
+            "placeholder": "48h"
+        },
+        {
+            "type": "text",
+            "label": "Base URL",
+            "hint": "Base URL to configure Navidrome behind a proxy (e.g., /navidrome or https://music.example.com)",
+            "required": false,
+            "env_variable": "NAVIDROME_BASEURL",
+            "placeholder": "/navidrome"
+        },
+        {
+            "type": "boolean",
+            "label": "Enable Favourites",
+            "hint": "Enable the ability to mark songs/albums as favorites (Heart/Loved)",
+            "required": false,
+            "default": true,
+            "env_variable": "NAVIDROME_ENABLEFAVOURITES"
+        },
+        {
+            "type": "boolean",
+            "label": "Enable Now Playing",
+            "hint": "Enable tracking what users are currently listening to",
+            "required": false,
+            "default": true,
+            "env_variable": "NAVIDROME_ENABLENOWPLAYING"
+        },
+        {
+            "type": "boolean",
+            "label": "Enable Scrobble History",
+            "hint": "Enable scrobble history tracking for Last.fm integrations",
+            "required": false,
+            "default": true,
+            "env_variable": "NAVIDROME_ENABLESCROBBLEHISTORY"
+        },
+        {
+            "type": "boolean",
+            "label": "Enable Star Rating",
+            "hint": "Enable 5-star ratings for songs and albums in the UI",
+            "required": false,
+            "default": true,
+            "env_variable": "NAVIDROME_ENABLESTARRATING"
+        },
+        {
+            "type": "boolean",
+            "label": "Enable Anonymous Data Collection",
+            "hint": "Allow Navidrome to send anonymous usage statistics to help improve the project",
+            "required": false,
+            "default": true,
+            "env_variable": "NAVIDROME_ENABLEINSIGHTSCOLLECTOR"
+        },
+        {
+            "type": "boolean",
+            "label": "Enable Last.fm Integration",
+            "hint": "Enable Last.fm integration for artist images and scrobbling",
+            "required": false,
+            "default": true,
+            "env_variable": "NAVIDROME_LASTFM_ENABLED"
+        },
+        {
+            "type": "boolean",
+            "label": "Enable Spotify Integration",
+            "hint": "Enable Spotify integration (requires Client ID and Secret)",
+            "required": false,
+            "default": false,
+            "env_variable": "NAVIDROME_SPOTIFY_ENABLED"
+        },
+        {
+            "type": "text",
+            "label": "Spotify Client ID",
+            "hint": "Your Spotify API Client ID for artist image retrieval",
+            "required": false,
+            "env_variable": "NAVIDROME_SPOTIFY_ID",
+            "placeholder": "your-spotify-client-id"
+        },
+        {
+            "type": "password",
+            "label": "Spotify Client Secret",
+            "hint": "Your Spotify API Client Secret for artist image retrieval",
+            "required": false,
+            "env_variable": "NAVIDROME_SPOTIFY_SECRET",
+            "placeholder": "your-spotify-client-secret"
+        },
+        {
+            "type": "boolean",
+            "label": "Enable Deezer Integration",
+            "hint": "Enable Deezer integration for artist metadata and images",
+            "required": false,
+            "default": true,
+            "env_variable": "NAVIDROME_DEEZER_ENABLED"
+        },
+        {
+            "type": "boolean",
+            "label": "Enable ListenBrainz",
+            "hint": "Enable ListenBrainz integration for scrobbling",
+            "required": false,
+            "default": true,
+            "env_variable": "NAVIDROME_LISTENBRAINZ_ENABLED"
+        },
+        {
+            "type": "boolean",
+            "label": "Enable ReplayGain",
+            "hint": "Enable ReplayGain options in the UI for volume normalization",
+            "required": false,
+            "default": true,
+            "env_variable": "NAVIDROME_ENABLEREPLAYGAIN"
+        },
+        {
+            "type": "text",
+            "label": "Transcoding Cache Size",
+            "hint": "Size of transcoding cache (e.g., 100MB, 1GB). Set to 0 to disable",
+            "required": false,
+            "default": "100MB",
+            "env_variable": "NAVIDROME_TRANSCODINGCACHESIZE",
+            "placeholder": "100MB"
+        },
+        {
+            "type": "text",
+            "label": "Image Cache Size",
+            "hint": "Size of image cache for artwork (e.g., 100MB, 500MB). Set to 0 to disable",
+            "required": false,
+            "default": "100MB",
+            "env_variable": "NAVIDROME_IMAGECACHESIZE",
+            "placeholder": "100MB"
+        }
+    ],
+    "exposable": true,
+    "supported_architectures": [
+        "amd64",
+        "arm64"
+    ],
+    "uid": 1000,
+    "gid": 1000,
+    "dynamic_config": true,
+    "min_tipi_version": "4.6.5",
+    "created_at": 1735689600000,
+    "updated_at": 1735689600000
+}

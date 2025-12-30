@@ -8,7 +8,10 @@ This directory contains all the applications available in this app store. Each a
   - `description.md`: Markdown description of the app
   - `logo.jpg`: App logo image
 
-## Total Applications: 1
+## Total Applications: 2
 
 ### Finance
 - **OpenBB**: Open-source financial data platform for analysts, quants, and AI agents.
+
+### Media
+- **Navidrome**: A modern, lightweight music server and streamer with compatibility for all Subsonic-compatible clients.

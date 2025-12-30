@@ -1,0 +1,56 @@
+{
+    "services": [
+        {
+            "name": "navidrome",
+            "image": "deluan/navidrome:0.59.0",
+            "isMain": true,
+            "internalPort": 4533,
+            "restart": "unless-stopped",
+            "environment": {
+                "TZ": "${TZ}",
+                "PUID": "1000",
+                "PGID": "1000",
+                "ND_LOGLEVEL": "${NAVIDROME_LOGLEVEL:-info}",
+                "ND_ENABLEARTWORKPRECACHE": "${NAVIDROME_ENABLEARTWORKPRECACHE:-true}",
+                "ND_ENABLEUSEREDITING": "${NAVIDROME_ENABLEUSEREDITING:-true}",
+                "ND_ENABLEDOWNLOADS": "${NAVIDROME_ENABLEDOWNLOADS:-true}",
+                "ND_ENABLESHARING": "${NAVIDROME_ENABLESHARING:-false}",
+                "ND_ENABLETRANSCODINGCONFIG": "${NAVIDROME_ENABLETRANSCODINGCONFIG:-false}",
+                "ND_SESSIONTIMEOUT": "${NAVIDROME_SESSIONTIMEOUT:-48h}",
+                "ND_BASEURL": "${NAVIDROME_BASEURL}",
+                "ND_ENABLEFAVOURITES": "${NAVIDROME_ENABLEFAVOURITES:-true}",
+                "ND_ENABLENOWPLAYING": "${NAVIDROME_ENABLENOWPLAYING:-true}",
+                "ND_ENABLESCROBBLEHISTORY": "${NAVIDROME_ENABLESCROBBLEHISTORY:-true}",
+                "ND_ENABLESTARRATING": "${NAVIDROME_ENABLESTARRATING:-true}",
+                "ND_ENABLEINSIGHTSCOLLECTOR": "${NAVIDROME_ENABLEINSIGHTSCOLLECTOR:-true}",
+                "ND_LASTFM_ENABLED": "${NAVIDROME_LASTFM_ENABLED:-true}",
+                "ND_SPOTIFY_ENABLED": "${NAVIDROME_SPOTIFY_ENABLED:-false}",
+                "ND_SPOTIFY_ID": "${NAVIDROME_SPOTIFY_ID}",
+                "ND_SPOTIFY_SECRET": "${NAVIDROME_SPOTIFY_SECRET}",
+                "ND_DEEZER_ENABLED": "${NAVIDROME_DEEZER_ENABLED:-true}",
+                "ND_LISTENBRAINZ_ENABLED": "${NAVIDROME_LISTENBRAINZ_ENABLED:-true}",
+                "ND_ENABLEREPLAYGAIN": "${NAVIDROME_ENABLEREPLAYGAIN:-true}",
+                "ND_TRANSCODINGCACHESIZE": "${NAVIDROME_TRANSCODINGCACHESIZE:-100MB}",
+                "ND_IMAGECACHESIZE": "${NAVIDROME_IMAGECACHESIZE:-100MB}"
+            },
+            "volumes": [
+                {
+                    "hostPath": "${APP_DATA_DIR}/data",
+                    "containerPath": "/data"
+                },
+                {
+                    "hostPath": "${APP_DATA_DIR}/music",
+                    "containerPath": "/music",
+                    "options": "ro"
+                }
+            ],
+            "healthCheck": {
+                "test": "wget --no-verbose --tries=1 --spider http://localhost:4533/health || exit 1",
+                "interval": "30s",
+                "timeout": "10s",
+                "retries": 3,
+                "startPeriod": "40s"
+            }
+        }
+    ]
+}
