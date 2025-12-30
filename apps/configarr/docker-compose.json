@@ -1,0 +1,37 @@
+{
+  "$schema": "https://schemas.runtipi.io/v2/dynamic-compose.json",
+  "schemaVersion": 2,
+  "services": [
+    {
+      "image": "ghcr.io/raydak-labs/configarr:1.19.0",
+      "name": "configarr",
+      "isMain": true,
+      "internalPort": 3000,
+      "environment": [
+        {
+          "key": "TZ",
+          "value": "${TZ}"
+        }
+      ],
+      "user": "1000:1000",
+      "volumes": [
+        {
+          "hostPath": "${APP_DATA_DIR}/data/config",
+          "containerPath": "/app/config"
+        },
+        {
+          "hostPath": "${APP_DATA_DIR}/data/repos",
+          "containerPath": "/app/repos"
+        },
+        {
+          "hostPath": "${APP_DATA_DIR}/data/cfs",
+          "containerPath": "/app/cfs"
+        },
+        {
+          "hostPath": "${APP_DATA_DIR}/data/templates",
+          "containerPath": "/app/templates"
+        }
+      ]
+    }
+  ]
+}
