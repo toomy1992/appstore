@@ -26,9 +26,9 @@
         {
             "type": "url",
             "label": "Wealthfolio API Base URL",
-            "hint": "Base URL for Wealthfolio API (default: https://wealthfolio.labruntipi.io/api/v1)",
+            "hint": "Base URL for Wealthfolio API (end with a slash)",
             "required": false,
-            "default": "https://wealthfolio.labruntipi.io/api/v1",
+            "default": "",
             "env_variable": "WEALTHFOLIO_MCP_API_BASE_URL"
         },
         {
