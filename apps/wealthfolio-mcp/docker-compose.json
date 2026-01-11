@@ -3,7 +3,7 @@
     "schemaVersion": 2,
     "services": [
         {
-            "image": "ghcr.io/toomy1992/wealthfolio-mcp:0.0.2",
+            "image": "ghcr.io/toomy1992/wealthfolio-mcp:latest",
             "name": "wealthfolio-mcp",
             "isMain": true,
             "internalPort": 8000,
@@ -17,7 +17,7 @@
                 },
                 {
                     "key": "API_BASE_URL",
-                    "value": "${WEALTHFOLIO_MCP_API_BASE_URL:-https://wealthfolio.labruntipi.io/api/v1}"
+                    "value": "${WEALTHFOLIO_MCP_API_BASE_URL:}"
                 },
                 {
                     "key": "asset_filters",
