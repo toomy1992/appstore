@@ -17,7 +17,7 @@
                 },
                 {
                     "key": "API_BASE_URL",
-                    "value": "${WEALTHFOLIO_MCP_API_BASE_URL:}"
+                    "value": "${WEALTHFOLIO_MCP_API_BASE_URL}"
                 },
                 {
                     "key": "asset_filters",
