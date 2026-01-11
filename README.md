@@ -30,7 +30,7 @@ This repository is intended to serve as a template for creating your own app sto
 For detailed instructions on creating your own app store, please refer to the official guide:
 [Create Your Own App Store Guide](https://runtipi.io/docs/guides/create-your-own-app-store)
 
-## Applications (17 Total)
+## Applications (18 Total)
 
 ### AI
 - **Actual AI**: AI for Actual Budget.
@@ -40,6 +40,9 @@ For detailed instructions on creating your own app store, please refer to the of
 ### Finance
 - **OpenBB**: Open-source financial data platform for analysts, quants, and AI agents.
 - **Wealthfolio**: Investment tracking app.
+- **Wealthfolio MCP**: Portfolio MCP server.
+
+
 
 ### Media
 - **Autobrr**: Torrent download automation.

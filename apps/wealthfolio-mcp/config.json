@@ -1,0 +1,53 @@
+{
+    "$schema": "https://schemas.runtipi.io/v2/app-info.json",
+    "id": "wealthfolio-mcp",
+    "available": true,
+    "port": 8000,
+    "name": "Wealthfolio MCP",
+    "description": "A Model Context Protocol (MCP) server that integrates with Wealthfolio to provide portfolio data, valuations, and analytics to OpenWebUI and other MCP-compatible applications.",
+    "version": "0.0.2",
+    "tipi_version": 1,
+    "short_desc": "Portfolio MCP server",
+    "author": "toomy1992",
+    "source": "https://github.com/toomy1992/wealthfolio-mcp",
+    "website": "https://github.com/toomy1992/wealthfolio-mcp",
+    "categories": [
+        "finance",
+        "ai"
+    ],
+    "form_fields": [
+        {
+            "type": "password",
+            "label": "Wealthfolio API Key",
+            "hint": "Your Wealthfolio API key for authentication",
+            "required": true,
+            "env_variable": "WEALTHFOLIO_MCP_API_KEY"
+        },
+        {
+            "type": "url",
+            "label": "Wealthfolio API Base URL",
+            "hint": "Base URL for Wealthfolio API (default: https://wealthfolio.labruntipi.io/api/v1)",
+            "required": false,
+            "default": "https://wealthfolio.labruntipi.io/api/v1",
+            "env_variable": "WEALTHFOLIO_MCP_API_BASE_URL"
+        },
+        {
+            "type": "text",
+            "label": "Asset Filters",
+            "hint": "Comma-separated list of asset types to filter (e.g., stocks, crypto)",
+            "required": false,
+            "default": "stocks,crypto",
+            "env_variable": "WEALTHFOLIO_MCP_ASSET_FILTERS"
+        }
+    ],
+    "exposable": true,
+    "no_gui": false,
+    "supported_architectures": [
+        "amd64",
+        "arm64"
+    ],
+    "dynamic_config": true,
+    "min_tipi_version": "4.6.5",
+    "created_at": 1736520000000,
+    "updated_at": 1736520000000
+}

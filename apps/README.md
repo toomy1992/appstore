@@ -8,10 +8,29 @@ This directory contains all the applications available in this app store. Each a
   - `description.md`: Markdown description of the app
   - `logo.jpg`: App logo image
 
-## Total Applications: 2
+## Total Applications: 18
+
+### AI
+- **Actual AI**: AI for Actual Budget.
+- **Paperless-AI**: AI document analyzer for Paperless-ngx.
+- **Supergateway**: MCP Gateway: stdio ↔ SSE/WS/HTTP bridge.
 
 ### Finance
 - **OpenBB**: Open-source financial data platform for analysts, quants, and AI agents.
+- **Wealthfolio**: Investment tracking app.
+- **Wealthfolio MCP**: Portfolio MCP server.
 
 ### Media
+- **Autobrr**: Torrent download automation.
+- **Configarr**: TRaSH Guides sync for *arr apps.
+- **Decypharr**: Debrid QBittorrent API.
+- **Huntarr**: Automated *arr media hunter.
 - **Navidrome**: A modern, lightweight music server and streamer with compatibility for all Subsonic-compatible clients.
+- **Profilarr**: Configuration management for Radarr/Sonarr.
+- **Prowlarr**: Indexers manager & proxy.
+- **Releasarr**: Music release monitoring tool.
+- **Spottarr**: Spotnet indexer for *arr.
+- **Ygégé**: YGG Torrent indexer.
+
+### Security & Utilities
+- **Transmission (VPN)**: BitTorrent client with VPN support.
