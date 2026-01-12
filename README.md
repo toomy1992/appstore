@@ -58,3 +58,19 @@ For detailed instructions on creating your own app store, please refer to the of
 
 ### Security & Utilities
 - **Transmission (VPN)**: BitTorrent client with VPN support.
+
+---
+
+## Built With
+
+<p align="left">
+  <a href="https://runtipi.io/"><img src="https://img.shields.io/badge/%E2%9B%BA%20runtipi.io-2C2C32?style=for-the-badge" alt="Runtipi" height="28"/></a>
+  <a href="https://www.docker.com/"><img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker" height="28"/></a>
+  <a href="https://github.com/features/actions"><img src="https://img.shields.io/badge/GitHub%20Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white" alt="GitHub Actions" height="28"/></a>
+  <a href="https://learn.microsoft.com/powershell/"><img src="https://img.shields.io/badge/PowerShell-5391FE?style=for-the-badge&logo=powershell&logoColor=white" alt="PowerShell" height="28"/></a>
+  <a href="https://www.json.org/"><img src="https://img.shields.io/badge/JSON-000000?style=for-the-badge&logo=json&logoColor=white" alt="JSON" height="28"/></a>
+  <a href="https://daringfireball.net/projects/markdown/"><img src="https://img.shields.io/badge/Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white" alt="Markdown" height="28"/></a>
+  <a href="https://github.com/renovatebot/renovate"><img src="https://img.shields.io/badge/Renovate-1A1F6C?style=for-the-badge&logo=renovatebot&logoColor=white" alt="Renovate" height="28"/></a>
+</p>
+
+---
