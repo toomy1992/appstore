@@ -136,11 +136,3 @@ services:
 * [Transmission](https://transmissionbt.com/)
 * [AirVPN](https://airvpn.org/?referred_by=674291)
 
----
-
-## ❤️ PROVIDED WITH LOVE
-This app is provided with love by [JigSawFr](https://github.com/JigSawFr).
-
----
-
-For any questions or issues, open an issue on the official GitHub repository.

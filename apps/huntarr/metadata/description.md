@@ -61,13 +61,3 @@ Huntarr automates the search for missing and low-quality content in your media l
 
 ## 💾 SOURCE
 * [plexguide/Huntarr](https://github.com/plexguide/Huntarr)
-
----
-
-## ❤️ PROVIDED WITH LOVE
-This app is provided with love by [JigSawFr](https://github.com/JigSawFr).
-
----
-
-For any questions or issues, open an issue on the official GitHub repository.
-

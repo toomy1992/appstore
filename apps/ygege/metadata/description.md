@@ -86,12 +86,3 @@ Ygégé uses the [wreq](https://crates.io/crates/wreq) library to perfectly repl
 * [Documentation](https://ygege.lila.ws/)
 * [Docker Hub](https://hub.docker.com/r/uwucode/ygege)
 
----
-
-## ❤️ PROVIDED WITH LOVE
-
-This app is provided with love by [JigSawFr](https://github.com/JigSawFr).
-
----
-
-For any questions or issues, open an issue on the [official GitHub repository](https://github.com/UwUDev/ygege/issues).

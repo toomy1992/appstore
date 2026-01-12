@@ -79,12 +79,3 @@ Autobrr is the modern download automation tool for torrents. With inspiration fr
 ## 💾 SOURCE
 * [autobrr/autobrr](https://github.com/autobrr/autobrr)
 * [Official Website](https://autobrr.com/)
-
----
-
-## ❤️ PROVIDED WITH LOVE
-This app is provided with love by [JigSawFr](https://github.com/JigSawFr).
-
----
-
-For any questions or issues, open an issue on the official GitHub repository.

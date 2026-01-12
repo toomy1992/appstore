@@ -114,13 +114,3 @@ Profilarr is a configuration management tool for Radarr/Sonarr that automates im
 
 ## 💾 SOURCE
 * [Dictionarry-Hub/profilarr](https://github.com/Dictionarry-Hub/profilarr)
-
----
-
-## ❤️ PROVIDED WITH LOVE
-This app is provided with love by [JigSawFr](https://github.com/JigSawFr).
-
----
-
-For any questions or issues, open an issue on the official GitHub repository.
-

@@ -110,13 +110,3 @@ Configarr is an open-source tool designed to simplify configuration and synchron
 ## 💾 SOURCE
 * [raydak-labs/configarr](https://github.com/raydak-labs/configarr)
 
----
-
-## ❤️ PROVIDED WITH LOVE
-This app is provided with love by [JigSawFr](https://github.com/JigSawFr).
-
----
-
-For any questions or issues, open an issue on the official GitHub repository.
-
-
