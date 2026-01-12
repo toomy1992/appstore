@@ -7,7 +7,7 @@
     "custom.regex"
   ],
   "schedule": [
-    "* */1 * * *"
+    "*/10 * * * *"
   ],
   "timezone": "Europe/Paris",
   "automerge": false,
