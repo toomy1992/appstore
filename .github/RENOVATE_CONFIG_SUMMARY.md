@@ -10,8 +10,8 @@
 ### 🔄 Renovate Configuration (`renovate.json`)
 ```json
 {
-  "schedule": ["* */1 * * *"],          // Hourly checks
-  "timezone": "Europe/Paris",           // French timezone
+  "schedule": ["0 */12 * * *"],         // every 12 hours
+  "timezone": "Europe/Warsaw",          // Warsaw timezone
   "prConcurrentLimit": 10,              // Max 10 simultaneous PRs
   "prHourlyLimit": 0,                   // No hourly limit
   "allowedVersions": "<100"             // Blocks year versions (2021.x.x)

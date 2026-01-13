@@ -6,10 +6,7 @@
   "enabledManagers": [
     "custom.regex"
   ],
-  "schedule": [
-    "*/10 * * * *"
-  ],
-  "timezone": "Europe/Paris",
+  "timezone": "Europe/Warsaw",
   "automerge": false,
   "dependencyDashboard": true,
   "rebaseWhen": "behind-base-branch",
