@@ -8,7 +8,7 @@ This directory contains all the applications available in this app store. Each a
   - `description.md`: Markdown description of the app
   - `logo.jpg`: App logo image
 
-## Total Applications: 18
+## Total Applications: 19
 
 ### AI
 - **Actual AI**: AI for Actual Budget.
@@ -34,3 +34,4 @@ This directory contains all the applications available in this app store. Each a
 
 ### Security & Utilities
 - **Transmission (VPN)**: BitTorrent client with VPN support.
+- **WiseMapping**: Free, open-source web-based mind mapping tool for creating, managing, and collaborating on mind maps in real-time.
