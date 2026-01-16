@@ -1,27 +1,27 @@
 {
-  "services": [
-    {
-      "name": "wisemapping",
-      "image": "wisemapping/wisemapping:latest",
-      "isMain": true,
-      "internalPort": 80,
-      "environment": {
-        "TZ": "${TZ}",
-        "JAVA_OPTS": "${WISEMAPPING_JAVA_OPTS:-Xmx1024m -Xms512m}"
-      },
-      "volumes": [
+    "services": [
         {
-          "hostPath": "${APP_DATA_DIR}/data",
-          "containerPath": "/var/lib/wisemapping"
+            "name": "wisemapping",
+            "image": "wisemapping/wisemapping:latest",
+            "isMain": true,
+            "internalPort": 80,
+            "environment": {
+                "TZ": "${TZ}",
+                "JAVA_OPTS": "${WISEMAPPING_JAVA_OPTS:-Xmx1024m -Xms512m}"
+            },
+            "volumes": [
+                {
+                    "hostPath": "${APP_DATA_DIR}/data",
+                    "containerPath": "/var/lib/wisemapping"
+                }
+            ],
+            "healthCheck": {
+                "test": "curl -f http://localhost/health || exit 1",
+                "interval": "30s",
+                "timeout": "10s",
+                "retries": 3,
+                "startPeriod": "60s"
+            }
         }
-      ],
-      "healthCheck": {
-        "test": "curl -f http://localhost/health || exit 1",
-        "interval": "30s",
-        "timeout": "10s",
-        "retries": 3,
-        "startPeriod": "60s"
-      }
-    }
-  ]
+    ]
 }

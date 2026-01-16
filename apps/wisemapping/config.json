@@ -1,136 +1,142 @@
 {
-  "$schema": "https://schemas.runtipi.io/v2/app-info.json",
-  "id": "wisemapping",
-  "available": true,
-  "port": 80,
-  "name": "WiseMapping",
-  "description": "Free, open-source web-based mind mapping tool for creating, managing, and collaborating on mind maps in real-time",
-  "version": "6.0.2",
-  "tipi_version": 1,
-  "short_desc": "Open-source mind mapping tool",
-  "author": "WiseMapping",
-  "source": "https://github.com/wisemapping/wisemapping-open-source",
-  "website": "https://www.wisemapping.com",
-  "categories": ["utilities", "featured"],
-  "form_fields": [
-    {
-      "type": "text",
-      "label": "Admin Email",
-      "placeholder": "admin@wisemapping.org",
-      "hint": "Email address for the admin user account",
-      "required": true,
-      "env_variable": "WISEMAPPING_ADMIN_EMAIL",
-      "default": "admin@wisemapping.org"
-    },
-    {
-      "type": "password",
-      "label": "Admin Password",
-      "hint": "Secure password for the admin user account",
-      "required": true,
-      "env_variable": "WISEMAPPING_ADMIN_PASSWORD"
-    },
-    {
-      "type": "text",
-      "label": "Database Type",
-      "placeholder": "hsqldb",
-      "hint": "Database type: hsqldb (for testing), postgresql (recommended), or mysql",
-      "required": false,
-      "env_variable": "WISEMAPPING_DB_TYPE",
-      "default": "hsqldb",
-      "options": [
+    "$schema": "https://schemas.runtipi.io/v2/app-info.json",
+    "id": "wisemapping",
+    "available": true,
+    "port": 80,
+    "name": "WiseMapping",
+    "description": "Free, open-source web-based mind mapping tool for creating, managing, and collaborating on mind maps in real-time",
+    "version": "6.0.2",
+    "tipi_version": 1,
+    "short_desc": "Open-source mind mapping tool",
+    "author": "WiseMapping",
+    "source": "https://github.com/wisemapping/wisemapping-open-source",
+    "website": "https://www.wisemapping.com",
+    "categories": [
+        "utilities",
+        "featured"
+    ],
+    "form_fields": [
         {
-          "label": "HSQLDB (Testing Only)",
-          "value": "hsqldb"
+            "type": "text",
+            "label": "Admin Email",
+            "placeholder": "admin@wisemapping.org",
+            "hint": "Email address for the admin user account",
+            "required": true,
+            "env_variable": "WISEMAPPING_ADMIN_EMAIL",
+            "default": "admin@wisemapping.org"
         },
         {
-          "label": "PostgreSQL (Recommended)",
-          "value": "postgresql"
+            "type": "password",
+            "label": "Admin Password",
+            "hint": "Secure password for the admin user account",
+            "required": true,
+            "env_variable": "WISEMAPPING_ADMIN_PASSWORD"
         },
         {
-          "label": "MySQL",
-          "value": "mysql"
+            "type": "text",
+            "label": "Database Type",
+            "placeholder": "hsqldb",
+            "hint": "Database type: hsqldb (for testing), postgresql (recommended), or mysql",
+            "required": false,
+            "env_variable": "WISEMAPPING_DB_TYPE",
+            "default": "hsqldb",
+            "options": [
+                {
+                    "label": "HSQLDB (Testing Only)",
+                    "value": "hsqldb"
+                },
+                {
+                    "label": "PostgreSQL (Recommended)",
+                    "value": "postgresql"
+                },
+                {
+                    "label": "MySQL",
+                    "value": "mysql"
+                }
+            ]
+        },
+        {
+            "type": "text",
+            "label": "Database Host",
+            "placeholder": "localhost",
+            "hint": "Database server hostname or IP address (only for PostgreSQL/MySQL)",
+            "required": false,
+            "env_variable": "WISEMAPPING_DB_HOST",
+            "default": "localhost"
+        },
+        {
+            "type": "number",
+            "label": "Database Port",
+            "placeholder": "5432",
+            "hint": "Database server port (5432 for PostgreSQL, 3306 for MySQL)",
+            "required": false,
+            "env_variable": "WISEMAPPING_DB_PORT",
+            "default": 5432,
+            "min": 1,
+            "max": 65535
+        },
+        {
+            "type": "text",
+            "label": "Database Name",
+            "placeholder": "wisemapping",
+            "hint": "Database name (only for PostgreSQL/MySQL)",
+            "required": false,
+            "env_variable": "WISEMAPPING_DB_NAME",
+            "default": "wisemapping"
+        },
+        {
+            "type": "text",
+            "label": "Database Username",
+            "placeholder": "wisemapping",
+            "hint": "Database username (only for PostgreSQL/MySQL)",
+            "required": false,
+            "env_variable": "WISEMAPPING_DB_USER",
+            "default": "wisemapping"
+        },
+        {
+            "type": "password",
+            "label": "Database Password",
+            "hint": "Database password (only for PostgreSQL/MySQL)",
+            "required": false,
+            "env_variable": "WISEMAPPING_DB_PASSWORD"
+        },
+        {
+            "type": "text",
+            "label": "Java Memory Options",
+            "placeholder": "-Xmx1024m -Xms512m",
+            "hint": "JVM memory configuration (e.g., -Xmx2048m -Xms1024m)",
+            "required": false,
+            "env_variable": "WISEMAPPING_JAVA_OPTS",
+            "default": "-Xmx1024m -Xms512m"
+        },
+        {
+            "type": "text",
+            "label": "Application Base URL",
+            "placeholder": "https://wisemapping.yourdomain.com",
+            "hint": "Base URL for the application (important for redirects and embeds)",
+            "required": false,
+            "env_variable": "WISEMAPPING_APP_URL",
+            "default": "${APP_PROTOCOL}://${APP_DOMAIN}"
+        },
+        {
+            "type": "boolean",
+            "label": "Enable Registration",
+            "hint": "Allow new user registrations on the platform",
+            "required": false,
+            "env_variable": "WISEMAPPING_ALLOW_REGISTRATION",
+            "default": true
         }
-      ]
-    },
-    {
-      "type": "text",
-      "label": "Database Host",
-      "placeholder": "localhost",
-      "hint": "Database server hostname or IP address (only for PostgreSQL/MySQL)",
-      "required": false,
-      "env_variable": "WISEMAPPING_DB_HOST",
-      "default": "localhost"
-    },
-    {
-      "type": "number",
-      "label": "Database Port",
-      "placeholder": "5432",
-      "hint": "Database server port (5432 for PostgreSQL, 3306 for MySQL)",
-      "required": false,
-      "env_variable": "WISEMAPPING_DB_PORT",
-      "default": 5432,
-      "min": 1,
-      "max": 65535
-    },
-    {
-      "type": "text",
-      "label": "Database Name",
-      "placeholder": "wisemapping",
-      "hint": "Database name (only for PostgreSQL/MySQL)",
-      "required": false,
-      "env_variable": "WISEMAPPING_DB_NAME",
-      "default": "wisemapping"
-    },
-    {
-      "type": "text",
-      "label": "Database Username",
-      "placeholder": "wisemapping",
-      "hint": "Database username (only for PostgreSQL/MySQL)",
-      "required": false,
-      "env_variable": "WISEMAPPING_DB_USER",
-      "default": "wisemapping"
-    },
-    {
-      "type": "password",
-      "label": "Database Password",
-      "hint": "Database password (only for PostgreSQL/MySQL)",
-      "required": false,
-      "env_variable": "WISEMAPPING_DB_PASSWORD"
-    },
-    {
-      "type": "text",
-      "label": "Java Memory Options",
-      "placeholder": "-Xmx1024m -Xms512m",
-      "hint": "JVM memory configuration (e.g., -Xmx2048m -Xms1024m)",
-      "required": false,
-      "env_variable": "WISEMAPPING_JAVA_OPTS",
-      "default": "-Xmx1024m -Xms512m"
-    },
-    {
-      "type": "text",
-      "label": "Application Base URL",
-      "placeholder": "https://wisemapping.yourdomain.com",
-      "hint": "Base URL for the application (important for redirects and embeds)",
-      "required": false,
-      "env_variable": "WISEMAPPING_APP_URL",
-      "default": "${APP_PROTOCOL}://${APP_DOMAIN}"
-    },
-    {
-      "type": "boolean",
-      "label": "Enable Registration",
-      "hint": "Allow new user registrations on the platform",
-      "required": false,
-      "env_variable": "WISEMAPPING_ALLOW_REGISTRATION",
-      "default": true
-    }
-  ],
-  "exposable": true,
-  "no_gui": false,
-  "supported_architectures": ["amd64", "arm64"],
-  "uid": 1001,
-  "gid": 1001,
-  "dynamic_config": true,
-  "min_tipi_version": "4.6.5",
-  "created_at": 1737028800000,
-  "updated_at": 1737028800000
+    ],
+    "exposable": true,
+    "no_gui": false,
+    "supported_architectures": [
+        "amd64",
+        "arm64"
+    ],
+    "uid": 1001,
+    "gid": 1001,
+    "dynamic_config": true,
+    "min_tipi_version": "4.6.5",
+    "created_at": 1737028800000,
+    "updated_at": 1737028800000
 }
