@@ -7,7 +7,13 @@
             "internalPort": 80,
             "environment": {
                 "TZ": "${TZ}",
-                "JAVA_OPTS": "${WISEMAPPING_JAVA_OPTS:-Xmx1024m -Xms512m}"
+                "JAVA_OPTS": "${WISEMAPPING_JAVA_OPTS:-Xmx1024m -Xms512m}",
+                "SPRING_DATASOURCE_URL": "jdbc:postgresql://wisemapping-db:5432/wisemapping",
+                "SPRING_DATASOURCE_USERNAME": "wisemapping",
+                "SPRING_DATASOURCE_PASSWORD": "${WISEMAPPING_DB_PASSWORD}",
+                "SPRING_DATASOURCE_DRIVER_CLASS_NAME": "org.postgresql.Driver",
+                "SPRING_JPA_HIBERNATE_DDL_AUTO": "validate",
+                "SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT": "org.hibernate.dialect.PostgreSQLDialect"
             },
             "volumes": [
                 {
@@ -21,6 +27,34 @@
                 "timeout": "10s",
                 "retries": 3,
                 "startPeriod": "60s"
+            },
+            "dependsOn": [
+                "wisemapping-db"
+            ]
+        },
+        {
+            "name": "wisemapping-db",
+            "image": "postgres:16-alpine",
+            "internalPort": 5432,
+            "environment": {
+                "POSTGRES_DB": "wisemapping",
+                "POSTGRES_USER": "wisemapping",
+                "POSTGRES_PASSWORD": "${WISEMAPPING_DB_PASSWORD}"
+            },
+            "volumes": [
+                {
+                    "hostPath": "${APP_DATA_DIR}/data/postgres",
+                    "containerPath": "/var/lib/postgresql/data"
+                }
+            ],
+            "healthCheck": {
+                "test": [
+                    "CMD-SHELL",
+                    "pg_isready -U wisemapping"
+                ],
+                "interval": "10s",
+                "timeout": "5s",
+                "retries": 5
             }
         }
     ]

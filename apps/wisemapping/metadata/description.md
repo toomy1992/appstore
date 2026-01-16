@@ -51,7 +51,8 @@ WiseMapping is a versatile mind mapping platform that enables users to create, s
 
 | Host folder | Container folder | Comment |
 | ----------- | ---------------- | ------- |
-| `${APP_DATA_DIR}/data` | `/var/lib/wisemapping` | Database and application data storage |
+| `${APP_DATA_DIR}/data` | `/var/lib/wisemapping` | Application data storage |
+| `${APP_DATA_DIR}/data/postgres` | `/var/lib/postgresql/data` | PostgreSQL database files |
 
 ---
 
@@ -60,22 +61,24 @@ WiseMapping is a versatile mind mapping platform that enables users to create, s
 | Variable | Required | Description |
 | --- | --- | --- |
 | `TZ` | No | Timezone (inherited from system) |
-| `JAVA_OPTS` | No | JVM memory options (default: `-Xmx1024m -Xms512m`) |
-| `WISEMAPPING_ADMIN_EMAIL` | Yes | Email for admin user account |
-| `WISEMAPPING_ADMIN_PASSWORD` | Yes | Password for admin user account |
-| `WISEMAPPING_DB_TYPE` | No | Database type: `hsqldb`, `postgresql`, or `mysql` (default: `hsqldb`) |
-| `WISEMAPPING_DB_HOST` | No | Database hostname (for PostgreSQL/MySQL) |
-| `WISEMAPPING_DB_PORT` | No | Database port (5432 for PostgreSQL, 3306 for MySQL) |
-| `WISEMAPPING_DB_NAME` | No | Database name (default: `wisemapping`) |
-| `WISEMAPPING_DB_USER` | No | Database username |
-| `WISEMAPPING_DB_PASSWORD` | No | Database password |
-| `WISEMAPPING_JAVA_OPTS` | No | Custom Java memory options |
-| `WISEMAPPING_APP_URL` | No | Application base URL for redirects and embeds |
+| `WISEMAPPING_DB_PASSWORD` | Yes | Password for PostgreSQL database (auto-generated if not provided) |
+| `WISEMAPPING_JAVA_OPTS` | No | JVM memory options (default: `-Xmx1024m -Xms512m`) |
 | `WISEMAPPING_ALLOW_REGISTRATION` | No | Enable user registration (default: `true`) |
 
 ---
 
 ## ⚙️ CONFIGURATION
+
+### Database
+
+WiseMapping comes with a built-in PostgreSQL 16 database for data persistence. No external database configuration is needed - the setup is automated:
+
+- **Database Name**: `wisemapping`
+- **Database User**: `wisemapping`
+- **Database Password**: Auto-generated and stored in the `WISEMAPPING_DB_PASSWORD` environment variable
+- **Port**: 5432 (internal only)
+
+Database files are persisted in `${APP_DATA_DIR}/data/postgres` to ensure data survives container restarts.
 
 ### Default Access
 
@@ -90,30 +93,12 @@ After starting the application, you can access it at the configured URL:
 - **Test User**: `test@wisemapping.org` / `password`
 - **Admin User**: `admin@wisemapping.org` / `testAdmin123`
 
-### Database Configuration
+### Memory Configuration
 
-**HSQLDB (Default - Testing/Development Only):**
-- Built-in, no external database required
-- Data stored in `/var/lib/wisemapping/db/`
-- Not recommended for production
-
-**PostgreSQL (Recommended for Production):**
-- Set `WISEMAPPING_DB_TYPE=postgresql`
-- Requires external PostgreSQL 15+ instance
-- Set connection parameters via environment variables
-
-**MySQL (Production Supported):**
-- Set `WISEMAPPING_DB_TYPE=mysql`
-- Requires external MySQL 8+ instance
-- Set connection parameters via environment variables
-
-### Custom Configuration
-
-Mount a custom `application.yml` file for advanced configuration:
-- OAuth2 providers (Google, Facebook)
-- LDAP authentication
-- Mail settings
-- Security options
+Adjust `WISEMAPPING_JAVA_OPTS` based on your deployment size and available resources:
+- Small deployments: `-Xmx512m -Xms256m`
+- Medium deployments: `-Xmx1024m -Xms512m` (default)
+- Large deployments: `-Xmx2048m -Xms1024m`
 
 ---
 
@@ -149,12 +134,12 @@ Access the application via the configured domain and log in with admin credentia
 
 ## ⚠️ IMPORTANT
 
-- **Production Deployments**: Use PostgreSQL or MySQL, NOT HSQLDB
-- **Data Persistence**: Always mount the `/var/lib/wisemapping` volume to persist data
+- **Data Persistence**: Database files are stored in `${APP_DATA_DIR}/data/postgres` - ensure this volume is properly mounted to persist data across restarts
+- **Password Security**: The database password is auto-generated securely and stored in the environment
 - **Memory Configuration**: Adjust `JAVA_OPTS` based on your deployment size and available resources
-- **Default Credentials**: Change default admin password immediately after first login
+- **Default Credentials**: The default test accounts are for initial setup only - change or remove them before production use
 - **HTTPS**: Use a reverse proxy (Traefik, Nginx) for SSL/HTTPS termination
-- **Backups**: Regular backups of the database are recommended for production
+- **Backups**: Regular backups of the PostgreSQL database directory are recommended for production
 - **Multi-language**: Set language preferences per user or globally via configuration
 
 ---
