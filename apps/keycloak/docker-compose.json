@@ -35,7 +35,7 @@
                 },
                 {
                     "key": "KC_HOSTNAME",
-                    "value": "${KEYCLOAK_HOSTNAME"
+                    "value": "${KEYCLOAK_HOSTNAME}"
                 },
                 {
                     "key": "KC_HTTP_ENABLED",
