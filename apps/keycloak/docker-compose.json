@@ -4,6 +4,8 @@
         {
             "name": "keycloak",
             "image": "quay.io/keycloak/keycloak:26.5.1",
+            "isMain": true,
+            "internalPort": 8080,
             "command": [
                 "start"
             ],
@@ -47,6 +49,14 @@
                 {
                     "key": "KC_PROXY",
                     "value": "${KEYCLOAK_PROXY}"
+                },
+                {
+                    "key": "KC_HOSTNAME_STRICT_HTTPS",
+                    "value": "${KEYCLOAK_HOSTNAME_STRICT_HTTPS}"
+                },
+                {
+                    "key": "KC_HOSTNAME_STRICT",
+                    "value": "${KEYCLOAK_HOSTNAME_STRICT}"
                 },
                 {
                     "key": "TZ",
