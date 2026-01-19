@@ -48,10 +48,6 @@
                     "value": "${KEYCLOAK_PROXY_HEADERS:-xforwarded}"
                 },
                 {
-                    "key": "KC_PROXY",
-                    "value": "${KEYCLOAK_PROXY}"
-                },
-                {
                     "key": "KC_HOSTNAME_STRICT",
                     "value": "${KEYCLOAK_HOSTNAME_STRICT}"
                 },
