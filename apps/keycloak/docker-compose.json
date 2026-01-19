@@ -2,7 +2,7 @@
     "schemaVersion": 2,
     "services": [
         {
-            "name": "0",
+            "name": "keycloak",
             "image": "quay.io/keycloak/keycloak:26.5.1",
             "command": [
                 "start"
@@ -64,7 +64,7 @@
             ]
         },
         {
-            "name": "1",
+            "name": "keycloak-db",
             "image": "postgres:16-alpine",
             "environment": [
                 {
