@@ -14,11 +14,11 @@
                 },
                 {
                     "key": "KC_DB_URL",
-                    "value": "jdbc:postgresql://${KEYCLOAK_DB_HOST:-keycloak-db}:${KEYCLOAK_DB_PORT:-5432}/${KEYCLOAK_DB_NAME:-keycloak}"
+                    "value": "jdbc:postgresql://keycloak-db:5432/keycloak"
                 },
                 {
                     "key": "KC_DB_USERNAME",
-                    "value": "${KEYCLOAK_DB_USERNAME:-keycloak}"
+                    "value": "${KEYCLOAK_DB_USERNAME:}"
                 },
                 {
                     "key": "KC_DB_PASSWORD",
@@ -26,7 +26,7 @@
                 },
                 {
                     "key": "KC_BOOTSTRAP_ADMIN_USERNAME",
-                    "value": "${KEYCLOAK_ADMIN_USERNAME:-admin}"
+                    "value": "${KEYCLOAK_ADMIN_USERNAME:}"
                 },
                 {
                     "key": "KC_BOOTSTRAP_ADMIN_PASSWORD",

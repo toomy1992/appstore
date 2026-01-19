@@ -63,9 +63,9 @@ Keycloak is an open-source authentication server that provides user federation, 
 | `KEYCLOAK_DB_NAME` | Yes | PostgreSQL database name |
 | `KEYCLOAK_DB_USERNAME` | Yes | PostgreSQL database user |
 | `KEYCLOAK_DB_PASSWORD` | Yes | PostgreSQL database password |
-| `KEYCLOAK_HOSTNAME` | No | Full URL for Keycloak (e.g., https://keycloak.yourdomain.com) - required for production |
-| `KEYCLOAK_HTTP_ENABLED` | No | Enable HTTP (default: true). Required when using edge TLS termination at reverse proxy |
-| `KEYCLOAK_PROXY_HEADERS` | No | Proxy header parsing mode: 'forwarded' (RFC 7239) or 'xforwarded' (X-Forwarded-*) - default: xforwarded |
+| `KEYCLOAK_HOSTNAME` | Yes | Full URL for Keycloak (e.g., https://keycloak.yourdomain.com) - required for production |
+| `KEYCLOAK_HTTP_ENABLED` | Yes | Enable HTTP (default: true). Required when using edge TLS termination at reverse proxy |
+| `KEYCLOAK_PROXY_HEADERS` | Yes | Proxy header parsing mode: 'forwarded' (RFC 7239) or 'xforwarded' (X-Forwarded-*) - default: xforwarded |
 | `TZ` | No | Container timezone (default: UTC) |
 
 ---
