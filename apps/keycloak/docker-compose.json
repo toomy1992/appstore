@@ -34,7 +34,7 @@
                 },
                 {
                     "key": "KC_HOSTNAME",
-                    "value": "${KEYCLOAK_HOSTNAME:-https://${APP_DOMAIN}}"
+                    "value": "${KEYCLOAK_HOSTNAME:}"
                 },
                 {
                     "key": "KC_HTTP_ENABLED",
