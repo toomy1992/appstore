@@ -6,7 +6,7 @@
     "name": "Keycloak",
     "description": "Open source identity and access management solution. Keycloak provides user federation, strong authentication, user management, fine-grained authorization, and more.",
     "version": "26.5.1",
-    "tipi_version": 5,
+    "tipi_version": 6,
     "short_desc": "Open source authentication server",
     "author": "Keycloak Team",
     "source": "https://github.com/keycloak/keycloak",
