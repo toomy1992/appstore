@@ -2,7 +2,7 @@
     "$schema": "https://schemas.runtipi.io/v2/app-info.json",
     "id": "wisemapping",
     "available": true,
-    "port": 80,
+    "port": 8099,
     "name": "WiseMapping",
     "description": "Free, open-source web-based mind mapping tool for creating, managing, and collaborating on mind maps in real-time",
     "version": "6.0.2",
