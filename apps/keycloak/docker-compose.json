@@ -43,7 +43,7 @@
                 },
                 {
                     "key": "KC_PROXY_HEADERS",
-                    "value": "${KEYCLOAK_PROXY_HEADERSd}"
+                    "value": "${KEYCLOAK_PROXY_HEADERS}"
                 },
                 {
                     "key": "TZ",
