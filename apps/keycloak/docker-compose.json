@@ -6,7 +6,6 @@
             "image": "quay.io/keycloak/keycloak:26.5.1",
             "command": [
                 "start",
-                "--optimized",
                 "--cache=local"
             ],
             "environment": [
