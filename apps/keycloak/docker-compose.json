@@ -18,7 +18,7 @@
                 },
                 {
                     "key": "KC_DB_USERNAME",
-                    "value": "${KEYCLOAK_DB_USERNAME:}"
+                    "value": "${KEYCLOAK_DB_USERNAME}"
                 },
                 {
                     "key": "KC_DB_PASSWORD",
@@ -26,7 +26,7 @@
                 },
                 {
                     "key": "KC_BOOTSTRAP_ADMIN_USERNAME",
-                    "value": "${KEYCLOAK_ADMIN_USERNAME:}"
+                    "value": "${KEYCLOAK_ADMIN_USERNAME}"
                 },
                 {
                     "key": "KC_BOOTSTRAP_ADMIN_PASSWORD",
