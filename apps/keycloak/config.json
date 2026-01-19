@@ -105,6 +105,15 @@
         },
         {
             "type": "text",
+            "label": "Proxy Type",
+            "hint": "Use 'edge' if TLS is terminated at the proxy, 'passthrough' if TLS is terminated at Keycloak, or 'reencrypt' if TLS is terminated at the proxy but re-encrypted to Keycloak",
+            "required": false,
+            "env_variable": "KEYCLOAK_PROXY",
+            "default": "edge",
+            "placeholder": "edge"
+        },
+        {
+            "type": "text",
             "label": "Timezone",
             "hint": "Container timezone (e.g., UTC, Europe/Warsaw)",
             "required": false,

@@ -2,11 +2,10 @@
     "schemaVersion": 2,
     "services": [
         {
-            "name": "keycloak",
+            "name": "0",
             "image": "quay.io/keycloak/keycloak:26.5.1",
             "command": [
-                "start",
-                "--cache=local"
+                "start"
             ],
             "environment": [
                 {
@@ -15,11 +14,11 @@
                 },
                 {
                     "key": "KC_DB_URL",
-                    "value": "jdbc:postgresql://keycloak-db:5432/keycloak"
+                    "value": "jdbc:postgresql://keycloak-db:5432/"
                 },
                 {
                     "key": "KC_DB_USERNAME",
-                    "value": "${KEYCLOAK_DB_USERNAME}"
+                    "value": "${KEYCLOAK_DB_USERNAME:-keycloak}"
                 },
                 {
                     "key": "KC_DB_PASSWORD",
@@ -27,7 +26,7 @@
                 },
                 {
                     "key": "KC_BOOTSTRAP_ADMIN_USERNAME",
-                    "value": "${KEYCLOAK_ADMIN_USERNAME}"
+                    "value": "${KEYCLOAK_ADMIN_USERNAME:-admin}"
                 },
                 {
                     "key": "KC_BOOTSTRAP_ADMIN_PASSWORD",
@@ -35,19 +34,23 @@
                 },
                 {
                     "key": "KC_HOSTNAME",
-                    "value": "${KEYCLOAK_HOSTNAME}"
+                    "value": "${KEYCLOAK_HOSTNAME:-https://${APP_DOMAIN}}"
                 },
                 {
                     "key": "KC_HTTP_ENABLED",
-                    "value": "${KEYCLOAK_HTTP_ENABLED}"
+                    "value": "${KEYCLOAK_HTTP_ENABLED:-true}"
                 },
                 {
                     "key": "KC_PROXY_HEADERS",
-                    "value": "${KEYCLOAK_PROXY_HEADERS}"
+                    "value": "${KEYCLOAK_PROXY_HEADERS:-xforwarded}"
+                },
+                {
+                    "key": "KC_PROXY",
+                    "value": "${KEYCLOAK_PROXY}"
                 },
                 {
                     "key": "TZ",
-                    "value": "${TZ}"
+                    "value": "${TZ:-UTC}"
                 }
             ],
             "volumes": [
@@ -61,7 +64,7 @@
             ]
         },
         {
-            "name": "keycloak-db",
+            "name": "1",
             "image": "postgres:16-alpine",
             "environment": [
                 {
