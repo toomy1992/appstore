@@ -1,56 +1,84 @@
 {
-    "$schema": "https://schemas.runtipi.io/v2/dynamic-compose.json",
     "schemaVersion": 2,
     "services": [
         {
-            "name": "keycloak",
+            "name": "0",
             "image": "quay.io/keycloak/keycloak:26.5.1",
             "command": [
                 "start"
             ],
-            "isMain": true,
-            "internalPort": 8080,
-            "environment": {
-                "KC_DB": "postgres",
-                "KC_DB_URL": "jdbc:postgresql://${KEYCLOAK_DB_HOST:-keycloak-db}:${KEYCLOAK_DB_PORT:-5432}/${KEYCLOAK_DB_NAME:-keycloak}",
-                "KC_DB_USERNAME": "${KEYCLOAK_DB_USERNAME:-keycloak}",
-                "KC_DB_PASSWORD": "${KEYCLOAK_DB_PASSWORD}",
-                "KC_BOOTSTRAP_ADMIN_USERNAME": "${KEYCLOAK_ADMIN_USERNAME:-admin}",
-                "KC_BOOTSTRAP_ADMIN_PASSWORD": "${KEYCLOAK_ADMIN_PASSWORD}",
-                "KC_PROXY": "edge",
-                "KC_HOSTNAME": "${KEYCLOAK_HOSTNAME:-${APP_DOMAIN}}",
-                "TZ": "${TZ:-UTC}"
-            },
+            "environment": [
+                {
+                    "key": "KC_DB",
+                    "value": "postgres"
+                },
+                {
+                    "key": "KC_DB_URL",
+                    "value": "jdbc:postgresql://${KEYCLOAK_DB_HOST:-keycloak-db}:${KEYCLOAK_DB_PORT:-5432}/${KEYCLOAK_DB_NAME:-keycloak}"
+                },
+                {
+                    "key": "KC_DB_USERNAME",
+                    "value": "${KEYCLOAK_DB_USERNAME:-keycloak}"
+                },
+                {
+                    "key": "KC_DB_PASSWORD",
+                    "value": "${KEYCLOAK_DB_PASSWORD}"
+                },
+                {
+                    "key": "KC_BOOTSTRAP_ADMIN_USERNAME",
+                    "value": "${KEYCLOAK_ADMIN_USERNAME:-admin}"
+                },
+                {
+                    "key": "KC_BOOTSTRAP_ADMIN_PASSWORD",
+                    "value": "${KEYCLOAK_ADMIN_PASSWORD}"
+                },
+                {
+                    "key": "KC_PROXY",
+                    "value": "edge"
+                },
+                {
+                    "key": "KC_HOSTNAME",
+                    "value": "${KEYCLOAK_HOSTNAME:-${APP_DOMAIN}}"
+                },
+                {
+                    "key": "TZ",
+                    "value": "${TZ:-UTC}"
+                }
+            ],
             "volumes": [
                 {
                     "hostPath": "${APP_DATA_DIR}/data",
-                    "containerPath": "/opt/keycloak/data"
+                    "containerPath": "/opt/keycloak/data",
+                    "readOnly": false,
+                    "shared": false,
+                    "private": false
                 }
-            ],
-            "healthCheck": {
-                "test": "curl -f http://localhost:8080/health || exit 1",
-                "interval": "30s",
-                "timeout": "10s",
-                "retries": 3,
-                "startPeriod": "60s"
-            },
-            "dependsOn": [
-                "keycloak-db"
             ]
         },
         {
-            "name": "keycloak-db",
+            "name": "1",
             "image": "postgres:16-alpine",
-            "internalPort": 5432,
-            "environment": {
-                "POSTGRES_DB": "${KEYCLOAK_DB_NAME:-keycloak}",
-                "POSTGRES_USER": "${KEYCLOAK_DB_USERNAME:-keycloak}",
-                "POSTGRES_PASSWORD": "${KEYCLOAK_DB_PASSWORD}"
-            },
+            "environment": [
+                {
+                    "key": "POSTGRES_DB",
+                    "value": "${KEYCLOAK_DB_NAME:-keycloak}"
+                },
+                {
+                    "key": "POSTGRES_USER",
+                    "value": "${KEYCLOAK_DB_USERNAME:-keycloak}"
+                },
+                {
+                    "key": "POSTGRES_PASSWORD",
+                    "value": "${KEYCLOAK_DB_PASSWORD}"
+                }
+            ],
             "volumes": [
                 {
                     "hostPath": "${APP_DATA_DIR}/data/postgres",
-                    "containerPath": "/var/lib/postgresql/data"
+                    "containerPath": "/var/lib/postgresql/data",
+                    "readOnly": false,
+                    "shared": false,
+                    "private": false
                 }
             ]
         }

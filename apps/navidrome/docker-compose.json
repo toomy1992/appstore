@@ -1,58 +1,127 @@
 {
-    "$schema": "https://schemas.runtipi.io/v2/dynamic-compose.json",
-    "schemaVersion": 2, 
+    "schemaVersion": 2,
     "services": [
         {
-            "name": "navidrome",
+            "name": "0",
             "image": "deluan/navidrome:0.59.0",
-            "isMain": true,
-            "internalPort": 4533,
-            "restart": "unless-stopped",
-            "environment": {
-                "TZ": "${TZ}",
-                "PUID": "1000",
-                "PGID": "1000",
-                "ND_LOGLEVEL": "${NAVIDROME_LOGLEVEL:-info}",
-                "ND_ENABLEARTWORKPRECACHE": "${NAVIDROME_ENABLEARTWORKPRECACHE:-true}",
-                "ND_ENABLEUSEREDITING": "${NAVIDROME_ENABLEUSEREDITING:-true}",
-                "ND_ENABLEDOWNLOADS": "${NAVIDROME_ENABLEDOWNLOADS:-true}",
-                "ND_ENABLESHARING": "${NAVIDROME_ENABLESHARING:-false}",
-                "ND_ENABLETRANSCODINGCONFIG": "${NAVIDROME_ENABLETRANSCODINGCONFIG:-false}",
-                "ND_SESSIONTIMEOUT": "${NAVIDROME_SESSIONTIMEOUT:-48h}",
-                "ND_BASEURL": "${NAVIDROME_BASEURL}",
-                "ND_ENABLEFAVOURITES": "${NAVIDROME_ENABLEFAVOURITES:-true}",
-                "ND_ENABLENOWPLAYING": "${NAVIDROME_ENABLENOWPLAYING:-true}",
-                "ND_ENABLESCROBBLEHISTORY": "${NAVIDROME_ENABLESCROBBLEHISTORY:-true}",
-                "ND_ENABLESTARRATING": "${NAVIDROME_ENABLESTARRATING:-true}",
-                "ND_ENABLEINSIGHTSCOLLECTOR": "${NAVIDROME_ENABLEINSIGHTSCOLLECTOR:-true}",
-                "ND_LASTFM_ENABLED": "${NAVIDROME_LASTFM_ENABLED:-true}",
-                "ND_SPOTIFY_ENABLED": "${NAVIDROME_SPOTIFY_ENABLED:-false}",
-                "ND_SPOTIFY_ID": "${NAVIDROME_SPOTIFY_ID}",
-                "ND_SPOTIFY_SECRET": "${NAVIDROME_SPOTIFY_SECRET}",
-                "ND_DEEZER_ENABLED": "${NAVIDROME_DEEZER_ENABLED:-true}",
-                "ND_LISTENBRAINZ_ENABLED": "${NAVIDROME_LISTENBRAINZ_ENABLED:-true}",
-                "ND_ENABLEREPLAYGAIN": "${NAVIDROME_ENABLEREPLAYGAIN:-true}",
-                "ND_TRANSCODINGCACHESIZE": "${NAVIDROME_TRANSCODINGCACHESIZE:-100MB}",
-                "ND_IMAGECACHESIZE": "${NAVIDROME_IMAGECACHESIZE:-100MB}"
-            },
+            "environment": [
+                {
+                    "key": "TZ",
+                    "value": "${TZ}"
+                },
+                {
+                    "key": "PUID",
+                    "value": "1000"
+                },
+                {
+                    "key": "PGID",
+                    "value": "1000"
+                },
+                {
+                    "key": "ND_LOGLEVEL",
+                    "value": "${NAVIDROME_LOGLEVEL:-info}"
+                },
+                {
+                    "key": "ND_ENABLEARTWORKPRECACHE",
+                    "value": "${NAVIDROME_ENABLEARTWORKPRECACHE:-true}"
+                },
+                {
+                    "key": "ND_ENABLEUSEREDITING",
+                    "value": "${NAVIDROME_ENABLEUSEREDITING:-true}"
+                },
+                {
+                    "key": "ND_ENABLEDOWNLOADS",
+                    "value": "${NAVIDROME_ENABLEDOWNLOADS:-true}"
+                },
+                {
+                    "key": "ND_ENABLESHARING",
+                    "value": "${NAVIDROME_ENABLESHARING:-false}"
+                },
+                {
+                    "key": "ND_ENABLETRANSCODINGCONFIG",
+                    "value": "${NAVIDROME_ENABLETRANSCODINGCONFIG:-false}"
+                },
+                {
+                    "key": "ND_SESSIONTIMEOUT",
+                    "value": "${NAVIDROME_SESSIONTIMEOUT:-48h}"
+                },
+                {
+                    "key": "ND_BASEURL",
+                    "value": "${NAVIDROME_BASEURL}"
+                },
+                {
+                    "key": "ND_ENABLEFAVOURITES",
+                    "value": "${NAVIDROME_ENABLEFAVOURITES:-true}"
+                },
+                {
+                    "key": "ND_ENABLENOWPLAYING",
+                    "value": "${NAVIDROME_ENABLENOWPLAYING:-true}"
+                },
+                {
+                    "key": "ND_ENABLESCROBBLEHISTORY",
+                    "value": "${NAVIDROME_ENABLESCROBBLEHISTORY:-true}"
+                },
+                {
+                    "key": "ND_ENABLESTARRATING",
+                    "value": "${NAVIDROME_ENABLESTARRATING:-true}"
+                },
+                {
+                    "key": "ND_ENABLEINSIGHTSCOLLECTOR",
+                    "value": "${NAVIDROME_ENABLEINSIGHTSCOLLECTOR:-true}"
+                },
+                {
+                    "key": "ND_LASTFM_ENABLED",
+                    "value": "${NAVIDROME_LASTFM_ENABLED:-true}"
+                },
+                {
+                    "key": "ND_SPOTIFY_ENABLED",
+                    "value": "${NAVIDROME_SPOTIFY_ENABLED:-false}"
+                },
+                {
+                    "key": "ND_SPOTIFY_ID",
+                    "value": "${NAVIDROME_SPOTIFY_ID}"
+                },
+                {
+                    "key": "ND_SPOTIFY_SECRET",
+                    "value": "${NAVIDROME_SPOTIFY_SECRET}"
+                },
+                {
+                    "key": "ND_DEEZER_ENABLED",
+                    "value": "${NAVIDROME_DEEZER_ENABLED:-true}"
+                },
+                {
+                    "key": "ND_LISTENBRAINZ_ENABLED",
+                    "value": "${NAVIDROME_LISTENBRAINZ_ENABLED:-true}"
+                },
+                {
+                    "key": "ND_ENABLEREPLAYGAIN",
+                    "value": "${NAVIDROME_ENABLEREPLAYGAIN:-true}"
+                },
+                {
+                    "key": "ND_TRANSCODINGCACHESIZE",
+                    "value": "${NAVIDROME_TRANSCODINGCACHESIZE:-100MB}"
+                },
+                {
+                    "key": "ND_IMAGECACHESIZE",
+                    "value": "${NAVIDROME_IMAGECACHESIZE:-100MB}"
+                }
+            ],
             "volumes": [
                 {
                     "hostPath": "${APP_DATA_DIR}/data",
-                    "containerPath": "/data"
+                    "containerPath": "/data",
+                    "readOnly": false,
+                    "shared": false,
+                    "private": false
                 },
                 {
                     "hostPath": "${APP_DATA_DIR}/music",
                     "containerPath": "/music",
-                    "options": "ro"
+                    "readOnly": false,
+                    "shared": false,
+                    "private": false
                 }
-            ],
-            "healthCheck": {
-                "test": "wget --no-verbose --tries=1 --spider http://localhost:4533/health || exit 1",
-                "interval": "30s",
-                "timeout": "10s",
-                "retries": 3,
-                "startPeriod": "40s"
-            }
+            ]
         }
     ]
 }
