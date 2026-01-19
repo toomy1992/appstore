@@ -8,7 +8,7 @@ This directory contains all the applications available in this app store. Each a
   - `description.md`: Markdown description of the app
   - `logo.jpg`: App logo image
 
-## Total Applications: 19
+## Total Applications: 20
 
 ### AI
 - **Actual AI**: AI for Actual Budget.
@@ -19,6 +19,9 @@ This directory contains all the applications available in this app store. Each a
 - **OpenBB**: Open-source financial data platform for analysts, quants, and AI agents.
 - **Wealthfolio**: Investment tracking app.
 - **Wealthfolio MCP**: Portfolio MCP server.
+
+### Security
+- **Keycloak**: Open source identity and access management solution.
 
 ### Media
 - **Autobrr**: Torrent download automation.
@@ -32,6 +35,6 @@ This directory contains all the applications available in this app store. Each a
 - **Spottarr**: Spotnet indexer for *arr.
 - **Ygégé**: YGG Torrent indexer.
 
-### Security & Utilities
+### Utilities
 - **Transmission (VPN)**: BitTorrent client with VPN support.
 - **WiseMapping**: Free, open-source web-based mind mapping tool for creating, managing, and collaborating on mind maps in real-time.
