@@ -2,7 +2,7 @@
     "schemaVersion": 2,
     "services": [
         {
-            "name": "0",
+            "name": "navidrome",
             "image": "deluan/navidrome:0.59.0",
             "environment": [
                 {
