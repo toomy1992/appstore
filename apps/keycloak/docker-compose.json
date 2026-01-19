@@ -35,19 +35,19 @@
                 },
                 {
                     "key": "KC_HOSTNAME",
-                    "value": "${KEYCLOAK_HOSTNAME:-https://${APP_DOMAIN}}"
+                    "value": "${KEYCLOAK_HOSTNAME"
                 },
                 {
                     "key": "KC_HTTP_ENABLED",
-                    "value": "${KEYCLOAK_HTTP_ENABLED:-true}"
+                    "value": "${KEYCLOAK_HTTP_ENABLED}"
                 },
                 {
                     "key": "KC_PROXY_HEADERS",
-                    "value": "${KEYCLOAK_PROXY_HEADERS:-xforwarded}"
+                    "value": "${KEYCLOAK_PROXY_HEADERSd}"
                 },
                 {
                     "key": "TZ",
-                    "value": "${TZ:-UTC}"
+                    "value": "${TZ}"
                 }
             ],
             "volumes": [
