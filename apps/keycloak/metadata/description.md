@@ -63,7 +63,9 @@ Keycloak is an open-source authentication server that provides user federation, 
 | `KEYCLOAK_DB_NAME` | Yes | PostgreSQL database name |
 | `KEYCLOAK_DB_USERNAME` | Yes | PostgreSQL database user |
 | `KEYCLOAK_DB_PASSWORD` | Yes | PostgreSQL database password |
-| `KEYCLOAK_HOSTNAME` | No | Hostname for the Keycloak frontend URL |
+| `KEYCLOAK_HOSTNAME` | No | Full URL for Keycloak (e.g., https://keycloak.yourdomain.com) - required for production |
+| `KEYCLOAK_HTTP_ENABLED` | No | Enable HTTP (default: true). Required when using edge TLS termination at reverse proxy |
+| `KEYCLOAK_PROXY_HEADERS` | No | Proxy header parsing mode: 'forwarded' (RFC 7239) or 'xforwarded' (X-Forwarded-*) - default: xforwarded |
 | `TZ` | No | Container timezone (default: UTC) |
 
 ---
@@ -82,14 +84,40 @@ Keycloak is an open-source authentication server that provides user federation, 
 
 This installation uses PostgreSQL as the database backend. The database is automatically initialized on first start.
 
+### Reverse Proxy and HTTPS Configuration
+
+Keycloak is configured to work behind a reverse proxy with edge TLS termination (proxy handles HTTPS):
+
+**Default Configuration:**
+- `KC_HTTP_ENABLED=true` - Keycloak listens on HTTP (port 8080)
+- `KC_PROXY_HEADERS=xforwarded` - Parses X-Forwarded-* headers from reverse proxy
+- Reverse proxy should set these headers:
+  - `X-Forwarded-Proto: https` - Indicates HTTPS at proxy
+  - `X-Forwarded-Host: keycloak.yourdomain.com` - Frontend hostname
+  - `X-Forwarded-Port: 443` - Frontend port
+
+**Important:** Always use a reverse proxy (nginx, Traefik, HAProxy) in front of Keycloak for production!
+
+### Custom Hostname Configuration
+
+To override the frontend URL, set `KEYCLOAK_HOSTNAME` with full URL:
+```
+KEYCLOAK_HOSTNAME=https://keycloak.yourdomain.com
+```
+
+For different proxy header modes:
+- `KEYCLOAK_PROXY_HEADERS=forwarded` - Use RFC 7239 Forwarded header
+- `KEYCLOAK_PROXY_HEADERS=xforwarded` - Use non-standard X-Forwarded-* headers (default)
+
 ### Production Considerations
 
 - Change the admin password immediately after first login
-- Configure SSL/TLS certificates for secure connections
+- Configure SSL/TLS certificates at reverse proxy level (not in Keycloak container)
 - Use strong, unique database password
 - Set up regular database backups
 - Consider enabling two-factor authentication for admin accounts
 - Configure appropriate SMTP settings for email notifications
+- Use a dedicated reverse proxy/gateway for HTTPS termination
 
 ---
 
@@ -105,6 +133,29 @@ http://your-domain:8080/admin
 
 ```
 http://your-domain:8080/realms/master/account
+```
+
+### NGINX Reverse Proxy Configuration Example
+
+```nginx
+server {
+    listen 443 ssl http2;
+    server_name keycloak.yourdomain.com;
+
+    # SSL configuration
+    ssl_certificate /path/to/cert.pem;
+    ssl_certificate_key /path/to/key.pem;
+
+    location / {
+        proxy_pass http://keycloak:8080;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-Host $host;
+        proxy_set_header X-Forwarded-Port 443;
+    }
+}
 ```
 
 ### Creating a Realm
@@ -130,8 +181,11 @@ http://your-domain:8080/realms/master/account
 - **Database**: Ensure PostgreSQL is running and accessible before starting Keycloak
 - **Memory**: Keycloak requires sufficient memory. Increase JVM heap if experiencing out-of-memory errors
 - **Timezone**: Ensure the container timezone matches your requirements for audit logs
-- **Hostname Configuration**: Set the `KEYCLOAK_HOSTNAME` variable for proper redirect URI handling
-- **SSL/TLS**: For production use, configure SSL certificates and enable HTTPS
+- **Reverse Proxy Required**: Always run Keycloak behind a reverse proxy for production use
+- **Hostname Configuration**: Set the `KEYCLOAK_HOSTNAME` variable with full HTTPS URL for proper token issuance
+- **HTTPS at Proxy**: TLS/SSL termination MUST be at reverse proxy level, not in Keycloak container
+- **Proxy Headers**: Ensure reverse proxy correctly sets X-Forwarded-* headers (or Forwarded header if using RFC 7239)
+- **DO NOT disable proxy mode**: `KC_PROXY=edge` is required for proper hostname and origin handling
 
 ---
 

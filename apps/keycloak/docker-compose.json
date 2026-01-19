@@ -33,12 +33,16 @@
                     "value": "${KEYCLOAK_ADMIN_PASSWORD}"
                 },
                 {
-                    "key": "KC_PROXY",
-                    "value": "edge"
+                    "key": "KC_HOSTNAME",
+                    "value": "${KEYCLOAK_HOSTNAME:-https://${APP_DOMAIN}}"
                 },
                 {
-                    "key": "KC_HOSTNAME",
-                    "value": "${KEYCLOAK_HOSTNAME:-${APP_DOMAIN}}"
+                    "key": "KC_HTTP_ENABLED",
+                    "value": "${KEYCLOAK_HTTP_ENABLED:-true}"
+                },
+                {
+                    "key": "KC_PROXY_HEADERS",
+                    "value": "${KEYCLOAK_PROXY_HEADERS:-xforwarded}"
                 },
                 {
                     "key": "TZ",

@@ -81,10 +81,27 @@
         {
             "type": "text",
             "label": "Hostname",
-            "hint": "The hostname for Keycloak frontend URL. Can use Runtipi domain variable",
+            "hint": "Full URL where Keycloak is exposed (e.g., https://keycloak.yourdomain.com). Should start with https://",
             "required": false,
             "env_variable": "KEYCLOAK_HOSTNAME",
-            "placeholder": "${APP_DOMAIN}"
+            "placeholder": "https://${APP_DOMAIN}"
+        },
+        {
+            "type": "boolean",
+            "label": "Enable HTTP",
+            "hint": "Enable HTTP protocol. Required when using reverse proxy with edge TLS termination (proxy handles HTTPS)",
+            "required": false,
+            "env_variable": "KEYCLOAK_HTTP_ENABLED",
+            "default": true
+        },
+        {
+            "type": "text",
+            "label": "Proxy Headers Mode",
+            "hint": "How to parse proxy headers: 'forwarded' (RFC 7239) or 'xforwarded' (X-Forwarded-*). Required for reverse proxy",
+            "required": false,
+            "env_variable": "KEYCLOAK_PROXY_HEADERS",
+            "default": "xforwarded",
+            "placeholder": "xforwarded"
         },
         {
             "type": "text",
