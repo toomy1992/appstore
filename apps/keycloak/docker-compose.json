@@ -3,7 +3,7 @@
     "services": [
         {
             "name": "keycloak",
-            "image": "quay.io/keycloak/keycloak:26.5.1",
+            "image": "quay.io/keycloak/keycloak:26.5.2",
             "isMain": true,
             "internalPort": 8080,
             "command": [

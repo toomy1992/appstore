@@ -1,142 +1,142 @@
 {
-    "$schema": "https://schemas.runtipi.io/v2/app-info.json",
-    "id": "keycloak",
-    "available": true,
-    "port": 8080,
-    "name": "Keycloak",
-    "description": "Open source identity and access management solution. Keycloak provides user federation, strong authentication, user management, fine-grained authorization, and more.",
-    "version": "26.5.1",
-    "tipi_version": 7,
-    "short_desc": "Open source authentication server",
-    "author": "Keycloak Team",
-    "source": "https://github.com/keycloak/keycloak",
-    "website": "https://www.keycloak.org",
-    "categories": [
-        "security",
-        "featured"
-    ],
-    "form_fields": [
-        {
-            "type": "text",
-            "label": "Admin Username",
-            "hint": "Initial admin user for Keycloak management console",
-            "required": true,
-            "env_variable": "KEYCLOAK_ADMIN_USERNAME",
-            "default": "admin",
-            "placeholder": "admin"
-        },
-        {
-            "type": "password",
-            "label": "Admin Password",
-            "hint": "Secure password for admin account. Change this immediately in production",
-            "required": true,
-            "env_variable": "KEYCLOAK_ADMIN_PASSWORD",
-            "placeholder": "Choose a strong password"
-        },
-        {
-            "type": "text",
-            "label": "Database Host",
-            "hint": "PostgreSQL database hostname (internal service name)",
-            "required": true,
-            "env_variable": "KEYCLOAK_DB_HOST",
-            "default": "keycloak-db",
-            "placeholder": "keycloak-db"
-        },
-        {
-            "type": "number",
-            "label": "Database Port",
-            "hint": "PostgreSQL database port",
-            "required": true,
-            "env_variable": "KEYCLOAK_DB_PORT",
-            "default": 5432,
-            "min": 1,
-            "max": 65535
-        },
-        {
-            "type": "text",
-            "label": "Database Name",
-            "hint": "PostgreSQL database name",
-            "required": true,
-            "env_variable": "KEYCLOAK_DB_NAME",
-            "default": "keycloak",
-            "placeholder": "keycloak"
-        },
-        {
-            "type": "text",
-            "label": "Database Username",
-            "hint": "PostgreSQL database user",
-            "required": true,
-            "env_variable": "KEYCLOAK_DB_USERNAME",
-            "default": "keycloak",
-            "placeholder": "keycloak"
-        },
-        {
-            "type": "password",
-            "label": "Database Password",
-            "hint": "PostgreSQL database password. Use a strong password",
-            "required": true,
-            "env_variable": "KEYCLOAK_DB_PASSWORD",
-            "placeholder": "Choose a strong password"
-        },
-        {
-            "type": "text",
-            "label": "Hostname",
-            "hint": "Full URL where Keycloak is exposed (e.g., https://keycloak.yourdomain.com). Should start with https://",
-            "required": false,
-            "env_variable": "KEYCLOAK_HOSTNAME",
-            "placeholder": "https://${APP_DOMAIN}"
-        },
-        {
-            "type": "boolean",
-            "label": "Hostname Strict HTTPS",
-            "hint": "Require HTTPS for hostname verification. Set to false when using reverse proxy with edge TLS",
-            "required": false,
-            "env_variable": "KEYCLOAK_HOSTNAME_STRICT_HTTPS",
-            "default": false
-        },
-        {
-            "type": "boolean",
-            "label": "Hostname Strict",
-            "hint": "Require exact hostname match. Set to false to accept requests on any hostname. Use false for reverse proxy",
-            "required": false,
-            "env_variable": "KEYCLOAK_HOSTNAME_STRICT",
-            "default": false
-        },
-        {
-            "type": "boolean",
-            "label": "Enable HTTP",
-            "hint": "Enable HTTP protocol. Required when using reverse proxy with edge TLS termination (proxy handles HTTPS)",
-            "required": false,
-            "env_variable": "KEYCLOAK_HTTP_ENABLED",
-            "default": true
-        },
-        {
-            "type": "text",
-            "label": "Proxy Headers Mode",
-            "hint": "How to parse proxy headers: 'forwarded' (RFC 7239) or 'xforwarded' (X-Forwarded-*). Required for reverse proxy",
-            "required": false,
-            "env_variable": "KEYCLOAK_PROXY_HEADERS",
-            "default": "xforwarded",
-            "placeholder": "xforwarded"
-        },
-        {
-            "type": "text",
-            "label": "Timezone",
-            "hint": "Container timezone (e.g., UTC, Europe/Warsaw)",
-            "required": false,
-            "env_variable": "TZ",
-            "default": "UTC",
-            "placeholder": "UTC"
-        }
-    ],
-    "exposable": true,
-    "no_gui": false,
-    "supported_architectures": [
-        "amd64",
-        "arm64"
-    ],
-    "dynamic_config": true,
-    "min_tipi_version": "4.6.5",
-    "created_at": 1737295200000,
-    "updated_at": 1737345600000
+  "$schema": "https://schemas.runtipi.io/v2/app-info.json",
+  "id": "keycloak",
+  "available": true,
+  "port": 8080,
+  "name": "Keycloak",
+  "description": "Open source identity and access management solution. Keycloak provides user federation, strong authentication, user management, fine-grained authorization, and more.",
+  "version": "26.5.2",
+  "tipi_version": 8,
+  "short_desc": "Open source authentication server",
+  "author": "Keycloak Team",
+  "source": "https://github.com/keycloak/keycloak",
+  "website": "https://www.keycloak.org",
+  "categories": [
+    "security",
+    "featured"
+  ],
+  "form_fields": [
+    {
+      "type": "text",
+      "label": "Admin Username",
+      "hint": "Initial admin user for Keycloak management console",
+      "required": true,
+      "env_variable": "KEYCLOAK_ADMIN_USERNAME",
+      "default": "admin",
+      "placeholder": "admin"
+    },
+    {
+      "type": "password",
+      "label": "Admin Password",
+      "hint": "Secure password for admin account. Change this immediately in production",
+      "required": true,
+      "env_variable": "KEYCLOAK_ADMIN_PASSWORD",
+      "placeholder": "Choose a strong password"
+    },
+    {
+      "type": "text",
+      "label": "Database Host",
+      "hint": "PostgreSQL database hostname (internal service name)",
+      "required": true,
+      "env_variable": "KEYCLOAK_DB_HOST",
+      "default": "keycloak-db",
+      "placeholder": "keycloak-db"
+    },
+    {
+      "type": "number",
+      "label": "Database Port",
+      "hint": "PostgreSQL database port",
+      "required": true,
+      "env_variable": "KEYCLOAK_DB_PORT",
+      "default": 5432,
+      "min": 1,
+      "max": 65535
+    },
+    {
+      "type": "text",
+      "label": "Database Name",
+      "hint": "PostgreSQL database name",
+      "required": true,
+      "env_variable": "KEYCLOAK_DB_NAME",
+      "default": "keycloak",
+      "placeholder": "keycloak"
+    },
+    {
+      "type": "text",
+      "label": "Database Username",
+      "hint": "PostgreSQL database user",
+      "required": true,
+      "env_variable": "KEYCLOAK_DB_USERNAME",
+      "default": "keycloak",
+      "placeholder": "keycloak"
+    },
+    {
+      "type": "password",
+      "label": "Database Password",
+      "hint": "PostgreSQL database password. Use a strong password",
+      "required": true,
+      "env_variable": "KEYCLOAK_DB_PASSWORD",
+      "placeholder": "Choose a strong password"
+    },
+    {
+      "type": "text",
+      "label": "Hostname",
+      "hint": "Full URL where Keycloak is exposed (e.g., https://keycloak.yourdomain.com). Should start with https://",
+      "required": false,
+      "env_variable": "KEYCLOAK_HOSTNAME",
+      "placeholder": "https://${APP_DOMAIN}"
+    },
+    {
+      "type": "boolean",
+      "label": "Hostname Strict HTTPS",
+      "hint": "Require HTTPS for hostname verification. Set to false when using reverse proxy with edge TLS",
+      "required": false,
+      "env_variable": "KEYCLOAK_HOSTNAME_STRICT_HTTPS",
+      "default": false
+    },
+    {
+      "type": "boolean",
+      "label": "Hostname Strict",
+      "hint": "Require exact hostname match. Set to false to accept requests on any hostname. Use false for reverse proxy",
+      "required": false,
+      "env_variable": "KEYCLOAK_HOSTNAME_STRICT",
+      "default": false
+    },
+    {
+      "type": "boolean",
+      "label": "Enable HTTP",
+      "hint": "Enable HTTP protocol. Required when using reverse proxy with edge TLS termination (proxy handles HTTPS)",
+      "required": false,
+      "env_variable": "KEYCLOAK_HTTP_ENABLED",
+      "default": true
+    },
+    {
+      "type": "text",
+      "label": "Proxy Headers Mode",
+      "hint": "How to parse proxy headers: 'forwarded' (RFC 7239) or 'xforwarded' (X-Forwarded-*). Required for reverse proxy",
+      "required": false,
+      "env_variable": "KEYCLOAK_PROXY_HEADERS",
+      "default": "xforwarded",
+      "placeholder": "xforwarded"
+    },
+    {
+      "type": "text",
+      "label": "Timezone",
+      "hint": "Container timezone (e.g., UTC, Europe/Warsaw)",
+      "required": false,
+      "env_variable": "TZ",
+      "default": "UTC",
+      "placeholder": "UTC"
+    }
+  ],
+  "exposable": true,
+  "no_gui": false,
+  "supported_architectures": [
+    "amd64",
+    "arm64"
+  ],
+  "dynamic_config": true,
+  "min_tipi_version": "4.6.5",
+  "created_at": 1737295200000,
+  "updated_at": 1769223723133
 }
