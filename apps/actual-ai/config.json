@@ -6,8 +6,8 @@
   "exposable": false,
   "dynamic_config": true,
   "description": "This is a project that allows you to categorize uncategorized transactions for Actual Budget using OpenAI, Anthropic, Google Generative AI, Ollama or any other compatible API.",
-  "tipi_version": 5,
-  "version": "2.2.6",
+  "tipi_version": 6,
+  "version": "2.2.7",
   "categories": [
     "ai"
   ],
@@ -66,5 +66,5 @@
     "amd64"
   ],
   "created_at": 1746019505000,
-  "updated_at": 1768264486075
+  "updated_at": 1770090137066
 }
