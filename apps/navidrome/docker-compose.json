@@ -3,7 +3,7 @@
     "services": [
         {
             "name": "navidrome",
-            "image": "deluan/navidrome:0.59.0",
+            "image": "deluan/navidrome:0.60.0",
             "environment": [
                 {
                     "key": "TZ",
