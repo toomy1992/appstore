@@ -40,8 +40,9 @@ php occ user:resetpassword username
 ![](https://raw.githubusercontent.com/nextcloud/screenshots/master/files/Files%20Sharing.png)
 
 # ⛺ Runtipi Note - 2026
-The version of this app is currently not aligned with the latest avaible: 32.
-Since Nextcloud requires to be upgraded step-by-step (you can  only update to the next major and can't skip iterations),  we will be rolling out a major update version every month until we catch up with the latest version.
+The version of this app is now aligned with the latest available: 32.
+
+For new installations, you can start directly with version 32.
 
 ## Tips
 - Remember to backup your data !
@@ -50,11 +51,11 @@ Since Nextcloud requires to be upgraded step-by-step (you can  only update to th
 - If you missed an intermediate version you can use a "user-config" to catch up.
 
 ### User-Config example
-here is an example to set nextcloud to version 30:
+here is an example to set nextcloud to version 32:
 ``` yaml
 services:
  nextcloud:
-   image: nextcloud:30-apache
+   image: nextcloud:32-apache
 ```
 
 ### Useful command

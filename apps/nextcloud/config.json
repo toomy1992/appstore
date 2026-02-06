@@ -6,8 +6,8 @@
     "dynamic_config": true,
     "port": 8083,
     "id": "nextcloud",
-    "tipi_version": 29,
-    "version": "27-apache",
+    "tipi_version": 30,
+    "version": "32-apache",
     "categories": [
         "data"
     ],
@@ -38,6 +38,6 @@
         "amd64"
     ],
     "created_at": 1691943801422,
-    "updated_at": 1761338378487,
+    "updated_at": 1770419014000,
     "min_tipi_version": "4.5.0"
 }
