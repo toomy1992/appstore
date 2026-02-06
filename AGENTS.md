@@ -2,7 +2,76 @@
 
 Add the **{{APPLICATION_NAME}}** application (link to documentation/official site) based on complete analysis and verification.
 
-## 📋 Required specifications
+## 🚀 Quick Start Commands and Workflows
+
+### Most Common Tasks
+- **Update app version** (60% of commits): Update Docker image version
+- **Add new application** (20% of commits): Create complete app configuration
+- **Fix configuration issues** (20% of commits): Resolve validation errors
+
+### Workflow Commands (Fastest! ⚡)
+- `/update-and-commit` ⚡ Update + validate + commit in one command (most common)
+- `/add-app-complete` 🎯 Create + validate + commit workflow (new apps)
+
+### Basic Commands (Step-by-step)
+- `/update-version` - Update Docker image version only
+- `/add-app` - Create new application only
+- `/validate` - Comprehensive validation before committing
+- `/fix-app` - Auto-fix common configuration issues
+- `/commit-app` - Commit with proper messages
+
+### Utility Commands
+- `/check-updates` - Check for available app updates
+- `/compare-apps` - Compare apps to learn patterns
+
+### Documentation Hierarchy
+**Level 1: Quick Commands** (Use These First!)
+- Workflow commands for fastest results
+- Basic commands for step-by-step control
+
+**Level 2: Quick Reference**
+- Core rules and validation checklist
+- Common mistakes and troubleshooting
+
+**Level 3: Detailed Guides** (When You Need Deep Dive)
+- Complete app addition guide (new-app.prompt.md)
+- Git workflow and commit standards (commit-app.prompt.md)
+
+## �️ Tool Usage Guidelines
+
+### Use Task Tool When:
+- Exploring codebase structure (multiple files)
+- Complex searches requiring context
+- Multi-step research operations
+- Searching for patterns across many files
+- Need to understand how something works globally
+
+**Example:** "How does authentication work in this repo?"
+
+### Use Read Tool Directly When:
+- Reading specific known file path
+- Looking at example apps to learn patterns
+- Checking existing configurations
+- Viewing documentation files
+
+**Example:** Reading `apps/beszel/config.json` for reference
+
+### Use Grep Tool Directly When:
+- Simple keyword search in known location
+- Finding specific pattern
+- Searching for variable usage
+
+**Example:** Finding where `PAPERLESS_API_KEY` is used
+
+### Use Bash Tool Directly When:
+- Validating JSON: `cat apps/[app]/config.json | jq .`
+- Verifying Docker tags: `docker manifest inspect [image:tag]`
+- Git operations: `git status`, `git diff`
+- Getting timestamps: `date +%s%3N`
+
+**Example:** Verifying a Docker tag exists before using it
+
+## �📋 Required specifications
 
 ### 🏗️ Mandatory structure
 - `apps/[app-name]/config.json` - Tipi configuration with detailed form_fields
@@ -137,12 +206,20 @@ Add the **{{APPLICATION_NAME}}** application (link to documentation/official sit
 #### 🔒 Advanced Docker Compose Properties (ServiceBuilder Support)
 **Runtipi supports 40+ Docker Compose properties via ServiceBuilder. Use when needed:**
 
+**Basic Properties:**
+- `"restart": "unless-stopped"` - Restart policy
+- `"dependsOn": ["service-name"]` - Service dependencies
+- `"environment": {"VAR": "value"}` - Environment variables
+- `"volumes": [{"hostPath": "/host", "containerPath": "/container"}]` - Volume mounts
+- `"ports": [{"internal": 8080, "external": 8080}]` - Port mappings
+
 **Security & Capabilities:**
 - `"capAdd": ["SYS_ADMIN", "NET_ADMIN"]` - Linux capabilities to add
 - `"capDrop": ["ALL"]` - Linux capabilities to drop for security
 - `"securityOpt": ["apparmor:unconfined", "no-new-privileges:true"]` - Security options
 - `"privileged": true` - Privileged mode (avoid when possible, use specific capabilities)
 - `"devices": ["/dev/fuse:/dev/fuse"]` - Device mappings for hardware access
+- `"readOnly": true` - Read-only filesystem
 
 **Network & Communication:**
 - `"networkMode": "host|bridge|none|service:name"` - Network mode override
@@ -172,6 +249,7 @@ Add the **{{APPLICATION_NAME}}** application (link to documentation/official sit
 **Monitoring & Logging:**
 - `"logging": {"driver": "json-file", "options": {"max-size": "10m"}}` - Logging configuration
 - `"labels": {"traefik.enable": "true"}` - Container labels
+- `"healthCheck": {"test": "curl -f http://localhost:8080/health"}` - Health check configuration
 
 **Docker-compose.json structure example:**
 ```json
@@ -260,6 +338,55 @@ Add the **{{APPLICATION_NAME}}** application (link to documentation/official sit
 }
 ```
 ```
+
+## 🔧 Multi-Service Apps Pattern
+
+For applications requiring databases or additional services, use this pattern:
+
+### Main Service Configuration
+```json
+{
+  "name": "app-name",
+  "image": "vendor/app:version",
+  "isMain": true,
+  "internalPort": 8080,
+  "dependsOn": ["app-db"],
+  "environment": [
+    {"key": "DATABASE_HOST", "value": "app-db"},
+    {"key": "DATABASE_PASSWORD", "value": "${APPNAME_DB_PASSWORD}"}
+  ],
+  "volumes": [
+    {
+      "hostPath": "${APP_DATA_DIR}/data",
+      "containerPath": "/app/data"
+    }
+  ]
+}
+```
+
+### Dependent Service Configuration
+```json
+{
+  "name": "app-db",
+  "image": "postgres:16",
+  "environment": [
+    {"key": "POSTGRES_PASSWORD", "value": "${APPNAME_DB_PASSWORD}"},
+    {"key": "POSTGRES_DB", "value": "appdb"}
+  ],
+  "volumes": [
+    {
+      "hostPath": "${APP_DATA_DIR}/db",
+      "containerPath": "/var/lib/postgresql/data"
+    }
+  ]
+}
+```
+
+**Key Points:**
+- Use `"dependsOn": ["service-name"]` for service dependencies
+- Configure service communication via environment variables
+- Use separate volume paths for each service (`/data`, `/db`, etc.)
+- Add database password as random type in form_fields
 
 ### 📖 description.md documentation
 Standardized format with mandatory sections:
@@ -382,104 +509,173 @@ ls -la apps/[app-name]/metadata/logo.jpg
 - [ ] Image quality appropriate for UI display
 - [ ] Downloads successfully with curl command
 
-## 🔍 Mandatory verification points
+## 🔍 Comprehensive Validation Checklist (15 Points)
 
-### 1. Official schemas compliance
-- [ ] Validate against `https://schemas.runtipi.io/app-info.json`
-- [ ] Validate against `https://schemas.runtipi.io/dynamic-compose.json`
-- [ ] **ServiceBuilder support**: All 40+ Docker properties are supported including advanced security options
-- [ ] Use VS Code with schema validation enabled
+### 1. File Structure Validation
+- [ ] `apps/[app-name]/` directory exists
+- [ ] `config.json` file present and properly named
+- [ ] `docker-compose.json` file present and properly named
+- [ ] `metadata/` subdirectory exists
+- [ ] `metadata/description.md` file present
+- [ ] `metadata/logo.jpg` file present (< 100KB)
 
-### 2. Docker Image & Security
-- [ ] **Prefer GitHub Container Registry (ghcr.io) packages over Docker Hub when available**
-- [ ] **CRITICAL: Use `docker manifest inspect [image:tag]` to verify tag exists**
-- [ ] Verify image existence on official registry
-- [ ] Confirm available versions/tags
-- [ ] **Keep original tag format - if tag has "v" prefix, keep it (e.g., `v1.1.3`)**
-- [ ] **Test tag availability with exact format from registry**
-- [ ] **Ensure version consistency between config.json and docker-compose.json**
-- [ ] **Security options**: Consider `capAdd`, `securityOpt`, `devices` for specialized apps
-- [ ] **Avoid privileged mode**: Use specific capabilities instead when possible
-- [ ] Test supported environment variables
-- [ ] **Check PUID/PGID support in BOTH documentation AND original docker-compose.yml**
-- [ ] **Examine original .env.example for additional variables**
+### 2. JSON Syntax Validation
+- [ ] `config.json` is valid JSON (no syntax errors)
+- [ ] `docker-compose.json` is valid JSON (no syntax errors)
+- [ ] All strings properly quoted
+- [ ] All arrays and objects properly closed
 
-### 3. Advanced Docker Properties (When Needed)
-- [ ] **Filesystem access**: Use `capAdd: ["SYS_ADMIN"]`, `devices: ["/dev/fuse:/dev/fuse"]` for FUSE
-- [ ] **Network customization**: Consider `networkMode`, `extraHosts`, `dns` for network apps
-- [ ] **Resource limits**: Use `ulimits`, `sysctls`, `shmSize` for resource-intensive apps
-- [ ] **Process control**: Configure `user`, `workingDir`, `entrypoint` when needed
-- [ ] **Security hardening**: Use `capDrop: ["ALL"]`, `securityOpt: ["no-new-privileges:true"]`
-- [ ] **Container behavior**: Set `tty`, `stdinOpen`, `stopSignal` as required
-- [ ] **Logging options**: Configure custom logging with `logging` property
-- [ ] Use VS Code with schema validation enabled
+### 3. Schema Compliance
+- [ ] `config.json` validates against `https://schemas.runtipi.io/app-info.json`
+- [ ] `docker-compose.json` validates against `https://schemas.runtipi.io/dynamic-compose.json`
+- [ ] No schema validation errors in VS Code
+- [ ] Property order follows schema v2 specification
 
-### 2. Docker Image
-- [ ] **Prefer GitHub Container Registry (ghcr.io) packages over Docker Hub when available**
-- [ ] **CRITICAL: Use `docker manifest inspect [image:tag]` to verify tag exists**
-- [ ] Verify image existence on official registry
-- [ ] Confirm available versions/tags
-- [ ] **Keep original tag format - if tag has "v" prefix, keep it (e.g., `v1.1.3`)**
-- [ ] **Test tag availability with exact format from registry**
-- [ ] **Ensure version consistency between config.json and docker-compose.json**
-- [ ] Test supported environment variables
-- [ ] **Check PUID/PGID support in BOTH documentation AND original docker-compose.yml**
-- [ ] **Examine original .env.example for additional variables**
+### 4. Docker Image Verification
+- [ ] Image exists on registry (`docker manifest inspect [image:tag]`)
+- [ ] Version consistency between `config.json` and `docker-compose.json`
+- [ ] Tag format preserved (keep "v" prefix if present)
+- [ ] Preferred ghcr.io over Docker Hub when available
+- [ ] Clean version tags (no build numbers like -ls382)
 
-### 3. Environment variables
-- [ ] **Always prefix ALL variables with APP_NAME (e.g., PAPERLESS_AI_*)**
-- [ ] **Use correct variable syntax `"${VARIABLE}"` in docker-compose.json**
-- [ ] **Leverage Runtipi built-ins: `${TZ}`, `${APP_PROTOCOL}`, `${APP_DOMAIN}`**
-- [ ] **Use auto-detection patterns: `"${VAR:-${DEFAULT}}"` for fallback values**
-- [ ] Read official documentation thoroughly
-- [ ] **Check wiki/documentation for advanced features (webhooks, API keys, system prompts)**
-- [ ] Verify PUID/PGID support (often not supported)
-- [ ] **Examine original .env.example file for comprehensive variable list**
-- [ ] **Examine original docker-compose.yml for missing environment variables**
-- [ ] List all configurable variables
-- [ ] Define appropriate default values
-- [ ] Use native data types in form_fields
-- [ ] **Add placeholders for better UX**
-- [ ] **Use "type": "random" with "encoding": "hex" for secure passwords**
+### 5. Environment Variable Validation
+- [ ] All variables prefixed with `APP_NAME_` (e.g., `PAPERLESS_AI_*`)
+- [ ] Correct syntax `"${VARIABLE}"` in docker-compose.json
+- [ ] Built-in variables used: `${TZ}`, `${APP_PROTOCOL}`, `${APP_DOMAIN}`
+- [ ] Auto-detection patterns: `"${VAR:-${DEFAULT}}"`
+- [ ] PUID/PGID support verified in original docker-compose.yml
 
-### 4. Ports and volumes
-- [ ] Application default port
-- [ ] **Use `"internalPort"` for main service, not `"addPorts"`**
-- [ ] **Mark main service with `"isMain": true`**
-- [ ] Required volumes for persistence
-- [ ] Correct container paths
-- [ ] Follow volume naming convention
-- [ ] **Add `"readOnly": true` when supported for security**
-- [ ] Add health checks when possible
-- [ ] **Use `"dependsOn": ["service"]` for multi-service dependencies**
-- [ ] Configure external ports via `addPorts` only for additional services
-- [ ] Define appropriate default values
-- [ ] Use native data types in form_fields
-- [ ] **Add placeholders for better UX**
-- [ ] **Use "type": "random" with "encoding": "hex" for secure passwords**
+### 6. Volume Structure Validation
+- [ ] Single volume uses `${APP_DATA_DIR}/data`
+- [ ] Multiple volumes use `${APP_DATA_DIR}/data/<folder>`
+- [ ] Correct container paths specified
+- [ ] Read-only flag (`"readOnly": true`) added when supported
 
-### 4. Ports and volumes
-- [ ] Application default port
-- [ ] **Use `"internalPort"` for main service, not `"addPorts"`**
-- [ ] **Mark main service with `"isMain": true`**
-- [ ] Required volumes for persistence
-- [ ] Correct container paths
-- [ ] Follow volume naming convention
-- [ ] **Add `"readOnly": true` when supported for security**
-- [ ] Add health checks when possible
-- [ ] **Use `"dependsOn": ["service"]` for multi-service dependencies**
-- [ ] Configure external ports via `addPorts` only for additional services
-
-### 5. Optimal form fields
+### 7. Form Field Validation
 - [ ] All important parameters configurable
-- [ ] Explanatory hints for each field
-- [ ] Appropriate types (text, password, boolean, number)
-- [ ] Predefined options if applicable
-- [ ] Sensible default values with native types
-- [ ] Min/max validation for numbers
-- [ ] Grouped labeling for related settings
+- [ ] Every field has `"hint"` for user guidance
+- [ ] Appropriate types: `text`, `password`, `boolean`, `number`, `random`
+- [ ] Random passwords use `"encoding": "hex"`
+- [ ] Placeholders provide good examples
+- [ ] Native data types used (boolean/number, not strings)
 
-## 🛠️ Schema validation setup
+### 8. Port Configuration Validation
+- [ ] Main service uses `"internalPort"`, not `"addPorts"`
+- [ ] Main service marked with `"isMain": true`
+- [ ] Additional services use `"addPorts"` for external access
+- [ ] Port numbers are valid and available
+
+### 9. Health Check Validation
+- [ ] Health checks added when applicable
+- [ ] Correct test commands (e.g., `curl -f http://localhost:8080/health`)
+- [ ] Appropriate intervals, timeouts, and retries configured
+
+### 10. Security Configuration Validation
+- [ ] Specific capabilities used instead of `"privileged": true`
+- [ ] Security options applied for specialized apps
+- [ ] Device mappings configured when needed
+- [ ] User permissions set appropriately
+
+### 11. Logo Validation
+- [ ] Logo downloaded from official source or runtipi-appstore
+- [ ] File named exactly `logo.jpg`
+- [ ] File size < 100KB
+- [ ] Image quality suitable for UI display
+
+### 12. README Update Validation
+- [ ] Main `/README.md` counter incremented
+- [ ] App added to alphabetical table in main README
+- [ ] App added to appropriate category in `/apps/README.md`
+- [ ] Total applications counter updated in apps README
+
+### 13. Commit Message Validation
+- [ ] Follows gitmoji standards (🎉 for new features, ✨ for improvements, etc.)
+- [ ] Atomic commits (one logical change per commit)
+- [ ] Clear and descriptive messages
+- [ ] References issue numbers when applicable
+
+### 14. Branch Naming Validation
+- [ ] Feature branch follows `feat/add-[app-name]` pattern
+- [ ] Branch name is descriptive and follows conventions
+- [ ] No direct commits to main branch
+
+### 15. Final Integration Test
+- [ ] App installs successfully in Runtipi
+- [ ] Configuration options work as expected
+- [ ] No runtime errors in logs
+- [ ] Web interface accessible and functional
+
+## Available Slash Commands Reference
+
+### Primary Workflows
+- `/add-app` - Add new application (complete guided process)
+- `/update-version` - Update Docker image version (most common task)
+- `/validate` - Comprehensive validation before committing
+- `/fix-app` - Detect and auto-fix common issues
+- `/commit-app` - Commit changes with proper messages
+
+### Orchestrated Workflows (Fastest!)
+- `/add-app-complete` - Complete workflow: create → validate → commit
+- `/update-and-commit` - Update version → validate → auto-commit (fastest!)
+
+### Utility Commands
+- `/check-updates` - Check for available updates (all apps or specific)
+- `/compare-apps` - Compare two apps to learn patterns
+
+**When to Use Each:**
+- New app? → `/add-app`
+- Update version? → `/update-version`
+- Not sure if ready? → `/validate`
+- Have errors? → `/fix-app`
+- Ready to commit? → `/commit-app`
+
+## � Common Troubleshooting
+
+### Schema Validation Errors
+- **Issue**: "Property 'X' is not allowed" or "Missing required property"
+- **Solution**: Check property order in config.json (follows schema v2 specification), ensure all required fields present, validate against official schemas
+
+### Docker Tag Issues
+- **Issue**: "manifest unknown" when running `docker manifest inspect`
+- **Solution**: Verify exact tag format from registry, check for typos, ensure tag exists on the specified registry (ghcr.io vs docker.io)
+
+### Environment Variable Problems
+- **Issue**: Variables not resolving or incorrect syntax
+- **Solution**: Use `"${VARIABLE}"` format (not `{{VARIABLE}}`), ensure all variables prefixed with `APP_NAME_`, check for typos in variable names
+
+### Port Configuration Errors
+- **Issue**: "Port already in use" or service not accessible
+- **Solution**: Verify main service uses `"internalPort"`, additional services use `"addPorts"`, ensure port numbers are available
+
+### Volume Mount Issues
+- **Issue**: Permission denied or data not persisting
+- **Solution**: Check volume paths follow `${APP_DATA_DIR}/data` pattern, ensure correct container paths, verify file permissions
+
+### Health Check Failures
+- **Issue**: Container restarts repeatedly due to failed health checks
+- **Solution**: Adjust health check command, increase timeout/interval, verify service is actually healthy at the endpoint
+
+### PUID/PGID Configuration
+- **Issue**: File permission issues with user/group IDs
+- **Solution**: Only add `uid`/`gid` in config.json if PUID/PGID supported by image, verify in original docker-compose.yml, use hardcoded `"1000"` in docker-compose.json
+
+### JSON Syntax Errors
+- **Issue**: "Invalid JSON" or parsing errors
+- **Solution**: Validate JSON syntax, check for missing commas, proper quotes, balanced brackets/braces
+
+### Logo Download Issues
+- **Issue**: Logo not displaying or download fails
+- **Solution**: Check runtipi-appstore first, verify URL accessibility, ensure file size < 100KB, name exactly `logo.jpg`
+
+### Form Field Validation
+- **Issue**: Configuration options not working or missing hints
+- **Solution**: Ensure every field has `"hint"`, use native data types, add placeholders, verify variable names match between form_fields and docker-compose
+
+### Multi-Service Dependencies
+- **Issue**: Services fail to start or communicate
+- **Solution**: Use `"dependsOn": ["service-name"]`, configure environment variables for service communication, use separate volume paths
+
+## �🛠️ Schema validation setup
 
 Configure VS Code for automatic validation by ensuring `.vscode/settings.json` contains:
 
@@ -515,6 +711,9 @@ This provides real-time validation and IntelliSense for both config.json and doc
    - List environment variables and their types
    - Check PUID/PGID support in documentation AND docker files
    - Review health check possibilities
+   - **Check for existing similar apps in tipi-store for pattern consistency**
+   - **Verify Docker tag exists using `docker manifest inspect`**
+   - **Document all configurable options and their default values**
 
 2. **Schema validation setup**
    - Ensure VS Code has schema validation configured
@@ -565,6 +764,56 @@ This provides real-time validation and IntelliSense for both config.json and doc
    - Follow commit standards (see commit-app.prompt.md)
    - Push to repository and create Pull Request
 
+## Workflow Examples
+
+### Adding New App (~20% of tasks)
+1. Use `/add-app` slash command (recommended)
+2. Follow guided process with validation
+3. Commit with `/commit-app`
+
+Alternative: Manually follow `.github/prompts/new-app.prompt.md`
+
+### Updating App Version (~60% of tasks)
+1. Use `/update-version` slash command (recommended)
+2. Provide app name and new version
+3. Claude verifies Docker tag, updates files, increments tipi_version
+4. Auto-generates commit message: `chore(deps): update [image] to [version]`
+5. Commit and push
+
+Alternative: Manual update + `/commit-app`
+
+### Fixing App Issues (~20% of tasks)
+1. Use `/validate` to detect issues
+2. Use `/fix-app` to auto-correct common problems
+3. Review changes with `git diff`
+4. Commit with `/commit-app`
+
+Alternative: Manual fixes + validation
+
+### General Modification Workflow
+1. Make changes
+2. CRITICAL: Increment `tipi_version` (+1)
+3. Update `updated_at` timestamp
+4. Run `/validate` to check for errors
+5. Use `/commit-app` for proper commit messages
+
+### Commit Message Patterns
+• New app: `🎉 Added: [app-name] application to tipi-store`
+• Version update: `chore(deps): update [image] docker tag to [version]`
+• Fix: `🔧 Fixed: [description] for [app-name]`
+• Change: `🔄 Changed: [description] for [app-name]`
+• Docs: `📚 Docs: [description] for [app-name]`
+
+Always increment tipi_version when:
+• Docker image tag changes
+• Environment variables modified
+• Config schema updates
+• Health checks adjusted
+• Volume mounts changed
+• Port modifications
+• ANY docker-compose.json changes
+• ANY config.json form field updates
+
 ## 🔄 Git workflow for new applications
 
 ```bash
@@ -590,14 +839,104 @@ git push origin feat/add-paperless-ai
 # Create Pull Request
 ```
 
-### 📝 Commit message standards (see commit-app.prompt.md)
+### 📝 Commit message standards
 
-For detailed commit standards, branch management, and automated workflows, refer to the dedicated **commit-app.prompt.md** file which covers:
-- Branch strategy for new apps vs. modifications
-- Complete Gitmoji + Keep a Changelog mapping
-- Pre-commit checklists and validation
-- Automated commit scripts
-- Pull Request workflow
+Follow gitmoji standards for consistent and informative commit messages:
+
+**Common gitmojis for app additions:**
+- 🎉 `:tada:` - New features (new app addition)
+- ✨ `:sparkles:` - New features (configuration options, improvements)
+- 📚 `:books:` - Documentation
+- 🔧 `:wrench:` - Configuration files
+- 🐳 `:whale:` - Docker-related changes
+- 📝 `:memo:` - Documentation updates
+- 🐛 `:bug:` - Bug fixes
+- ♻️ `:recycle:` - Refactoring
+- ✅ `:white_check_mark:` - Tests or validation
+
+**Commit message format:**
+```
+🎉 Added: [app-name] application to tipi-store
+
+- Brief description of what was added
+- Key features or changes
+```
+
+**Atomic commits:**
+- One logical change per commit
+- Separate commits for app files, documentation, and README updates
+- Clear and descriptive messages
+
+**Branch naming:**
+- Feature branches: `feat/add-[app-name]`
+- Bug fixes: `fix/[app-name]-[issue]`
+- Documentation: `docs/[app-name]`
+
+**Pull Request workflow:**
+- Create PR from feature branch to main
+- Include description of changes
+- Reference any related issues
+- Wait for review and approval
+
+## 🔍 App Comparison Guidance
+
+When adding a new application, compare it with existing similar apps in the store to learn patterns and ensure consistency:
+
+- **Check existing apps in the same category** for configuration patterns
+- **Review form_fields structure** in similar apps for completeness
+- **Examine docker-compose.json** for advanced properties usage
+- **Verify volume naming conventions** match existing patterns
+- **Compare description.md format** with similar applications
+- **Check for missing features** that competitors have implemented
+- **Ensure consistent variable naming** across similar apps
+
+**Example:** When adding a new media server, compare with existing ones like Plex, Jellyfin, or Emby to identify common patterns and missing configuration options.
+
+## 🔄 Automated Update Checking Process
+
+For maintaining apps, implement regular update checks:
+
+- **GitHub API scanning**: Use GitHub API to check for new releases/tags
+- **Container registry checks**: Verify latest tags on Docker Hub/ghcr.io
+- **Version comparison**: Compare current versions with latest available
+- **Automated PR creation**: Generate pull requests for version updates
+- **Dependency validation**: Ensure compatibility with Runtipi versions
+
+**Modes:**
+- Single app: Check specific app for updates
+- All apps: Batch check all apps in store
+- Specific apps: Check selected subset
+
+**Version comparison methods:**
+- Semantic versioning parsing
+- Release age analysis
+- Changelog extraction
+- Breaking change detection
+
+**Smart features:**
+- Auto-update strategy (patch only, minor, major)
+- Rate limiting for API calls
+- Caching for performance
+- Notification system for updates
+
+**Output formats:**
+- Terminal: Real-time progress
+- Report: JSON/HTML summary
+- GitHub: Automated PRs
+
+**Error handling:**
+- Network timeouts and retries
+- API rate limit management
+- Registry authentication issues
+- Version parsing failures
+
+**Manual update workflow:**
+1. Check GitHub releases for new versions
+2. Verify Docker tag availability with `docker manifest inspect`
+3. Update version in config.json and docker-compose.json
+4. Test configuration changes
+5. Update timestamps and tipi_version
+6. Create update PR with gitmoji commit messages
 
 ## 🎯 Objective
 
@@ -635,6 +974,19 @@ For detailed commit standards, branch management, and automated workflows, refer
 - **Health checks**: Add when applicable for better monitoring
 - **Port management**: Use `addPorts` for external service ports (not web UI)
 - **Final documentation check**: Ensure description.md reflects ALL configuration options
+
+## Top 10 Critical Mistakes to Avoid
+
+1. ❌ Forgetting to update README files
+2. ❌ Not prefixing variables with `APPNAME_`
+3. ❌ Forgetting to increment `tipi_version` on modifications
+4. ❌ Version mismatch between config.json and docker-compose.json
+5. ❌ Using `{{VARIABLE}}` instead of `${VARIABLE}`
+6. ❌ Adding uid/gid without verifying PUID/PGID support
+7. ❌ `short_desc` too long (> 5 words)
+8. ❌ Missing `hint` in form_fields
+9. ❌ Using strings for boolean/number types
+10. ❌ Not verifying Docker tag exists
 
 ## 🔧 Specialized Application Patterns
 
@@ -700,6 +1052,54 @@ For applications requiring enhanced security:
   "tmpfs": ["/tmp", "/var/tmp"]
 }
 ```
+
+#### 🔒 Advanced Docker Compose Properties (ServiceBuilder Support)
+**Runtipi supports 40+ Docker Compose properties via ServiceBuilder. Use when needed:**
+
+**Basic Properties:**
+- `"restart": "unless-stopped"` - Restart policy
+- `"dependsOn": ["service-name"]` - Service dependencies
+- `"environment": {"VAR": "value"}` - Environment variables
+- `"volumes": [{"hostPath": "/host", "containerPath": "/container"}]` - Volume mounts
+- `"ports": [{"internal": 8080, "external": 8080}]` - Port mappings
+
+**Security & Capabilities:**
+- `"capAdd": ["SYS_ADMIN", "NET_ADMIN"]` - Linux capabilities to add
+- `"capDrop": ["ALL"]` - Linux capabilities to drop for security
+- `"securityOpt": ["apparmor:unconfined", "no-new-privileges:true"]` - Security options
+- `"privileged": true` - Privileged mode (avoid when possible, use specific capabilities)
+- `"devices": ["/dev/fuse:/dev/fuse"]` - Device mappings for hardware access
+- `"readOnly": true` - Read-only filesystem
+
+**Network & Communication:**
+- `"networkMode": "host|bridge|none|service:name"` - Network mode override
+- `"extraHosts": ["host.docker.internal:host-gateway"]` - Additional hosts mapping
+- `"dns": ["1.1.1.1", "8.8.8.8"]` - Custom DNS servers
+- `"hostname": "custom-hostname"` - Container hostname
+
+**System Resources:**
+- `"ulimits": {"nofile": {"soft": 1024, "hard": 2048}}` - Process limits
+- `"sysctls": {"net.core.somaxconn": "1024"}` - Kernel parameters
+- `"shmSize": "2gb"` - Shared memory size
+- `"tmpfs": ["/tmp", "/var/tmp"]` - Temporary filesystems
+
+**Process Control:**
+- `"user": "1000:1000"` - User/group ID override
+- `"workingDir": "/app"` - Working directory
+- `"entrypoint": ["/custom-entrypoint.sh"]` - Custom entrypoint
+- `"command": ["--config", "/etc/app.conf"]` - Command override
+- `"pid": "host"` - PID namespace mode
+
+**Container Behavior:**
+- `"tty": true` - Allocate pseudo-TTY
+- `"stdinOpen": true` - Keep STDIN open
+- `"stopSignal": "SIGTERM"` - Stop signal override
+- `"stopGracePeriod": "30s"` - Graceful stop timeout
+
+**Monitoring & Logging:**
+- `"logging": {"driver": "json-file", "options": {"max-size": "10m"}}` - Logging configuration
+- `"labels": {"traefik.enable": "true"}` - Container labels
+- `"healthCheck": {"test": "curl -f http://localhost:8080/health"}` - Health check configuration
 
 ## 📚 Valid categories
 
@@ -814,63 +1214,17 @@ When choosing categories for your application, use only these valid values:
 }
 ```
 
-## 🔥 CRITICAL FINAL CHECKLIST (Based on Real Implementation Experience)
+## Examples to Study
 
-**Before submitting any application, verify ALL of these points:**
+Simple apps (good baseline):
+- `apps/beszel/` - Minimal configuration
+- `apps/homebox/` - Standard app
 
-### ✅ Docker Image Verification
-- [ ] Used `docker manifest inspect [image:tag]` to verify tag exists
-- [ ] Kept original tag format (including "v" prefix if present)
-- [ ] Version consistency: config.json `"version": "1.1.3"` matches docker-compose.json `"image": "vendor/app:v1.1.3"`
-- [ ] Preferred GitHub Container Registry (ghcr.io) over Docker Hub when available
+Complex apps (advanced reference):
+- `apps/paperless-ai/` - Many form_fields
+- `apps/paperless-ngx/` - Very comprehensive (400 lines)
 
-### ✅ Configuration Files
-- [ ] `tipi_version: 1` for new applications
-- [ ] All environment variables prefixed with APPNAME_ (e.g., `DECYPHARR_API_USERNAME`)
-- [ ] Every form field has `hint` for user guidance
-- [ ] Used `"type": "random"` with `"encoding": "hex"` for secure passwords
-- [ ] `uid/gid` only added if PUID/PGID supported by image
-- [ ] `short_desc` is 4-5 words maximum
-- [ ] Current timestamps from currentmillis.com
-- [ ] PUID/PGID hardcoded to `"1000"` strings in docker-compose.json
-
-### ✅ Advanced Docker Properties (When Applicable)
-- [ ] Used specific capabilities (`capAdd`) instead of `privileged: true` when possible
-- [ ] Applied security options (`securityOpt`) for specialized requirements
-- [ ] Configured device mappings (`devices`) for hardware access
-- [ ] Set resource limits (`ulimits`, `sysctls`, `shmSize`) for performance
-- [ ] Used network customization (`networkMode`, `extraHosts`) when needed
-- [ ] Applied security hardening (`capDrop`, `readOnly`, `user`) when appropriate
-- [ ] Configured process control (`entrypoint`, `command`, `workingDir`) as required
-
-### ✅ File Structure
-- [ ] `config.json` with complete form_fields
-- [ ] `docker-compose.json` in Runtipi array format
-- [ ] `metadata/description.md` with standardized sections
-- [ ] `metadata/logo.jpg` verified and downloaded
-
-### ✅ README Updates (OFTEN FORGOTTEN!)
-- [ ] Main `/README.md`: Incremented counter (e.g., 27 → 28)
-- [ ] Main `/README.md`: Added app to alphabetical table
-- [ ] `/apps/README.md`: Added app to appropriate category section
-- [ ] `/apps/README.md`: Incremented "Total Applications" counter
-- [ ] Verified links and descriptions are correct
-
-### ✅ Schema Validation
-- [ ] No errors in VS Code with schemas enabled
-- [ ] All required properties present
-- [ ] Native data types used (boolean, number, not strings)
-
-### ✅ Final Quality Check
-- [ ] Logo < 100KB recommended
-- [ ] All placeholders provide good examples
-- [ ] Environment variables follow consistent naming
-- [ ] Volume structure follows single/multiple pattern
-- [ ] Health checks added when applicable
-
-**🚨 REMEMBER: Test with `docker manifest inspect` before finalizing any Docker image tag!**
-
-## 🔧 ServiceBuilder Property Reference
+##  ServiceBuilder Property Reference
 
 **Runtipi ServiceBuilder supports 40+ Docker Compose properties. Complete list:**
 - **Basic**: `setImage`, `setName`, `setRestartPolicy`, `setNetwork`
