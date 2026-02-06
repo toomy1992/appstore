@@ -4,8 +4,6 @@
             "name": "nextcloud",
             "image": "nextcloud:32-apache",
             "isMain": true,
-        },
-        {
             "internalPort": 80,
             "environment": [
                 {
