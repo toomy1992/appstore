@@ -36,7 +36,7 @@
                 },
                 {
                     "key": "NEXTCLOUD_TRUSTED_DOMAINS",
-                    "value": "${APP_DOMAIN}"
+                    "value": "localhost,${APP_DOMAIN}"
                 },
                 {
                     "key": "TRUSTED_PROXIES",
@@ -58,7 +58,7 @@
                 }
             ],
             "healthCheck": {
-                "test": "curl -f http://localhost/health",
+                "test": "curl -f http://localhost/status.php",
                 "interval": "30s",
                 "timeout": "10s",
                 "retries": 3
