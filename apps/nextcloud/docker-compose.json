@@ -2,8 +2,10 @@
     "services": [
         {
             "name": "nextcloud",
-            "image": "nextcloud:27-apache",
+            "image": "nextcloud:32-apache",
             "isMain": true,
+        },
+        {
             "internalPort": 80,
             "environment": [
                 {
@@ -56,7 +58,13 @@
                     "hostPath": "${APP_DATA_DIR}/data/nextcloud",
                     "containerPath": "/var/www/html"
                 }
-            ]
+            ],
+            "healthCheck": {
+                "test": "curl -f http://localhost/health",
+                "interval": "30s",
+                "timeout": "10s",
+                "retries": 3
+            }
         },
         {
             "name": "db-nextcloud",
@@ -95,7 +103,7 @@
         },
         {
             "name": "cron",
-            "image": "nextcloud:25.0.13-apache",
+            "image": "nextcloud:32-apache",
             "dependsOn": [
                 "db-nextcloud",
                 "redis-nextcloud"
