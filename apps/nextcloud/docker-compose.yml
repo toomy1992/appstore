@@ -61,7 +61,6 @@ services:
       runtipi.managed: true
   redis-nextcloud:
     container_name: redis-nextcloud
-    user: "1000:1000"
     image: redis:7.2
     restart: on-failure
     volumes:
