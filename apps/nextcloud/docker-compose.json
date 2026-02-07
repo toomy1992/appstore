@@ -5,6 +5,7 @@
             "image": "nextcloud:32.0.5-apache",
             "isMain": true,
             "internalPort": 80,
+            "user": "33:33",
             "environment": [
                 {
                     "key": "POSTGRES_HOST",
