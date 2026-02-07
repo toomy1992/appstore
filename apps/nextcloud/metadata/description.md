@@ -1,6 +1,3 @@
-## ⛺ Runtipi Note - 2026
-To learn more about update cycle, and tips for this app go to the end of this description.
-
 ## A safe home for all your data.
 
 * 📁 **Access your Data** You can store your files, contacts, calendars and more on a server of your choosing.
@@ -38,35 +35,3 @@ php occ user:resetpassword username
 ```
 
 ![](https://raw.githubusercontent.com/nextcloud/screenshots/master/files/Files%20Sharing.png)
-
-# ⛺ Runtipi Note - 2026
-The version of this app is now aligned with the latest available: 32.0.5-apache.
-
-For new installations, you can start directly with version 32.0.5-apache.
-
-## Tips
-- Remember to backup your data !
-- After an upgrade you should check the admin panel for warnings.
-- You can **ignore** an update if you are not ready. *(but don't delay it too much)*
-- If you missed an intermediate version you can use a "user-config" to catch up.
-
-### User-Config example
-here is an example to set nextcloud to version 32.0.5-apache:
-``` yaml
-services:
- nextcloud:
-   image: nextcloud:32.0.5-apache
-```
-
-### Useful command
-In some cases (like restoring an old installation) you could meet an error mentionning files permissions.
-
-1. Access your Runtipi host command line
-2. Go to your Runtipi installation directory
-```bash
-cd runtipi
-```
-3. Fix the files ownership
-```bash
-chown -R www-data:www-data app-data/migrated/nextcloud/data/nextcloud/
-```
