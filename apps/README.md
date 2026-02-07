@@ -8,7 +8,7 @@ This directory contains all the applications available in this app store. Each a
   - `description.md`: Markdown description of the app
   - `logo.jpg`: App logo image
 
-## Total Applications: 20
+## Total Applications: 21
 
 ### AI
 - **Actual AI**: AI for Actual Budget.
@@ -34,6 +34,9 @@ This directory contains all the applications available in this app store. Each a
 - **Releasarr**: Music release monitoring tool.
 - **Spottarr**: Spotnet indexer for *arr.
 - **Ygégé**: YGG Torrent indexer.
+
+### Data
+- **Nextcloud**: Self-hosted cloud storage solution for files, contacts, calendars and more.
 
 ### Utilities
 - **Transmission (VPN)**: BitTorrent client with VPN support.

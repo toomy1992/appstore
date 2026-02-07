@@ -30,7 +30,7 @@ This repository is intended to serve as a template for creating your own app sto
 For detailed instructions on creating your own app store, please refer to the official guide:
 [Create Your Own App Store Guide](https://runtipi.io/docs/guides/create-your-own-app-store)
 
-## Applications (20 Total)
+## Applications (21 Total)
 
 ### AI
 - **Actual AI**: AI for Actual Budget.
@@ -44,6 +44,9 @@ For detailed instructions on creating your own app store, please refer to the of
 
 ### Security
 - **Keycloak**: Open source identity and access management solution.
+
+### Data
+- **Nextcloud**: Self-hosted cloud storage solution for files, contacts, calendars and more.
 
 ### Media
 - **Autobrr**: Torrent download automation.
