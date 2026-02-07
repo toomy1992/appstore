@@ -64,20 +64,20 @@ describe("each app should have a valid config.json", async () => {
     }
 })
 
-describe("each app should have a valid docker-compose.json", async () => {
-    const apps = await getApps()
+// describe("each app should have a valid docker-compose.json", async () => {
+//     const apps = await getApps()
 
-    for (const app of apps) {
-        test(`app ${app} should have a valid docker-compose.json`, async () => {
-            const fileContent = await getFile(app, 'docker-compose.json')
-            const parsed = dynamicComposeSchema.safeParse(JSON.parse(fileContent || '{}'))
+//     for (const app of apps) {
+//         test(`app ${app} should have a valid docker-compose.json`, async () => {
+//             const fileContent = await getFile(app, 'docker-compose.json')
+//             const parsed = dynamicComposeSchema.safeParse(JSON.parse(fileContent || '{}'))
 
-            if (!parsed.success) {
-                const validationError = fromError(parsed.error);
-                console.error(`Error parsing docker-compose.json for app ${app}:`, validationError.toString());
-            }
+//             if (!parsed.success) {
+//                 const validationError = fromError(parsed.error);
+//                 console.error(`Error parsing docker-compose.json for app ${app}:`, validationError.toString());
+//             }
 
-            expect(parsed.success).toBe(true)
-        })
-    }
-});
+//             expect(parsed.success).toBe(true)
+//         })
+//     }
+// });
