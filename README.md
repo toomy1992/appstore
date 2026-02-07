@@ -44,6 +44,7 @@ For detailed instructions on creating your own app store, please refer to the of
 
 ### Security
 - **Keycloak**: Open source identity and access management solution.
+- **SphereSSL**: SSL certificate manager dashboard.
 
 ### Data
 - **Nextcloud**: Self-hosted cloud storage solution for files, contacts, calendars and more.
@@ -60,7 +61,7 @@ For detailed instructions on creating your own app store, please refer to the of
 - **Spottarr**: Spotnet indexer for *arr.
 - **Ygégé**: YGG Torrent indexer.
 
-### Security & Utilities
+### Utilities
 - **Transmission (VPN)**: BitTorrent client with VPN support.
 - **WiseMapping**: Free, open-source web-based mind mapping tool for creating, managing, and collaborating on mind maps in real-time.
 

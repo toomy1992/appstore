@@ -22,6 +22,7 @@ This directory contains all the applications available in this app store. Each a
 
 ### Security
 - **Keycloak**: Open source identity and access management solution.
+- **SphereSSL**: SSL certificate manager dashboard.
 
 ### Media
 - **Autobrr**: Torrent download automation.
