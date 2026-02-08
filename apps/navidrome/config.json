@@ -5,8 +5,8 @@
   "port": 4533,
   "name": "Navidrome",
   "description": "A modern, lightweight music server and streamer with compatibility for all Subsonic-compatible clients",
-  "version": "0.60.0",
-  "tipi_version": 2,
+  "version": "0.60.2",
+  "tipi_version": 3,
   "short_desc": "Music streaming server",
   "author": "deluan",
   "source": "https://github.com/navidrome/navidrome",
@@ -206,5 +206,5 @@
   "dynamic_config": true,
   "min_tipi_version": "4.6.5",
   "created_at": 1735689600000,
-  "updated_at": 1770176378533
+  "updated_at": 1770512316706
 }
