@@ -3,7 +3,7 @@
     "schemaVersion": 2,
     "services": [
         {
-            "image": "ghcr.io/toomy1992/wealthfolio-mcp:v0.1.2",
+            "image": "ghcr.io/toomy1992/wealthfolio-mcp:v0.2.0",
             "name": "wealthfolio-mcp",
             "isMain": true,
             "internalPort": 8000,
