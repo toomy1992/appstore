@@ -5,7 +5,7 @@
   "port": 8000,
   "name": "Wealthfolio MCP",
   "description": "A Model Context Protocol (MCP) server that integrates with Wealthfolio to provide portfolio data, valuations, and analytics to OpenWebUI and other MCP-compatible applications.",
-  "version": "v0.1.1",
+  "version": "v0.1.2",
   "tipi_version": 3,
   "short_desc": "Portfolio MCP server",
   "author": "toomy1992",
