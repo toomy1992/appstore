@@ -1,44 +1,44 @@
 {
-    "$schema": "https://schemas.runtipi.io/v2/app-info.json",
-    "id": "nextcloud",
-    "available": true,
-    "port": 8083,
-    "name": "Nextcloud",
-    "description": "Nextcloud is a self-hosted, open source, and fully-featured cloud storage solution for your personal files, office documents, and photos.",
-    "version": "32.0.5-apache",
-    "tipi_version": 34,
-    "short_desc": "Productivity platform that keeps you in control",
-    "author": "Nextcloud GmbH",
-    "source": "https://github.com/nextcloud/server",
-    "website": "https://nextcloud.com",
-    "categories": [
-        "data"
-    ],
-    "form_fields": [
-        {
-            "type": "text",
-            "label": "Username",
-            "max": 50,
-            "min": 3,
-            "required": true,
-            "env_variable": "NEXTCLOUD_ADMIN_USER"
-        },
-        {
-            "type": "password",
-            "label": "Password",
-            "max": 50,
-            "min": 10,
-            "required": true,
-            "env_variable": "NEXTCLOUD_ADMIN_PASSWORD"
-        }
-    ],
-    "exposable": true,
-    "supported_architectures": [
-        "amd64",
-        "arm64"
-    ],
-    "dynamic_config": true,
-    "min_tipi_version": "4.5.0",
-    "created_at": 1691943801422,
-    "updated_at": 1770766919228
+  "$schema": "https://schemas.runtipi.io/v2/app-info.json",
+  "id": "nextcloud",
+  "available": true,
+  "port": 8083,
+  "name": "Nextcloud",
+  "description": "Nextcloud is a self-hosted, open source, and fully-featured cloud storage solution for your personal files, office documents, and photos.",
+  "version": "32.0.6",
+  "tipi_version": 36,
+  "short_desc": "Productivity platform that keeps you in control",
+  "author": "Nextcloud GmbH",
+  "source": "https://github.com/nextcloud/server",
+  "website": "https://nextcloud.com",
+  "categories": [
+    "data"
+  ],
+  "form_fields": [
+    {
+      "type": "text",
+      "label": "Username",
+      "max": 50,
+      "min": 3,
+      "required": true,
+      "env_variable": "NEXTCLOUD_ADMIN_USER"
+    },
+    {
+      "type": "password",
+      "label": "Password",
+      "max": 50,
+      "min": 10,
+      "required": true,
+      "env_variable": "NEXTCLOUD_ADMIN_PASSWORD"
+    }
+  ],
+  "exposable": true,
+  "supported_architectures": [
+    "amd64",
+    "arm64"
+  ],
+  "dynamic_config": true,
+  "min_tipi_version": "4.5.0",
+  "created_at": 1691943801422,
+  "updated_at": 1771040229336
 }
