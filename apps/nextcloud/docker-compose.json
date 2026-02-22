@@ -101,11 +101,6 @@
         {
             "name": "cron",
             "image": "nextcloud:32.0.6-apache",
-            "user": "33:33",
-            "capAdd": [
-                "SETGID",
-                "SETUID"
-            ],
             "dependsOn": [
                 "db-nextcloud",
                 "redis-nextcloud"
