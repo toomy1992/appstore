@@ -31,6 +31,10 @@
                     "value": "${PLANKADB_ADMIN_PASSWORD}"
                 },
                 {
+                    "key": "PLANKADB_DB_PASSWORD",
+                    "value": "${PLANKADB_DB_PASSWORD}"
+                },
+                {
                     "key": "TZ",
                     "value": "${TZ}"
                 },
