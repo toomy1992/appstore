@@ -8,7 +8,7 @@ This directory contains all the applications available in this app store. Each a
   - `description.md`: Markdown description of the app
   - `logo.jpg`: App logo image
 
-## Total Applications: 21
+## Total Applications: 22
 
 ### AI
 - **Actual AI**: AI for Actual Budget.
@@ -42,3 +42,6 @@ This directory contains all the applications available in this app store. Each a
 ### Utilities
 - **Transmission (VPN)**: BitTorrent client with VPN support.
 - **WiseMapping**: Free, open-source web-based mind mapping tool for creating, managing, and collaborating on mind maps in real-time.
+
+### Development
+- **Planka**: Open-source kanban project management tool.

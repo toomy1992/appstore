@@ -1,0 +1,96 @@
+{
+    "services": [
+        {
+            "name": "planka",
+            "image": "ghcr.io/plankanban/planka:2.0.2",
+            "isMain": true,
+            "internalPort": 1337,
+            "dependsOn": [
+                "planka-db"
+            ],
+            "environment": [
+                {
+                    "key": "BASE_URL",
+                    "value": "${PLANKADB_BASE_URL:-${APP_PROTOCOL}://${APP_DOMAIN}}"
+                },
+                {
+                    "key": "DATABASE_URL",
+                    "value": "postgresql://postgres@${PLANKADB_DB_PASSWORD}@planka-db/planka"
+                },
+                {
+                    "key": "SECRET_KEY",
+                    "value": "${PLANKADB_SECRET_KEY}"
+                },
+                {
+                    "key": "DEFAULT_ADMIN_EMAIL",
+                    "value": "${PLANKADB_ADMIN_EMAIL}"
+                },
+                {
+                    "key": "DEFAULT_ADMIN_PASSWORD",
+                    "value": "${PLANKADB_ADMIN_PASSWORD}"
+                },
+                {
+                    "key": "TZ",
+                    "value": "${TZ}"
+                },
+                {
+                    "key": "OIDC_ISSUER",
+                    "value": "${PLANKADB_OIDC_ISSUER}"
+                },
+                {
+                    "key": "OIDC_CLIENT_ID",
+                    "value": "${PLANKADB_OIDC_CLIENT_ID}"
+                },
+                {
+                    "key": "OIDC_CLIENT_SECRET",
+                    "value": "${PLANKADB_OIDC_CLIENT_SECRET}"
+                }
+            ],
+            "volumes": [
+                {
+                    "hostPath": "${APP_DATA_DIR}/data",
+                    "containerPath": "/app/data"
+                }
+            ],
+            "healthCheck": {
+                "test": "curl -f http://localhost:1337/health",
+                "interval": "30s",
+                "timeout": "10s",
+                "retries": 3
+            }
+        },
+        {
+            "name": "planka-db",
+            "image": "postgres:16-alpine",
+            "environment": [
+                {
+                    "key": "POSTGRES_DB",
+                    "value": "planka"
+                },
+                {
+                    "key": "POSTGRES_USER",
+                    "value": "postgres"
+                },
+                {
+                    "key": "POSTGRES_PASSWORD",
+                    "value": "${PLANKADB_DB_PASSWORD}"
+                }
+            ],
+            "volumes": [
+                {
+                    "hostPath": "${APP_DATA_DIR}/data/db",
+                    "containerPath": "/var/lib/postgresql/data"
+                }
+            ],
+            "healthCheck": {
+                "test": [
+                    "CMD-SHELL",
+                    "pg_isready -U postgres -d planka"
+                ],
+                "interval": "10s",
+                "timeout": "5s",
+                "retries": 5
+            }
+        }
+    ]
+}

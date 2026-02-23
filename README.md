@@ -30,7 +30,7 @@ This repository is intended to serve as a template for creating your own app sto
 For detailed instructions on creating your own app store, please refer to the official guide:
 [Create Your Own App Store Guide](https://runtipi.io/docs/guides/create-your-own-app-store)
 
-## Applications (21 Total)
+## Applications (22 Total)
 
 ### AI
 - **Actual AI**: AI for Actual Budget.
@@ -64,6 +64,9 @@ For detailed instructions on creating your own app store, please refer to the of
 ### Utilities
 - **Transmission (VPN)**: BitTorrent client with VPN support.
 - **WiseMapping**: Free, open-source web-based mind mapping tool for creating, managing, and collaborating on mind maps in real-time.
+
+### Development
+- **Planka**: Open-source kanban project management tool.
 
 ---
 
