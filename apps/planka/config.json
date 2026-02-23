@@ -1,0 +1,77 @@
+{
+    "$schema": "https://schemas.runtipi.io/v2/app-info.json",
+    "id": "planka",
+    "available": true,
+    "port": 3000,
+    "name": "Planka",
+    "description": "Open-source kanban project management tool with real-time collaboration.",
+    "version": "2.0.2",
+    "tipi_version": 1,
+    "short_desc": "Open-source kanban project management tool",
+    "author": "Planka Team",
+    "source": "https://github.com/plankanban/planka",
+    "website": "https://planka.app",
+    "categories": [
+        "development"
+    ],
+    "form_fields": [
+        {
+            "type": "email",
+            "label": "Admin Email",
+            "required": true,
+            "env_variable": "PLANKADB_ADMIN_EMAIL"
+        },
+        {
+            "type": "password",
+            "label": "Admin Password",
+            "required": true,
+            "env_variable": "PLANKADB_ADMIN_PASSWORD"
+        },
+        {
+            "type": "random",
+            "label": "Database Password",
+            "encoding": "hex",
+            "env_variable": "PLANKADB_DB_PASSWORD"
+        },
+        {
+            "type": "random",
+            "label": "Secret Key",
+            "encoding": "hex",
+            "env_variable": "PLANKADB_SECRET_KEY"
+        },
+        {
+            "type": "url",
+            "label": "Base URL",
+            "placeholder": "https://planka.yourdomain.com",
+            "hint": "Full URL where Planka will be accessible",
+            "env_variable": "PLANKADB_BASE_URL"
+        },
+        {
+            "type": "url",
+            "label": "OIDC Issuer",
+            "hint": "OpenID Connect issuer URL",
+            "env_variable": "PLANKADB_OIDC_ISSUER"
+        },
+        {
+            "type": "text",
+            "label": "OIDC Client ID",
+            "hint": "OpenID Connect client ID",
+            "env_variable": "PLANKADB_OIDC_CLIENT_ID"
+        },
+        {
+            "type": "password",
+            "label": "OIDC Client Secret",
+            "hint": "OpenID Connect client secret",
+            "env_variable": "PLANKADB_OIDC_CLIENT_SECRET"
+        }
+    ],
+    "exposable": true,
+    "supported_architectures": [
+        "amd64",
+        "arm64"
+    ],
+    "dynamic_config": true,
+    "min_tipi_version": "4.6.5",
+    "created_at": 1771296000000,
+    "updated_at": 1771296000000
+}
