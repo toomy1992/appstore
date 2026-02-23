@@ -16,7 +16,7 @@
                 },
                 {
                     "key": "DATABASE_URL",
-                    "value": "postgresql://postgres@${PLANKADB_DB_PASSWORD}@planka-db/planka"
+                    "value": "postgresql://postgres:${PLANKADB_DB_PASSWORD}@planka-db:5432/planka"
                 },
                 {
                     "key": "SECRET_KEY",
