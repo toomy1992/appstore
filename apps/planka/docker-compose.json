@@ -31,6 +31,10 @@
                     "value": "${PLANKADB_ADMIN_PASSWORD}"
                 },
                 {
+                    "key": "DEFAULT_ADMIN_NAME",
+                    "value": "${PLANKADB_ADMIN_NAME}"
+                },
+                {
                     "key": "PLANKADB_DB_PASSWORD",
                     "value": "${PLANKADB_DB_PASSWORD}"
                 },

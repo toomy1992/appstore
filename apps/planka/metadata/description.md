@@ -52,6 +52,7 @@ Planka is a self-hosted kanban board application that allows teams to manage pro
 | --- | --- | --- |
 | `PLANKADB_ADMIN_EMAIL` | Yes | Admin user email |
 | `PLANKADB_ADMIN_PASSWORD` | Yes | Admin user password |
+| `PLANKADB_ADMIN_NAME` | Yes | Admin user name |
 | `PLANKADB_DB_PASSWORD` | Yes | PostgreSQL database password |
 | `PLANKADB_SECRET_KEY` | Yes | Application secret key |
 | `PLANKADB_BASE_URL` | Yes | Full application URL |

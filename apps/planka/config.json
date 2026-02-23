@@ -6,7 +6,7 @@
     "name": "Planka",
     "description": "Open-source kanban project management tool with real-time collaboration.",
     "version": "2.0.2",
-    "tipi_version": 4,
+    "tipi_version": 5,
     "short_desc": "Open-source kanban project management tool",
     "author": "Planka Team",
     "source": "https://github.com/plankanban/planka",
@@ -26,6 +26,13 @@
             "label": "Admin Password",
             "required": true,
             "env_variable": "PLANKADB_ADMIN_PASSWORD"
+        },
+        {
+            "type": "text",
+            "label": "Admin Name",
+            "hint": "Name for the default admin user",
+            "required": true,
+            "env_variable": "PLANKADB_ADMIN_NAME"
         },
         {
             "type": "random",
@@ -73,5 +80,5 @@
     "dynamic_config": true,
     "min_tipi_version": "4.6.5",
     "created_at": 1771296000000,
-    "updated_at": 1771890354780
+    "updated_at": 1771891200000
 }
