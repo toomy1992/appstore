@@ -6,7 +6,7 @@
     "name": "Planka",
     "description": "Open-source kanban project management tool with real-time collaboration.",
     "version": "2.0.2",
-    "tipi_version": 1,
+    "tipi_version": 2,
     "short_desc": "Open-source kanban project management tool",
     "author": "Planka Team",
     "source": "https://github.com/plankanban/planka",
