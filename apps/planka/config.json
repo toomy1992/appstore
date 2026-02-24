@@ -6,7 +6,7 @@
     "name": "Planka",
     "description": "Open-source kanban project management tool with real-time collaboration.",
     "version": "2.0.2",
-    "tipi_version": 6,
+    "tipi_version": 7,
     "short_desc": "Open-source kanban project management tool",
     "author": "Planka Team",
     "source": "https://github.com/plankanban/planka",
@@ -17,41 +17,40 @@
     "form_fields": [
         {
             "type": "email",
-            "label": "Admin Email",
+            "label": "Admin email",
+            "max": 50,
+            "min": 3,
             "required": true,
-            "env_variable": "PLANKADB_ADMIN_EMAIL"
-        },
-        {
-            "type": "password",
-            "label": "Admin Password",
-            "required": true,
-            "env_variable": "PLANKADB_ADMIN_PASSWORD"
+            "env_variable": "PLANKA_ADMIN_EMAIL"
         },
         {
             "type": "text",
-            "label": "Admin Name",
-            "hint": "Name for the default admin user",
+            "label": "Admin name",
+            "max": 50,
+            "min": 3,
             "required": true,
-            "env_variable": "PLANKADB_ADMIN_NAME"
+            "env_variable": "PLANKA_ADMIN_NAME"
+        },
+        {
+            "type": "text",
+            "label": "Admin username",
+            "max": 50,
+            "min": 3,
+            "required": true,
+            "env_variable": "PLANKA_ADMIN_USERNAME"
+        },
+        {
+            "type": "password",
+            "label": "Admin password",
+            "max": 50,
+            "required": true,
+            "env_variable": "PLANKA_ADMIN_PASSWORD"
         },
         {
             "type": "random",
-            "label": "Database Password",
-            "encoding": "hex",
-            "env_variable": "PLANKADB_DB_PASSWORD"
-        },
-        {
-            "type": "random",
-            "label": "Secret Key",
-            "encoding": "hex",
-            "env_variable": "PLANKADB_SECRET_KEY"
-        },
-        {
-            "type": "url",
-            "label": "Base URL",
-            "placeholder": "https://planka.yourdomain.com",
-            "hint": "Full URL where Planka will be accessible",
-            "env_variable": "PLANKADB_BASE_URL"
+            "label": "Planka Secret Key",
+            "min": 32,
+            "env_variable": "PLANKA_SECRET_KEY"
         }
     ],
     "exposable": true,
