@@ -41,18 +41,6 @@
                 {
                     "key": "TZ",
                     "value": "${TZ}"
-                },
-                {
-                    "key": "OIDC_ISSUER",
-                    "value": "${PLANKADB_OIDC_ISSUER}"
-                },
-                {
-                    "key": "OIDC_CLIENT_ID",
-                    "value": "${PLANKADB_OIDC_CLIENT_ID}"
-                },
-                {
-                    "key": "OIDC_CLIENT_SECRET",
-                    "value": "${PLANKADB_OIDC_CLIENT_SECRET}"
                 }
             ],
             "volumes": [
