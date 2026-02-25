@@ -5,7 +5,7 @@
     {
       "name": "wealthfolio",
       "isMain": true,
-      "image": "docker.io/afadil/wealthfolio:2.1.0",
+      "image": "docker.io/afadil/wealthfolio:3.0.0",
       "internalPort": 8088,
       "volumes": [
         {
