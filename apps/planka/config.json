@@ -1,65 +1,65 @@
 {
-    "$schema": "https://schemas.runtipi.io/v2/app-info.json",
-    "id": "planka",
-    "available": true,
-    "port": 1337,
-    "name": "Planka",
-    "description": "Open-source kanban project management tool with real-time collaboration.",
-    "version": "2.0.2",
-    "tipi_version": 7,
-    "short_desc": "Open-source kanban project management tool",
-    "author": "Planka Team",
-    "source": "https://github.com/plankanban/planka",
-    "website": "https://planka.app",
-    "categories": [
-        "development"
-    ],
-    "form_fields": [
-        {
-            "type": "email",
-            "label": "Admin email",
-            "max": 50,
-            "min": 3,
-            "required": true,
-            "env_variable": "PLANKA_ADMIN_EMAIL"
-        },
-        {
-            "type": "text",
-            "label": "Admin name",
-            "max": 50,
-            "min": 3,
-            "required": true,
-            "env_variable": "PLANKA_ADMIN_NAME"
-        },
-        {
-            "type": "text",
-            "label": "Admin username",
-            "max": 50,
-            "min": 3,
-            "required": true,
-            "env_variable": "PLANKA_ADMIN_USERNAME"
-        },
-        {
-            "type": "password",
-            "label": "Admin password",
-            "max": 50,
-            "required": true,
-            "env_variable": "PLANKA_ADMIN_PASSWORD"
-        },
-        {
-            "type": "random",
-            "label": "Planka Secret Key",
-            "min": 32,
-            "env_variable": "PLANKA_SECRET_KEY"
-        }
-    ],
-    "exposable": true,
-    "supported_architectures": [
-        "amd64",
-        "arm64"
-    ],
-    "dynamic_config": true,
-    "min_tipi_version": "4.6.5",
-    "created_at": 1771296000000,
-    "updated_at": 1771891200000
+  "$schema": "https://schemas.runtipi.io/v2/app-info.json",
+  "id": "planka",
+  "available": true,
+  "port": 1337,
+  "name": "Planka",
+  "description": "Open-source kanban project management tool with real-time collaboration.",
+  "version": "2.0.3",
+  "tipi_version": 8,
+  "short_desc": "Open-source kanban project management tool",
+  "author": "Planka Team",
+  "source": "https://github.com/plankanban/planka",
+  "website": "https://planka.app",
+  "categories": [
+    "development"
+  ],
+  "form_fields": [
+    {
+      "type": "email",
+      "label": "Admin email",
+      "max": 50,
+      "min": 3,
+      "required": true,
+      "env_variable": "PLANKA_ADMIN_EMAIL"
+    },
+    {
+      "type": "text",
+      "label": "Admin name",
+      "max": 50,
+      "min": 3,
+      "required": true,
+      "env_variable": "PLANKA_ADMIN_NAME"
+    },
+    {
+      "type": "text",
+      "label": "Admin username",
+      "max": 50,
+      "min": 3,
+      "required": true,
+      "env_variable": "PLANKA_ADMIN_USERNAME"
+    },
+    {
+      "type": "password",
+      "label": "Admin password",
+      "max": 50,
+      "required": true,
+      "env_variable": "PLANKA_ADMIN_PASSWORD"
+    },
+    {
+      "type": "random",
+      "label": "Planka Secret Key",
+      "min": 32,
+      "env_variable": "PLANKA_SECRET_KEY"
+    }
+  ],
+  "exposable": true,
+  "supported_architectures": [
+    "amd64",
+    "arm64"
+  ],
+  "dynamic_config": true,
+  "min_tipi_version": "4.6.5",
+  "created_at": 1771296000000,
+  "updated_at": 1772422708946
 }
