@@ -5,7 +5,7 @@
         {
             "name": "actual-ai",
             "isMain": true,
-            "image": "docker.io/sakowicz/actual-ai:2.2.7",
+            "image": "docker.io/sakowicz/actual-ai:2.3.0",
             "environment": [
                 { "key": "ACTUAL_SERVER_URL", "value":  "${ACTUAL_SERVER_URL}"},
                 { "key": "ACTUAL_PASSWORD", "value":  "${ACTUAL_PASSWORD}"},
