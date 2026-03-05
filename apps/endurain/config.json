@@ -40,7 +40,9 @@
             "hint": "Encryption key for storing sensitive data like OAuth tokens. Must be a valid Fernet key. Auto-generated if left blank",
             "required": true,
             "env_variable": "ENDURAIN_FERNET_KEY",
-            "encoding": "hex"
+            "min": 32,
+            "max": 32,
+            "encoding": "base64"
         },
         {
             "type": "random",
