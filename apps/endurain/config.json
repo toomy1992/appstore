@@ -43,7 +43,7 @@
             "encoding": "hex"
         },
         {
-            "type": "password",
+            "type": "random",
             "label": "Database Password",
             "hint": "PostgreSQL database password for secure access. Must be strong and secure",
             "required": true,
