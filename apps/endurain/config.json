@@ -43,10 +43,11 @@
             "encoding": "hex"
         },
         {
-            "type": "password",
+            "type": "random",
             "label": "Database Password",
-            "hint": "PostgreSQL database password for secure access. Must be strong and secure",
-            "required": true,
+            "hint": "Secure password for the PostgreSQL database (auto-generated)",
+            "required": false,
+            "encoding": "hex",
             "env_variable": "ENDURAIN_DB_PASSWORD"
         },
         {
