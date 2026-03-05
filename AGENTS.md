@@ -101,6 +101,7 @@ Add the **{{APPLICATION_NAME}}** application (link to documentation/official sit
 **CRITICAL: Property order must follow schema v2 specification:**
 ```json
 {
+  "schemaVersion": 2,
   "$schema": "https://schemas.runtipi.io/v2/app-info.json",
   "id": "app-name",
   "available": true,
@@ -261,13 +262,28 @@ Add the **{{APPLICATION_NAME}}** application (link to documentation/official sit
       "isMain": true,
       "internalPort": "8080",
       "readOnly": true,
-      "environment": {
-        "APP_URL": "${APPNAME_APP_URL:-${APP_PROTOCOL}://${APP_DOMAIN}}",
-        "TZ": "${TZ}",
-        "PUID": "1000",
-        "PGID": "1000",
-        "VARIABLE": "${APPNAME_VARIABLE}"
-      },
+      "environment": [
+        {
+          "key": "TZ",
+          "value": "${TZ}"
+        },
+        {
+          "key": "APP_URL",
+          "value": "${APPNAME_APP_URL:-${APP_PROTOCOL}://${APP_DOMAIN}}"
+        },
+        {
+          "key": "PUID",
+          "value": "1000"
+        },
+        {
+          "key": "PGID",
+          "value": "1000"
+        },
+        {
+          "key": "VARIABLE",
+          "value": "${APPNAME_VARIABLE}"
+        }
+      ],
       "volumes": [
         {
           "hostPath": "${APP_DATA_DIR}/data",
@@ -330,8 +346,12 @@ Add the **{{APPLICATION_NAME}}** application (link to documentation/official sit
           "hard": 2048
         }
       },
-      "environment": {
-        "TZ": "${TZ}"
+      "environment": [
+        {
+          "key": "TZ",
+          "value": "${TZ}"
+        }
+        ]
       }
     }
   ]

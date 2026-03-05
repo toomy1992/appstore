@@ -1,70 +1,158 @@
 {
-  "services": [
-    {
-      "name": "endurain",
-      "image": "ghcr.io/endurain-project/endurain:v0.17.6",
-      "isMain": true,
-      "internalPort": 8080,
-      "dependsOn": ["endurain-db"],
-      "environment": {
-        "ENDURAIN_HOST": "${ENDURAIN_HOST}",
-        "SECRET_KEY": "${ENDURAIN_SECRET_KEY}",
-        "FERNET_KEY": "${ENDURAIN_FERNET_KEY}",
-        "DB_HOST": "${ENDURAIN_DB_HOST:-postgres}",
-        "DB_PORT": "${ENDURAIN_DB_PORT:-5432}",
-        "DB_USER": "endurain",
-        "DB_PASSWORD": "${ENDURAIN_DB_PASSWORD}",
-        "DB_DATABASE": "${ENDURAIN_DB_NAME:-endurain}",
-        "TZ": "${ENDURAIN_TZ:-UTC}",
-        "LOG_LEVEL": "${ENDURAIN_LOG_LEVEL:-info}",
-        "ENVIRONMENT": "${ENDURAIN_ENVIRONMENT:-production}",
-        "PUID": "1000",
-        "PGID": "1000",
-        "REVERSE_GEO_PROVIDER": "${ENDURAIN_REVERSE_GEO_PROVIDER:-nominatim}",
-        "REVERSE_GEO_RATE_LIMIT": "${ENDURAIN_REVERSE_GEO_RATE_LIMIT:-1}",
-        "GEOCODES_MAPS_API": "${ENDURAIN_GEOCODES_MAPS_API:-}",
-        "SESSION_IDLE_TIMEOUT_ENABLED": "${ENDURAIN_SESSION_IDLE_TIMEOUT_ENABLED:-false}",
-        "SESSION_IDLE_TIMEOUT_HOURS": "${ENDURAIN_SESSION_IDLE_TIMEOUT_HOURS:-1}",
-        "SESSION_ABSOLUTE_TIMEOUT_HOURS": "${ENDURAIN_SESSION_ABSOLUTE_TIMEOUT_HOURS:-24}",
-        "ALGORITHM": "HS256",
-        "ACCESS_TOKEN_EXPIRE_MINUTES": "${ENDURAIN_ACCESS_TOKEN_EXPIRE_MINUTES:-15}",
-        "REFRESH_TOKEN_EXPIRE_DAYS": "${ENDURAIN_REFRESH_TOKEN_EXPIRE_DAYS:-7}",
-        "BEHIND_PROXY": "${ENDURAIN_BEHIND_PROXY:-false}",
-        "FRONTEND_PROTOCOL": "${ENDURAIN_FRONTEND_PROTOCOL:-http}"
-      },
-      "volumes": [
+    "$schema": "https://schemas.runtipi.io/v2/dynamic-compose.json",
+    "schemaVersion": 2,
+    "services": [
         {
-          "hostPath": "${APP_DATA_DIR}/data",
-          "containerPath": "/app/backend/data"
+            "name": "endurain",
+            "image": "ghcr.io/endurain-project/endurain:v0.17.6",
+            "isMain": true,
+            "internalPort": 8080,
+            "dependsOn": [
+                "endurain-db"
+            ],
+            "environment": [
+                {
+                    "key": "ENDURAIN_HOST",
+                    "value": "${ENDURAIN_HOST:-${APP_PROTOCOL}://${APP_DOMAIN}}"
+                },
+                {
+                    "key": "SECRET_KEY",
+                    "value": "${ENDURAIN_SECRET_KEY}"
+                },
+                {
+                    "key": "FERNET_KEY",
+                    "value": "${ENDURAIN_FERNET_KEY}"
+                },
+                {
+                    "key": "DB_HOST",
+                    "value": "${ENDURAIN_DB_HOST:-postgres}"
+                },
+                {
+                    "key": "DB_PORT",
+                    "value": "${ENDURAIN_DB_PORT:-5432}"
+                },
+                {
+                    "key": "DB_USER",
+                    "value": "endurain"
+                },
+                {
+                    "key": "DB_PASSWORD",
+                    "value": "${ENDURAIN_DB_PASSWORD}"
+                },
+                {
+                    "key": "DB_DATABASE",
+                    "value": "${ENDURAIN_DB_NAME:-endurain}"
+                },
+                {
+                    "key": "TZ",
+                    "value": "${TZ:-${ENDURAIN_TZ:-UTC}}"
+                },
+                {
+                    "key": "LOG_LEVEL",
+                    "value": "${ENDURAIN_LOG_LEVEL:-info}"
+                },
+                {
+                    "key": "ENVIRONMENT",
+                    "value": "${ENDURAIN_ENVIRONMENT:-production}"
+                },
+                {
+                    "key": "PUID",
+                    "value": "1000"
+                },
+                {
+                    "key": "PGID",
+                    "value": "1000"
+                },
+                {
+                    "key": "REVERSE_GEO_PROVIDER",
+                    "value": "${ENDURAIN_REVERSE_GEO_PROVIDER:-nominatim}"
+                },
+                {
+                    "key": "REVERSE_GEO_RATE_LIMIT",
+                    "value": "${ENDURAIN_REVERSE_GEO_RATE_LIMIT:-1}"
+                },
+                {
+                    "key": "GEOCODES_MAPS_API",
+                    "value": "${ENDURAIN_GEOCODES_MAPS_API:-}"
+                },
+                {
+                    "key": "SESSION_IDLE_TIMEOUT_ENABLED",
+                    "value": "${ENDURAIN_SESSION_IDLE_TIMEOUT_ENABLED:-false}"
+                },
+                {
+                    "key": "SESSION_IDLE_TIMEOUT_HOURS",
+                    "value": "${ENDURAIN_SESSION_IDLE_TIMEOUT_HOURS:-1}"
+                },
+                {
+                    "key": "SESSION_ABSOLUTE_TIMEOUT_HOURS",
+                    "value": "${ENDURAIN_SESSION_ABSOLUTE_TIMEOUT_HOURS:-24}"
+                },
+                {
+                    "key": "ALGORITHM",
+                    "value": "HS256"
+                },
+                {
+                    "key": "ACCESS_TOKEN_EXPIRE_MINUTES",
+                    "value": "${ENDURAIN_ACCESS_TOKEN_EXPIRE_MINUTES:-15}"
+                },
+                {
+                    "key": "REFRESH_TOKEN_EXPIRE_DAYS",
+                    "value": "${ENDURAIN_REFRESH_TOKEN_EXPIRE_DAYS:-7}"
+                },
+                {
+                    "key": "BEHIND_PROXY",
+                    "value": "${ENDURAIN_BEHIND_PROXY:-false}"
+                },
+                {
+                    "key": "FRONTEND_PROTOCOL",
+                    "value": "${ENDURAIN_FRONTEND_PROTOCOL:-http}"
+                }
+            ],
+            "volumes": [
+                {
+                    "hostPath": "${APP_DATA_DIR}/data",
+                    "containerPath": "/app/backend/data"
+                },
+                {
+                    "hostPath": "${APP_DATA_DIR}/logs",
+                    "containerPath": "/app/backend/logs"
+                }
+            ],
+            "healthCheck": {
+                "test": "curl -f http://localhost:8080/health || exit 1",
+                "interval": "30s",
+                "timeout": "10s",
+                "retries": 3,
+                "startPeriod": "10s"
+            }
         },
         {
-          "hostPath": "${APP_DATA_DIR}/logs",
-          "containerPath": "/app/backend/logs"
+            "name": "endurain-db",
+            "image": "postgres:16-alpine",
+            "environment": [
+                {
+                    "key": "POSTGRES_USER",
+                    "value": "endurain"
+                },
+                {
+                    "key": "POSTGRES_PASSWORD",
+                    "value": "${ENDURAIN_DB_PASSWORD}"
+                },
+                {
+                    "key": "POSTGRES_DB",
+                    "value": "${ENDURAIN_DB_NAME:-endurain}"
+                },
+                {
+                    "key": "TZ",
+                    "value": "${TZ:-${ENDURAIN_TZ:-UTC}}"
+                }
+            ],
+            "volumes": [
+                {
+                    "hostPath": "${APP_DATA_DIR}/db",
+                    "containerPath": "/var/lib/postgresql/data"
+                }
+            ]
         }
-      ],
-      "healthCheck": {
-        "test": "curl -f http://localhost:8080/health || exit 1",
-        "interval": "30s",
-        "timeout": "10s",
-        "retries": 3,
-        "startPeriod": "10s"
-      }
-    },
-    {
-      "name": "endurain-db",
-      "image": "postgres:16-alpine",
-      "environment": {
-        "POSTGRES_USER": "endurain",
-        "POSTGRES_PASSWORD": "${ENDURAIN_DB_PASSWORD}",
-        "POSTGRES_DB": "${ENDURAIN_DB_NAME:-endurain}",
-        "TZ": "${ENDURAIN_TZ:-UTC}"
-      },
-      "volumes": [
-        {
-          "hostPath": "${APP_DATA_DIR}/db",
-          "containerPath": "/var/lib/postgresql/data"
-        }
-      ]
-    }
-  ]
+    ]
 }
