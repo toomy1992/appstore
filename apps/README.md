@@ -8,7 +8,7 @@ This directory contains all the applications available in this app store. Each a
   - `description.md`: Markdown description of the app
   - `logo.jpg`: App logo image
 
-## Total Applications: 21
+## Total Applications: 22
 
 ### AI
 - **Actual AI**: AI for Actual Budget.
@@ -18,6 +18,9 @@ This directory contains all the applications available in this app store. Each a
 ### Finance
 - **OpenBB**: Open-source financial data platform for analysts, quants, and AI agents.
 - **Wealthfolio**: Investment tracking app.
+
+### Fitness
+- **Endurain**: Self-hosted fitness tracking service with activity tracking, gear management, and cloud integrations.
 
 ### Security
 - **Keycloak**: Open source identity and access management solution.
