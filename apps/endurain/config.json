@@ -1,0 +1,298 @@
+{
+    "$schema": "https://schemas.runtipi.io/v2/app-info.json",
+    "id": "endurain",
+    "available": true,
+    "port": 8080,
+    "name": "Endurain",
+    "description": "Self-hosted fitness tracking service with full control over your data. Track activities, manage gear, integrate with Strava and Garmin Connect, and share your fitness journey with a private community.",
+    "version": "0.17.6",
+    "tipi_version": 1,
+    "short_desc": "Self-hosted fitness tracking service",
+    "author": "João Vitória Silva",
+    "source": "https://github.com/endurain-project/endurain",
+    "website": "https://docs.endurain.com/",
+    "categories": [
+        "featured",
+        "social"
+    ],
+    "form_fields": [
+        {
+            "type": "url",
+            "label": "Base URL",
+            "placeholder": "http://192.168.1.100:8080 or https://endurain.yourdomain.com",
+            "hint": "Base URL for internal API communication and Strava OAuth integration. Must be accessible from this container and from Strava servers",
+            "required": true,
+            "env_variable": "ENDURAIN_HOST"
+        },
+        {
+            "type": "random",
+            "label": "JWT Secret Key",
+            "hint": "Random JWT secret for authentication tokens. Minimum 32 characters. Auto-generated if left blank",
+            "required": true,
+            "env_variable": "ENDURAIN_SECRET_KEY",
+            "min": 32,
+            "max": 256,
+            "encoding": "hex"
+        },
+        {
+            "type": "random",
+            "label": "Fernet Encryption Key",
+            "hint": "Encryption key for storing sensitive data like OAuth tokens. Must be a valid Fernet key. Auto-generated if left blank",
+            "required": true,
+            "env_variable": "ENDURAIN_FERNET_KEY",
+            "encoding": "hex"
+        },
+        {
+            "type": "password",
+            "label": "Database Password",
+            "hint": "PostgreSQL database password for secure access. Must be strong and secure",
+            "required": true,
+            "env_variable": "ENDURAIN_DB_PASSWORD"
+        },
+        {
+            "type": "text",
+            "label": "Database Host",
+            "placeholder": "postgres",
+            "hint": "PostgreSQL hostname or IP address. Use 'postgres' if running as a service in this stack",
+            "required": false,
+            "env_variable": "ENDURAIN_DB_HOST",
+            "default": "postgres"
+        },
+        {
+            "type": "number",
+            "label": "Database Port",
+            "hint": "PostgreSQL port number. Standard is 5432",
+            "required": false,
+            "env_variable": "ENDURAIN_DB_PORT",
+            "default": 5432,
+            "min": 1,
+            "max": 65535
+        },
+        {
+            "type": "text",
+            "label": "Database Name",
+            "placeholder": "endurain",
+            "hint": "PostgreSQL database name to use for Endurain data storage",
+            "required": false,
+            "env_variable": "ENDURAIN_DB_NAME",
+            "default": "endurain"
+        },
+        {
+            "type": "email",
+            "label": "Admin Email",
+            "placeholder": "admin@example.com",
+            "hint": "Email address for the default admin account. Used for authentication login",
+            "required": true,
+            "env_variable": "ENDURAIN_ADMIN_EMAIL"
+        },
+        {
+            "type": "boolean",
+            "label": "Enable Session Idle Timeout",
+            "hint": "Automatically log out users after a period of inactivity for security",
+            "required": false,
+            "env_variable": "ENDURAIN_SESSION_IDLE_TIMEOUT_ENABLED",
+            "default": false
+        },
+        {
+            "type": "number",
+            "label": "Session Idle Timeout (Hours)",
+            "hint": "Hours of inactivity before automatic logout. Only applies if idle timeout is enabled",
+            "required": false,
+            "env_variable": "ENDURAIN_SESSION_IDLE_TIMEOUT_HOURS",
+            "default": 1,
+            "min": 1,
+            "max": 24
+        },
+        {
+            "type": "number",
+            "label": "Session Absolute Timeout (Hours)",
+            "hint": "Maximum session lifetime regardless of activity. Longer sessions require periodic re-authentication",
+            "required": false,
+            "env_variable": "ENDURAIN_SESSION_ABSOLUTE_TIMEOUT_HOURS",
+            "default": 24,
+            "min": 1,
+            "max": 720
+        },
+        {
+            "type": "text",
+            "label": "Timezone",
+            "placeholder": "UTC",
+            "hint": "IANA timezone identifier (e.g., UTC, Europe/Lisbon, America/New_York). Affects activity timestamps without GPS coordinates",
+            "required": false,
+            "env_variable": "ENDURAIN_TZ",
+            "default": "UTC"
+        },
+        {
+            "type": "text",
+            "label": "Log Level",
+            "hint": "Logging verbosity: trace (most verbose) → debug → info → warning → error → critical (least verbose)",
+            "required": false,
+            "env_variable": "ENDURAIN_LOG_LEVEL",
+            "default": "info",
+            "options": [
+                {
+                    "label": "Trace (Very Verbose)",
+                    "value": "trace"
+                },
+                {
+                    "label": "Debug",
+                    "value": "debug"
+                },
+                {
+                    "label": "Info",
+                    "value": "info"
+                },
+                {
+                    "label": "Warning",
+                    "value": "warning"
+                },
+                {
+                    "label": "Error",
+                    "value": "error"
+                },
+                {
+                    "label": "Critical",
+                    "value": "critical"
+                }
+            ]
+        },
+        {
+            "type": "text",
+            "label": "Reverse Geolocation Provider",
+            "hint": "Service for reverse geocoding activity locations: Nominatim (free, OpenStreetMap), Photon (free, Komoot), or Geocode Maps (API key required)",
+            "required": false,
+            "env_variable": "ENDURAIN_REVERSE_GEO_PROVIDER",
+            "default": "nominatim",
+            "options": [
+                {
+                    "label": "Nominatim (Free, OpenStreetMap)",
+                    "value": "nominatim"
+                },
+                {
+                    "label": "Photon (Free, Komoot)",
+                    "value": "photon"
+                },
+                {
+                    "label": "Geocode Maps (API Key Required)",
+                    "value": "geocode"
+                }
+            ]
+        },
+        {
+            "type": "number",
+            "label": "Reverse Geolocation Rate Limit (requests/sec)",
+            "hint": "Maximum requests per second for reverse geocoding. Higher values mean faster location lookups but may violate API terms",
+            "required": false,
+            "env_variable": "ENDURAIN_REVERSE_GEO_RATE_LIMIT",
+            "default": 1,
+            "min": 1,
+            "max": 60
+        },
+        {
+            "type": "password",
+            "label": "Geocode Maps API Key",
+            "placeholder": "your-api-key-here",
+            "hint": "API key for Geocode Maps provider. Only required if using Geocode Maps for reverse geolocation. Free plan: 1 request/second",
+            "required": false,
+            "env_variable": "ENDURAIN_GEOCODES_MAPS_API"
+        },
+        {
+            "type": "number",
+            "label": "Container User ID (UID)",
+            "hint": "User ID for file permissions in mounted volumes. Use 1000 for most setups, adjust if needed for permission management",
+            "required": false,
+            "env_variable": "ENDURAIN_UID",
+            "default": 1000,
+            "min": 0,
+            "max": 65535
+        },
+        {
+            "type": "number",
+            "label": "Container Group ID (GID)",
+            "hint": "Group ID for file permissions in mounted volumes. Use 1000 for most setups, adjust if needed for permission management",
+            "required": false,
+            "env_variable": "ENDURAIN_GID",
+            "default": 1000,
+            "min": 0,
+            "max": 65535
+        },
+        {
+            "type": "text",
+            "label": "Environment Type",
+            "hint": "Deployment environment: production (standard), demo (daily reset at midnight), or development (verbose logging)",
+            "required": false,
+            "env_variable": "ENDURAIN_ENVIRONMENT",
+            "default": "production",
+            "options": [
+                {
+                    "label": "Production",
+                    "value": "production"
+                },
+                {
+                    "label": "Demo (Daily Reset)",
+                    "value": "demo"
+                },
+                {
+                    "label": "Development",
+                    "value": "development"
+                }
+            ]
+        },
+        {
+            "type": "number",
+            "label": "Access Token Expiration (Minutes)",
+            "hint": "JWT access token lifetime in minutes. Shorter = more secure but requires more frequent re-authentication",
+            "required": false,
+            "env_variable": "ENDURAIN_ACCESS_TOKEN_EXPIRE_MINUTES",
+            "default": 15,
+            "min": 1,
+            "max": 1440
+        },
+        {
+            "type": "number",
+            "label": "Refresh Token Expiration (Days)",
+            "hint": "Refresh token lifetime in days. Controls how long users stay logged in without password entry",
+            "required": false,
+            "env_variable": "ENDURAIN_REFRESH_TOKEN_EXPIRE_DAYS",
+            "default": 7,
+            "min": 1,
+            "max": 365
+        },
+        {
+            "type": "boolean",
+            "label": "Behind Reverse Proxy",
+            "hint": "Set to true if Endurain is behind a reverse proxy (nginx, Traefik, etc.) for correct IP address detection",
+            "required": false,
+            "env_variable": "ENDURAIN_BEHIND_PROXY",
+            "default": false
+        },
+        {
+            "type": "text",
+            "label": "Frontend Protocol",
+            "hint": "Protocol for frontend communication: http (default) or https (when behind HTTPS reverse proxy)",
+            "required": false,
+            "env_variable": "ENDURAIN_FRONTEND_PROTOCOL",
+            "default": "http",
+            "options": [
+                {
+                    "label": "HTTP",
+                    "value": "http"
+                },
+                {
+                    "label": "HTTPS",
+                    "value": "https"
+                }
+            ]
+        }
+    ],
+    "exposable": true,
+    "no_gui": false,
+    "supported_architectures": [
+        "amd64",
+        "arm64"
+    ],
+    "dynamic_config": true,
+    "min_tipi_version": "4.6.5",
+    "created_at": 1741139200000,
+    "updated_at": 1741139200000
+}
