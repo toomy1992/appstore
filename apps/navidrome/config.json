@@ -6,7 +6,7 @@
   "name": "Navidrome",
   "description": "A modern, lightweight music server and streamer with compatibility for all Subsonic-compatible clients",
   "version": "0.60.3",
-  "tipi_version": 4,
+  "tipi_version": 5,
   "short_desc": "Music streaming server",
   "author": "deluan",
   "source": "https://github.com/navidrome/navidrome",
