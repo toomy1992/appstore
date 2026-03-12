@@ -7,7 +7,7 @@
   "port": 8091,
   "id": "jellyfin",
   "tipi_version": 38,
-  "version": "2021.12.16",
+  "version": "10.11.6",
   "categories": [
     "media"
   ],
