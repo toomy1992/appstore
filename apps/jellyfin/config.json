@@ -6,8 +6,8 @@
   "dynamic_config": true,
   "port": 8091,
   "id": "jellyfin",
-  "tipi_version": 38,
-  "version": "10.11.6",
+  "tipi_version": 39,
+  "version": "2021.12.16",
   "categories": [
     "media"
   ],
@@ -21,6 +21,6 @@
     "amd64"
   ],
   "created_at": 1691943801422,
-  "updated_at": 1773200051149,
+  "updated_at": 1773547548838,
   "min_tipi_version": "4.5.0"
 }
