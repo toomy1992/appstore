@@ -6,8 +6,8 @@
   "exposable": true,
   "dynamic_config": true,
   "description": "A local-first investment tracking app with portfolio tracking, analytics, and goal planning.",
-  "tipi_version": 11,
-  "version": "3.1.2",
+  "tipi_version": 12,
+  "version": "3.2.1",
   "categories": [
     "finance",
     "utilities"
@@ -53,5 +53,5 @@
     "amd64",
     "arm64"
   ],
-  "updated_at": 1773634339561
+  "updated_at": 1775274159358
 }
