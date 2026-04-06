@@ -36,7 +36,7 @@ JDownloader 2 is a powerful download manager for file hosts, link containers, ar
 | Host folder | Container folder | Comment |
 | ----------- | ---------------- | ------- |
 | `${APP_DATA_DIR}/data/config` | `/config` | Stores JDownloader settings, state, logs, certificates, and persistent metadata |
-| `${APP_DATA_DIR}/data/output` | `/output` | Stores downloaded files and extracted archives |
+| `${ROOT_FOLDER_HOST}/media/downloads/complete/` | `/output` | Default download destination for completed files and extracted archives |
 
 ---
 
@@ -72,6 +72,8 @@ JDownloader 2 is a powerful download manager for file hosts, link containers, ar
 ## ⚙️ CONFIGURATION
 
 After the container starts, open the web UI and complete JDownloader's first-run setup. If you want remote control from the MyJDownloader service, either fill in the MyJDownloader fields in Runtipi or configure the account directly from the JDownloader interface.
+
+By default, completed downloads are written to `${ROOT_FOLDER_HOST}/media/downloads/complete/` through the `/output` mount.
 
 To use MyJDownloader direct connection mode, keep port `3129` published, then follow the upstream instructions to set custom device IPs and enable manual port forwarding in JDownloader advanced settings.
 
