@@ -1,0 +1,129 @@
+{
+  "$schema": "https://schemas.runtipi.io/v2/dynamic-compose.json",
+  "schemaVersion": 2,
+  "services": [
+    {
+      "name": "jdownloader-2",
+      "image": "ghcr.io/jlesage/jdownloader-2:v26.03.1",
+      "isMain": true,
+      "internalPort": 5800,
+      "addPorts": [
+        {
+          "containerPort": 3129,
+          "hostPort": 3129
+        }
+      ],
+      "environment": [
+        {
+          "key": "USER_ID",
+          "value": "${JDOWNLOADER_2_USER_ID:-1000}"
+        },
+        {
+          "key": "GROUP_ID",
+          "value": "${JDOWNLOADER_2_GROUP_ID:-1000}"
+        },
+        {
+          "key": "TZ",
+          "value": "${TZ}"
+        },
+        {
+          "key": "LANG",
+          "value": "${JDOWNLOADER_2_LANG:-en_US.UTF-8}"
+        },
+        {
+          "key": "UMASK",
+          "value": "${JDOWNLOADER_2_UMASK:-0022}"
+        },
+        {
+          "key": "SUP_GROUP_IDS",
+          "value": "${JDOWNLOADER_2_SUP_GROUP_IDS:-}"
+        },
+        {
+          "key": "KEEP_APP_RUNNING",
+          "value": "${JDOWNLOADER_2_KEEP_APP_RUNNING:-false}"
+        },
+        {
+          "key": "DISPLAY_WIDTH",
+          "value": "${JDOWNLOADER_2_DISPLAY_WIDTH:-1920}"
+        },
+        {
+          "key": "DISPLAY_HEIGHT",
+          "value": "${JDOWNLOADER_2_DISPLAY_HEIGHT:-1080}"
+        },
+        {
+          "key": "DARK_MODE",
+          "value": "${JDOWNLOADER_2_DARK_MODE:-false}"
+        },
+        {
+          "key": "WEB_AUDIO",
+          "value": "${JDOWNLOADER_2_WEB_AUDIO:-false}"
+        },
+        {
+          "key": "WEB_FILE_MANAGER",
+          "value": "${JDOWNLOADER_2_WEB_FILE_MANAGER:-false}"
+        },
+        {
+          "key": "WEB_FILE_MANAGER_ALLOWED_PATHS",
+          "value": "${JDOWNLOADER_2_WEB_FILE_MANAGER_ALLOWED_PATHS:-AUTO}"
+        },
+        {
+          "key": "WEB_TERMINAL",
+          "value": "${JDOWNLOADER_2_WEB_TERMINAL:-false}"
+        },
+        {
+          "key": "SECURE_CONNECTION",
+          "value": "${JDOWNLOADER_2_SECURE_CONNECTION:-false}"
+        },
+        {
+          "key": "WEB_AUTHENTICATION",
+          "value": "${JDOWNLOADER_2_WEB_AUTHENTICATION:-false}"
+        },
+        {
+          "key": "WEB_AUTHENTICATION_USERNAME",
+          "value": "${JDOWNLOADER_2_WEB_AUTHENTICATION_USERNAME:-}"
+        },
+        {
+          "key": "WEB_AUTHENTICATION_PASSWORD",
+          "value": "${JDOWNLOADER_2_WEB_AUTHENTICATION_PASSWORD:-}"
+        },
+        {
+          "key": "ENABLE_CJK_FONT",
+          "value": "${JDOWNLOADER_2_ENABLE_CJK_FONT:-false}"
+        },
+        {
+          "key": "MYJDOWNLOADER_EMAIL",
+          "value": "${JDOWNLOADER_2_MYJDOWNLOADER_EMAIL:-}"
+        },
+        {
+          "key": "MYJDOWNLOADER_PASSWORD",
+          "value": "${JDOWNLOADER_2_MYJDOWNLOADER_PASSWORD:-}"
+        },
+        {
+          "key": "MYJDOWNLOADER_DEVICE_NAME",
+          "value": "${JDOWNLOADER_2_MYJDOWNLOADER_DEVICE_NAME:-}"
+        },
+        {
+          "key": "JDOWNLOADER_MAX_MEM",
+          "value": "${JDOWNLOADER_2_MAX_MEM:-}"
+        }
+      ],
+      "volumes": [
+        {
+          "hostPath": "${APP_DATA_DIR}/data/config",
+          "containerPath": "/config"
+        },
+        {
+          "hostPath": "${APP_DATA_DIR}/data/output",
+          "containerPath": "/output"
+        }
+      ],
+      "healthCheck": {
+        "test": "curl -fkL http://localhost:5800/ || exit 1",
+        "interval": "30s",
+        "timeout": "10s",
+        "retries": 5,
+        "startPeriod": "180s"
+      }
+    }
+  ]
+}

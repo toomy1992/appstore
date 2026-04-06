@@ -8,7 +8,7 @@ This directory contains all the applications available in this app store. Each a
   - `description.md`: Markdown description of the app
   - `logo.jpg`: App logo image
 
-## Total Applications: 22
+## Total Applications: 26
 
 ### AI
 - **Actual AI**: AI for Actual Budget.
@@ -31,6 +31,8 @@ This directory contains all the applications available in this app store. Each a
 - **Configarr**: TRaSH Guides sync for *arr apps.
 - **Decypharr**: Debrid QBittorrent API.
 - **Huntarr**: Automated *arr media hunter.
+- **Jellyfin**: Media server for your home collection.
+- **MeTube**: Self-hosted YouTube downloader.
 - **Navidrome**: A modern, lightweight music server and streamer with compatibility for all Subsonic-compatible clients.
 - **Profilarr**: Configuration management for Radarr/Sonarr.
 - **Prowlarr**: Indexers manager & proxy.
@@ -42,6 +44,8 @@ This directory contains all the applications available in this app store. Each a
 - **Nextcloud**: Self-hosted cloud storage solution for files, contacts, calendars and more.
 
 ### Utilities
+- **Dashy**: Self-hostable personal dashboard.
+- **JDownloader 2**: Self-hosted download manager GUI.
 - **Transmission (VPN)**: BitTorrent client with VPN support.
 - **WiseMapping**: Free, open-source web-based mind mapping tool for creating, managing, and collaborating on mind maps in real-time.
 

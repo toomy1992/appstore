@@ -1,0 +1,220 @@
+{
+  "$schema": "https://schemas.runtipi.io/v2/app-info.json",
+  "id": "jdownloader-2",
+  "available": true,
+  "port": 5800,
+  "name": "JDownloader 2",
+  "description": "JDownloader 2 is a feature-rich download manager with a browser-based desktop, MyJDownloader integration, archive extraction, and automated handling for download links and file hosts.",
+  "version": "v26.03.1",
+  "tipi_version": 1,
+  "short_desc": "Self-hosted download manager GUI",
+  "author": "jlesage",
+  "source": "https://github.com/jlesage/docker-jdownloader-2",
+  "website": "https://jdownloader.org",
+  "categories": [
+    "utilities",
+    "media"
+  ],
+  "form_fields": [
+    {
+      "type": "email",
+      "label": "MyJDownloader > Email",
+      "hint": "Email address used by your MyJDownloader account for remote access",
+      "required": false,
+      "env_variable": "JDOWNLOADER_2_MYJDOWNLOADER_EMAIL",
+      "placeholder": "user@example.com"
+    },
+    {
+      "type": "password",
+      "label": "MyJDownloader > Password",
+      "hint": "Password for your MyJDownloader account",
+      "required": false,
+      "env_variable": "JDOWNLOADER_2_MYJDOWNLOADER_PASSWORD",
+      "placeholder": "your-password"
+    },
+    {
+      "type": "text",
+      "label": "MyJDownloader > Device Name",
+      "hint": "Optional device name shown in MyJDownloader for this instance",
+      "required": false,
+      "env_variable": "JDOWNLOADER_2_MYJDOWNLOADER_DEVICE_NAME",
+      "placeholder": "runtipi-jdownloader"
+    },
+    {
+      "type": "text",
+      "label": "Performance > Max Memory",
+      "hint": "Optional Java memory cap such as 2G, 1024M, or 512M; leave empty to auto-detect",
+      "required": false,
+      "env_variable": "JDOWNLOADER_2_MAX_MEM",
+      "placeholder": "2G"
+    },
+    {
+      "type": "number",
+      "label": "Display > Width",
+      "hint": "Width in pixels for the browser-based desktop session",
+      "required": false,
+      "env_variable": "JDOWNLOADER_2_DISPLAY_WIDTH",
+      "default": 1920,
+      "min": 640,
+      "max": 7680,
+      "placeholder": "1920"
+    },
+    {
+      "type": "number",
+      "label": "Display > Height",
+      "hint": "Height in pixels for the browser-based desktop session",
+      "required": false,
+      "env_variable": "JDOWNLOADER_2_DISPLAY_HEIGHT",
+      "default": 1080,
+      "min": 480,
+      "max": 4320,
+      "placeholder": "1080"
+    },
+    {
+      "type": "boolean",
+      "label": "Display > Dark Mode",
+      "hint": "Enable dark mode for the browser wrapper interface",
+      "required": false,
+      "env_variable": "JDOWNLOADER_2_DARK_MODE",
+      "default": false
+    },
+    {
+      "type": "boolean",
+      "label": "Web UI > Enable Audio",
+      "hint": "Play container audio through the browser session",
+      "required": false,
+      "env_variable": "JDOWNLOADER_2_WEB_AUDIO",
+      "default": false
+    },
+    {
+      "type": "boolean",
+      "label": "Web UI > Enable File Manager",
+      "hint": "Expose a browser file manager for /config, /output, and other allowed paths",
+      "required": false,
+      "env_variable": "JDOWNLOADER_2_WEB_FILE_MANAGER",
+      "default": false
+    },
+    {
+      "type": "text",
+      "label": "Web UI > Allowed File Paths",
+      "hint": "Comma-separated container paths available to the web file manager; AUTO includes mapped volumes",
+      "required": false,
+      "env_variable": "JDOWNLOADER_2_WEB_FILE_MANAGER_ALLOWED_PATHS",
+      "default": "AUTO",
+      "placeholder": "AUTO"
+    },
+    {
+      "type": "boolean",
+      "label": "Web UI > Enable Terminal",
+      "hint": "Expose a browser terminal inside the container; best used with HTTPS enabled",
+      "required": false,
+      "env_variable": "JDOWNLOADER_2_WEB_TERMINAL",
+      "default": false
+    },
+    {
+      "type": "boolean",
+      "label": "Security > Enable HTTPS",
+      "hint": "Serve the browser interface over HTTPS using generated or mounted certificates",
+      "required": false,
+      "env_variable": "JDOWNLOADER_2_SECURE_CONNECTION",
+      "default": false
+    },
+    {
+      "type": "boolean",
+      "label": "Security > Enable Web Auth",
+      "hint": "Protect the browser interface with a login page; set username and password below when enabled",
+      "required": false,
+      "env_variable": "JDOWNLOADER_2_WEB_AUTHENTICATION",
+      "default": false
+    },
+    {
+      "type": "text",
+      "label": "Security > Web Username",
+      "hint": "Single-user login name for web authentication",
+      "required": false,
+      "env_variable": "JDOWNLOADER_2_WEB_AUTHENTICATION_USERNAME",
+      "placeholder": "admin"
+    },
+    {
+      "type": "password",
+      "label": "Security > Web Password",
+      "hint": "Single-user password for web authentication",
+      "required": false,
+      "env_variable": "JDOWNLOADER_2_WEB_AUTHENTICATION_PASSWORD",
+      "placeholder": "change-me"
+    },
+    {
+      "type": "number",
+      "label": "Container > User ID",
+      "hint": "User ID used to own files created in mounted volumes",
+      "required": false,
+      "env_variable": "JDOWNLOADER_2_USER_ID",
+      "default": 1000,
+      "min": 0,
+      "max": 65535,
+      "placeholder": "1000"
+    },
+    {
+      "type": "number",
+      "label": "Container > Group ID",
+      "hint": "Group ID used to own files created in mounted volumes",
+      "required": false,
+      "env_variable": "JDOWNLOADER_2_GROUP_ID",
+      "default": 1000,
+      "min": 0,
+      "max": 65535,
+      "placeholder": "1000"
+    },
+    {
+      "type": "text",
+      "label": "Container > Language",
+      "hint": "Locale used by the container, for example en_US.UTF-8 or de_DE.UTF-8",
+      "required": false,
+      "env_variable": "JDOWNLOADER_2_LANG",
+      "default": "en_US.UTF-8",
+      "placeholder": "en_US.UTF-8"
+    },
+    {
+      "type": "text",
+      "label": "Container > Umask",
+      "hint": "Permissions mask for newly created files and folders inside /config and /output",
+      "required": false,
+      "env_variable": "JDOWNLOADER_2_UMASK",
+      "default": "0022",
+      "placeholder": "0022"
+    },
+    {
+      "type": "text",
+      "label": "Container > Supplementary Group IDs",
+      "hint": "Comma-separated extra group IDs to help access shared storage with custom permissions",
+      "required": false,
+      "env_variable": "JDOWNLOADER_2_SUP_GROUP_IDS",
+      "placeholder": "44,1099"
+    },
+    {
+      "type": "boolean",
+      "label": "Container > Keep App Running",
+      "hint": "Restart the desktop application automatically if it exits unexpectedly",
+      "required": false,
+      "env_variable": "JDOWNLOADER_2_KEEP_APP_RUNNING",
+      "default": false
+    },
+    {
+      "type": "boolean",
+      "label": "Container > Enable CJK Font",
+      "hint": "Install a font with broader Chinese, Japanese, and Korean character coverage",
+      "required": false,
+      "env_variable": "JDOWNLOADER_2_ENABLE_CJK_FONT",
+      "default": false
+    }
+  ],
+  "exposable": true,
+  "supported_architectures": [
+    "amd64",
+    "arm64"
+  ],
+  "dynamic_config": true,
+  "min_tipi_version": "4.6.5",
+  "created_at": 1775474269117,
+  "updated_at": 1775474269117
+}

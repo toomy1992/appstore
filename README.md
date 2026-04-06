@@ -30,7 +30,7 @@ This repository is intended to serve as a template for creating your own app sto
 For detailed instructions on creating your own app store, please refer to the official guide:
 [Create Your Own App Store Guide](https://runtipi.io/docs/guides/create-your-own-app-store)
 
-## Applications (22 Total)
+## Applications (26 Total)
 
 ### AI
 - **Actual AI**: AI for Actual Budget.
@@ -56,6 +56,8 @@ For detailed instructions on creating your own app store, please refer to the of
 - **Configarr**: TRaSH Guides sync for *arr apps.
 - **Decypharr**: Debrid QBittorrent API.
 - **Huntarr**: Automated *arr media hunter.
+- **Jellyfin**: Media server for your home collection.
+- **MeTube**: Self-hosted YouTube downloader.
 - **Navidrome**: A modern, lightweight music server and streamer with compatibility for all Subsonic-compatible clients.
 - **Profilarr**: Configuration management for Radarr/Sonarr.
 - **Prowlarr**: Indexers manager & proxy.
@@ -64,6 +66,8 @@ For detailed instructions on creating your own app store, please refer to the of
 - **Ygégé**: YGG Torrent indexer.
 
 ### Utilities
+- **Dashy**: Self-hostable personal dashboard.
+- **JDownloader 2**: Self-hosted download manager GUI.
 - **Transmission (VPN)**: BitTorrent client with VPN support.
 - **WiseMapping**: Free, open-source web-based mind mapping tool for creating, managing, and collaborating on mind maps in real-time.
 
