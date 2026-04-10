@@ -5,8 +5,8 @@
   "port": 8080,
   "name": "Keycloak",
   "description": "Open source identity and access management solution. Keycloak provides user federation, strong authentication, user management, fine-grained authorization, and more.",
-  "version": "26.5.7",
-  "tipi_version": 13,
+  "version": "26.6.0",
+  "tipi_version": 14,
   "short_desc": "Open source authentication server",
   "author": "Keycloak Team",
   "source": "https://github.com/keycloak/keycloak",
@@ -138,5 +138,5 @@
   "dynamic_config": true,
   "min_tipi_version": "4.6.5",
   "created_at": 1737295200000,
-  "updated_at": 1775274152544
+  "updated_at": 1775707416821
 }
