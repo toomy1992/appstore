@@ -9,22 +9,6 @@ Transmission runs only when OpenVPN has an active tunnel. It supports many popul
 
 ---
 
-## 🛡️ VPN PROVIDER COMPARISON
-
-![https://airvpn.org/?referred_by=674291](https://airvpn.org/images/promotional/banner_641x91.gif)
-
-| VPN Provider | Port Forwarding | Works? |
-|--------------|-----------------|--------|
-| [AirVPN](https://airvpn.org/?referred_by=674291) | **Yes** | **Yes** |
-| [ProtonVPN](https://protonvpn.com/fr) | **Yes** | N.C. |
-| [NordVPN](https://ref.nordvpn.com/EQNOEHVwOCW) | No | **Almost Yes** |
-
-> [VPN Providers with port forwarding are better for torrenting.](https://www.reddit.com/r/VPNTorrents/comments/p6h7em/answered_why_you_do_need_portforwarding_for/) (reddit.com)
-
-*[NordVPN, Get 3 months free here.](https://ref.nordvpn.com/EQNOEHVwOCW)*
-
----
-
 ## ✨ MAIN FEATURES
 - Multiple Web UI options (Combustion, Kettu, Web-Control, Flood, Shift, Transmissionic)
 - Supports many OpenVPN providers ([full list](https://haugene.github.io/docker-transmission-openvpn/supported-providers/))
