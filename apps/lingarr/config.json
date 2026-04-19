@@ -1,0 +1,276 @@
+{
+  "$schema": "https://schemas.runtipi.io/v2/app-info.json",
+  "id": "lingarr",
+  "available": true,
+  "port": 9876,
+  "name": "Lingarr",
+  "description": "Automates subtitle translation for Sonarr and Radarr libraries using multiple providers including Google, LibreTranslate, DeepL, OpenAI, Anthropic, Gemini, DeepSeek, and local AI backends.",
+  "version": "1.0.9",
+  "tipi_version": 1,
+  "short_desc": "Automated subtitle translation tool",
+  "author": "lingarr-translate",
+  "source": "https://github.com/lingarr-translate/lingarr",
+  "website": "https://lingarr.com/",
+  "categories": [
+    "media",
+    "ai"
+  ],
+  "form_fields": [
+    {
+      "type": "url",
+      "label": "Integrations > Radarr URL",
+      "hint": "Base URL of your Radarr instance. Leave empty if you only use Sonarr.",
+      "required": false,
+      "env_variable": "LINGARR_RADARR_URL",
+      "placeholder": "http://radarr:7878"
+    },
+    {
+      "type": "password",
+      "label": "Integrations > Radarr API Key",
+      "hint": "Radarr API key used for syncing movie libraries and webhook lookups.",
+      "required": false,
+      "env_variable": "LINGARR_RADARR_API_KEY",
+      "placeholder": "Paste your Radarr API key"
+    },
+    {
+      "type": "url",
+      "label": "Integrations > Sonarr URL",
+      "hint": "Base URL of your Sonarr instance. Leave empty if you only use Radarr.",
+      "required": false,
+      "env_variable": "LINGARR_SONARR_URL",
+      "placeholder": "http://sonarr:8989"
+    },
+    {
+      "type": "password",
+      "label": "Integrations > Sonarr API Key",
+      "hint": "Sonarr API key used for syncing show libraries and webhook lookups.",
+      "required": false,
+      "env_variable": "LINGARR_SONARR_API_KEY",
+      "placeholder": "Paste your Sonarr API key"
+    },
+    {
+      "type": "number",
+      "label": "Runtime > Max Concurrent Jobs",
+      "hint": "Maximum number of translation workers Lingarr may run in parallel.",
+      "required": false,
+      "env_variable": "LINGARR_MAX_CONCURRENT_JOBS",
+      "default": 1,
+      "min": 1,
+      "max": 10,
+      "placeholder": "1"
+    },
+    {
+      "type": "text",
+      "label": "Translation > Service",
+      "hint": "Default translation backend. Google is preselected so Lingarr can start without extra credentials.",
+      "required": true,
+      "env_variable": "LINGARR_SERVICE_TYPE",
+      "default": "google",
+      "options": [
+        {
+          "label": "Anthropic",
+          "value": "anthropic"
+        },
+        {
+          "label": "Bing",
+          "value": "bing"
+        },
+        {
+          "label": "DeepL",
+          "value": "deepl"
+        },
+        {
+          "label": "DeepSeek",
+          "value": "deepseek"
+        },
+        {
+          "label": "Gemini",
+          "value": "gemini"
+        },
+        {
+          "label": "Google",
+          "value": "google"
+        },
+        {
+          "label": "LibreTranslate",
+          "value": "libretranslate"
+        },
+        {
+          "label": "Local AI (OpenAI-compatible)",
+          "value": "localai"
+        },
+        {
+          "label": "Microsoft",
+          "value": "microsoft"
+        },
+        {
+          "label": "OpenAI",
+          "value": "openai"
+        },
+        {
+          "label": "Yandex",
+          "value": "yandex"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "label": "Translation > Source Languages",
+      "hint": "Minified JSON array of source languages. Each item must include name and code.",
+      "required": true,
+      "env_variable": "LINGARR_SOURCE_LANGUAGES",
+      "default": "[{\"name\":\"English\",\"code\":\"en\"}]",
+      "placeholder": "[{\"name\":\"English\",\"code\":\"en\"}]"
+    },
+    {
+      "type": "text",
+      "label": "Translation > Target Languages",
+      "hint": "Minified JSON array of target languages. Each item must include name and code.",
+      "required": true,
+      "env_variable": "LINGARR_TARGET_LANGUAGES",
+      "default": "[{\"name\":\"Dutch\",\"code\":\"nl\"}]",
+      "placeholder": "[{\"name\":\"Dutch\",\"code\":\"nl\"}]"
+    },
+    {
+      "type": "url",
+      "label": "LibreTranslate > URL",
+      "hint": "Base URL of your LibreTranslate instance. Only needed when the LibreTranslate service is selected.",
+      "required": false,
+      "env_variable": "LINGARR_LIBRE_TRANSLATE_URL",
+      "default": "https://libretranslate.com",
+      "placeholder": "https://libretranslate.com"
+    },
+    {
+      "type": "password",
+      "label": "LibreTranslate > API Key",
+      "hint": "Optional API key for LibreTranslate if your instance requires authentication.",
+      "required": false,
+      "env_variable": "LINGARR_LIBRE_TRANSLATE_API_KEY",
+      "placeholder": "Optional LibreTranslate API key"
+    },
+    {
+      "type": "password",
+      "label": "OpenAI > API Key",
+      "hint": "OpenAI API key. Only required when the OpenAI service is selected.",
+      "required": false,
+      "env_variable": "LINGARR_OPENAI_API_KEY",
+      "placeholder": "sk-..."
+    },
+    {
+      "type": "text",
+      "label": "OpenAI > Model",
+      "hint": "OpenAI model identifier used for subtitle translation.",
+      "required": false,
+      "env_variable": "LINGARR_OPENAI_MODEL",
+      "placeholder": "gpt-4o-mini"
+    },
+    {
+      "type": "password",
+      "label": "Anthropic > API Key",
+      "hint": "Anthropic API key. Only required when the Anthropic service is selected.",
+      "required": false,
+      "env_variable": "LINGARR_ANTHROPIC_API_KEY",
+      "placeholder": "sk-ant-..."
+    },
+    {
+      "type": "text",
+      "label": "Anthropic > Model",
+      "hint": "Anthropic model identifier used for subtitle translation.",
+      "required": false,
+      "env_variable": "LINGARR_ANTHROPIC_MODEL",
+      "placeholder": "claude-3-5-haiku-latest"
+    },
+    {
+      "type": "text",
+      "label": "Anthropic > Version",
+      "hint": "Anthropic API version header. Lingarr requires this when Anthropic is selected.",
+      "required": false,
+      "env_variable": "LINGARR_ANTHROPIC_VERSION",
+      "default": "2023-06-01",
+      "placeholder": "2023-06-01"
+    },
+    {
+      "type": "url",
+      "label": "Local AI > Endpoint",
+      "hint": "OpenAI-compatible endpoint for Ollama, LocalAI, OpenRouter, or another local router.",
+      "required": false,
+      "env_variable": "LINGARR_LOCAL_AI_ENDPOINT",
+      "placeholder": "http://localhost:8080"
+    },
+    {
+      "type": "password",
+      "label": "Local AI > API Key",
+      "hint": "Optional API key for your local or self-hosted OpenAI-compatible endpoint.",
+      "required": false,
+      "env_variable": "LINGARR_LOCAL_AI_API_KEY",
+      "placeholder": "Optional local AI API key"
+    },
+    {
+      "type": "text",
+      "label": "Local AI > Model",
+      "hint": "Model name exposed by your local or self-hosted OpenAI-compatible endpoint.",
+      "required": false,
+      "env_variable": "LINGARR_LOCAL_AI_MODEL",
+      "placeholder": "aya-expanse"
+    },
+    {
+      "type": "password",
+      "label": "Gemini > API Key",
+      "hint": "Gemini API key. Only required when the Gemini service is selected.",
+      "required": false,
+      "env_variable": "LINGARR_GEMINI_API_KEY",
+      "placeholder": "Paste your Gemini API key"
+    },
+    {
+      "type": "text",
+      "label": "Gemini > Model",
+      "hint": "Gemini model identifier used for subtitle translation.",
+      "required": false,
+      "env_variable": "LINGARR_GEMINI_MODEL",
+      "default": "gemini-2.0-flash",
+      "placeholder": "gemini-2.0-flash"
+    },
+    {
+      "type": "password",
+      "label": "DeepSeek > API Key",
+      "hint": "DeepSeek API key. Only required when the DeepSeek service is selected.",
+      "required": false,
+      "env_variable": "LINGARR_DEEPSEEK_API_KEY",
+      "placeholder": "Paste your DeepSeek API key"
+    },
+    {
+      "type": "text",
+      "label": "DeepSeek > Model",
+      "hint": "DeepSeek model identifier used for subtitle translation.",
+      "required": false,
+      "env_variable": "LINGARR_DEEPSEEK_MODEL",
+      "default": "deepseek-chat",
+      "placeholder": "deepseek-chat"
+    },
+    {
+      "type": "password",
+      "label": "DeepL > API Key",
+      "hint": "DeepL API key. Only required when the DeepL service is selected.",
+      "required": false,
+      "env_variable": "LINGARR_DEEPL_API_KEY",
+      "placeholder": "Paste your DeepL API key"
+    },
+    {
+      "type": "boolean",
+      "label": "Telemetry > Enable Usage Reporting",
+      "hint": "Opt in to Lingarr's anonymous telemetry reporting. Disabled by default.",
+      "required": false,
+      "env_variable": "LINGARR_TELEMETRY_ENABLED",
+      "default": false
+    }
+  ],
+  "exposable": true,
+  "supported_architectures": [
+    "amd64",
+    "arm64"
+  ],
+  "dynamic_config": true,
+  "min_tipi_version": "4.6.5",
+  "created_at": 1776604467123,
+  "updated_at": 1776604467123
+}

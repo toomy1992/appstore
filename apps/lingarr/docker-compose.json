@@ -1,0 +1,137 @@
+{
+  "$schema": "https://schemas.runtipi.io/v2/dynamic-compose.json",
+  "schemaVersion": 2,
+  "services": [
+    {
+      "name": "lingarr",
+      "image": "ghcr.io/lingarr-translate/lingarr:1.0.9",
+      "isMain": true,
+      "internalPort": 9876,
+      "restart": "unless-stopped",
+      "environment": [
+        {
+          "key": "ASPNETCORE_URLS",
+          "value": "http://+:9876"
+        },
+        {
+          "key": "DB_CONNECTION",
+          "value": "sqlite"
+        },
+        {
+          "key": "SQLITE_DB_PATH",
+          "value": "local.db"
+        },
+        {
+          "key": "DB_HANGFIRE_SQLITE_PATH",
+          "value": "/app/config/Hangfire.db"
+        },
+        {
+          "key": "MAX_CONCURRENT_JOBS",
+          "value": "${LINGARR_MAX_CONCURRENT_JOBS:-1}"
+        },
+        {
+          "key": "RADARR_URL",
+          "value": "${LINGARR_RADARR_URL:-}"
+        },
+        {
+          "key": "RADARR_API_KEY",
+          "value": "${LINGARR_RADARR_API_KEY:-}"
+        },
+        {
+          "key": "SONARR_URL",
+          "value": "${LINGARR_SONARR_URL:-}"
+        },
+        {
+          "key": "SONARR_API_KEY",
+          "value": "${LINGARR_SONARR_API_KEY:-}"
+        },
+        {
+          "key": "SERVICE_TYPE",
+          "value": "${LINGARR_SERVICE_TYPE:-google}"
+        },
+        {
+          "key": "SOURCE_LANGUAGES",
+          "value": "${LINGARR_SOURCE_LANGUAGES}"
+        },
+        {
+          "key": "TARGET_LANGUAGES",
+          "value": "${LINGARR_TARGET_LANGUAGES}"
+        },
+        {
+          "key": "LIBRE_TRANSLATE_URL",
+          "value": "${LINGARR_LIBRE_TRANSLATE_URL:-https://libretranslate.com}"
+        },
+        {
+          "key": "LIBRE_TRANSLATE_API_KEY",
+          "value": "${LINGARR_LIBRE_TRANSLATE_API_KEY:-}"
+        },
+        {
+          "key": "OPENAI_API_KEY",
+          "value": "${LINGARR_OPENAI_API_KEY:-}"
+        },
+        {
+          "key": "OPENAI_MODEL",
+          "value": "${LINGARR_OPENAI_MODEL:-}"
+        },
+        {
+          "key": "ANTHROPIC_API_KEY",
+          "value": "${LINGARR_ANTHROPIC_API_KEY:-}"
+        },
+        {
+          "key": "ANTHROPIC_MODEL",
+          "value": "${LINGARR_ANTHROPIC_MODEL:-}"
+        },
+        {
+          "key": "ANTHROPIC_VERSION",
+          "value": "${LINGARR_ANTHROPIC_VERSION:-2023-06-01}"
+        },
+        {
+          "key": "LOCAL_AI_ENDPOINT",
+          "value": "${LINGARR_LOCAL_AI_ENDPOINT:-}"
+        },
+        {
+          "key": "LOCAL_AI_API_KEY",
+          "value": "${LINGARR_LOCAL_AI_API_KEY:-}"
+        },
+        {
+          "key": "LOCAL_AI_MODEL",
+          "value": "${LINGARR_LOCAL_AI_MODEL:-}"
+        },
+        {
+          "key": "GEMINI_API_KEY",
+          "value": "${LINGARR_GEMINI_API_KEY:-}"
+        },
+        {
+          "key": "GEMINI_MODEL",
+          "value": "${LINGARR_GEMINI_MODEL:-gemini-2.0-flash}"
+        },
+        {
+          "key": "DEEPSEEK_API_KEY",
+          "value": "${LINGARR_DEEPSEEK_API_KEY:-}"
+        },
+        {
+          "key": "DEEPSEEK_MODEL",
+          "value": "${LINGARR_DEEPSEEK_MODEL:-deepseek-chat}"
+        },
+        {
+          "key": "DEEPL_API_KEY",
+          "value": "${LINGARR_DEEPL_API_KEY:-}"
+        },
+        {
+          "key": "TELEMETRY_ENABLED",
+          "value": "${LINGARR_TELEMETRY_ENABLED:-false}"
+        }
+      ],
+      "volumes": [
+        {
+          "hostPath": "${APP_DATA_DIR}/data/config",
+          "containerPath": "/app/config"
+        },
+        {
+          "hostPath": "${ROOT_FOLDER_HOST}/media/data",
+          "containerPath": "/media/data"
+        }
+      ]
+    }
+  ]
+}

@@ -30,7 +30,7 @@ This repository is intended to serve as a template for creating your own app sto
 For detailed instructions on creating your own app store, please refer to the official guide:
 [Create Your Own App Store Guide](https://runtipi.io/docs/guides/create-your-own-app-store)
 
-## Applications (26 Total)
+## Applications (27 Total)
 
 ### AI
 - **Actual AI**: AI for Actual Budget.
@@ -57,6 +57,7 @@ For detailed instructions on creating your own app store, please refer to the of
 - **Decypharr**: Debrid QBittorrent API.
 - **Huntarr**: Automated *arr media hunter.
 - **Jellyfin**: Media server for your home collection.
+- **Lingarr**: Automated subtitle translation tool.
 - **MeTube**: Self-hosted YouTube downloader.
 - **Navidrome**: A modern, lightweight music server and streamer with compatibility for all Subsonic-compatible clients.
 - **Profilarr**: Configuration management for Radarr/Sonarr.

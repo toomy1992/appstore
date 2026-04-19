@@ -8,7 +8,7 @@ This directory contains all the applications available in this app store. Each a
   - `description.md`: Markdown description of the app
   - `logo.jpg`: App logo image
 
-## Total Applications: 26
+## Total Applications: 27
 
 ### AI
 - **Actual AI**: AI for Actual Budget.
@@ -32,6 +32,7 @@ This directory contains all the applications available in this app store. Each a
 - **Decypharr**: Debrid QBittorrent API.
 - **Huntarr**: Automated *arr media hunter.
 - **Jellyfin**: Media server for your home collection.
+- **Lingarr**: Automated subtitle translation tool.
 - **MeTube**: Self-hosted YouTube downloader.
 - **Navidrome**: A modern, lightweight music server and streamer with compatibility for all Subsonic-compatible clients.
 - **Profilarr**: Configuration management for Radarr/Sonarr.
