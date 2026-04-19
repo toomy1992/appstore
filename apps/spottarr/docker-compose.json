@@ -4,7 +4,7 @@
     "services": [
         {
             "name": "spottarr",
-            "image": "ghcr.io/spottarr/spottarr:1.17.0",
+            "image": "ghcr.io/spottarr/spottarr:1.17.1",
             "isMain": true,
             "internalPort": 8383,
             "environment": [
