@@ -6,8 +6,8 @@
   "exposable": true,
   "dynamic_config": true,
   "id": "dashy",
-  "tipi_version": 27,
-  "version": "4.0.7",
+  "tipi_version": 28,
+  "version": "4.0.8",
   "categories": [
     "utilities"
   ],
@@ -21,6 +21,6 @@
     "amd64"
   ],
   "created_at": 1691943801422,
-  "updated_at": 1778301198851,
+  "updated_at": 1778388791097,
   "min_tipi_version": "4.5.0"
 }
