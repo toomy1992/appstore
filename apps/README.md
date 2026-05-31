@@ -8,7 +8,7 @@ This directory contains all the applications available in this app store. Each a
   - `description.md`: Markdown description of the app
   - `logo.jpg`: App logo image
 
-## Total Applications: 27
+## Total Applications: 28
 
 ### AI
 - **Actual AI**: AI for Actual Budget.
@@ -24,6 +24,7 @@ This directory contains all the applications available in this app store. Each a
 
 ### Security
 - **Keycloak**: Open source identity and access management solution.
+- **Maigret**: OSINT username investigation tool.
 - **SphereSSL**: SSL certificate manager dashboard.
 
 ### Media

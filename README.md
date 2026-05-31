@@ -30,7 +30,7 @@ This repository is intended to serve as a template for creating your own app sto
 For detailed instructions on creating your own app store, please refer to the official guide:
 [Create Your Own App Store Guide](https://runtipi.io/docs/guides/create-your-own-app-store)
 
-## Applications (27 Total)
+## Applications (28 Total)
 
 ### AI
 - **Actual AI**: AI for Actual Budget.
@@ -46,6 +46,7 @@ For detailed instructions on creating your own app store, please refer to the of
 
 ### Security
 - **Keycloak**: Open source identity and access management solution.
+- **Maigret**: OSINT username investigation tool.
 - **SphereSSL**: SSL certificate manager dashboard.
 
 ### Data
