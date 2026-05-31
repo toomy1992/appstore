@@ -1,0 +1,49 @@
+{
+  "$schema": "https://schemas.runtipi.io/v2/app-info.json",
+  "id": "maigret",
+  "available": true,
+  "port": 5000,
+  "name": "Maigret",
+  "description": "Open-source OSINT tool collecting detailed dossiers from 3,000+ websites by username. Features built-in web UI, recursive search, AI profiling, and multiple report formats.",
+  "version": "0.6.1",
+  "tipi_version": 1,
+  "short_desc": "OSINT username investigation tool",
+  "author": "soxoj",
+  "source": "https://github.com/soxoj/maigret",
+  "website": "https://maigret.readthedocs.io",
+  "categories": [
+    "security",
+    "utilities"
+  ],
+  "form_fields": [
+    {
+      "type": "number",
+      "label": "Web UI Port",
+      "hint": "Port for the built-in web interface. Must match the port configured above.",
+      "required": false,
+      "env_variable": "MAIGRET_PORT",
+      "default": 5000,
+      "min": 1024,
+      "max": 65535,
+      "placeholder": "5000"
+    },
+    {
+      "type": "password",
+      "label": "AI Analysis > OpenAI API Key",
+      "hint": "Optional. Enables AI-powered investigation summaries when set. Uses OpenAI-compatible API (also works with local endpoints).",
+      "required": false,
+      "env_variable": "MAIGRET_OPENAI_API_KEY",
+      "placeholder": "sk-..."
+    }
+  ],
+  "exposable": true,
+  "no_gui": false,
+  "supported_architectures": [
+    "amd64",
+    "arm64"
+  ],
+  "dynamic_config": true,
+  "min_tipi_version": "4.6.5",
+  "created_at": 1780270839237,
+  "updated_at": 1780270839237
+}
