@@ -8,6 +8,7 @@
       "isMain": true,
       "internalPort": 5000,
       "restart": "unless-stopped",
+      "entrypoint": ["sh", "-c", "pip install --quiet 'maigret[pdf]' 2>/dev/null; exec maigret --web \"$PORT\""],
       "environment": [
         {
           "key": "PORT",
@@ -16,6 +17,10 @@
         {
           "key": "OPENAI_API_KEY",
           "value": "${MAIGRET_OPENAI_API_KEY:-}"
+        },
+        {
+          "key": "FLARESOLVERR_URL",
+          "value": "${MAIGRET_FLARESOLVERR_URL:-}"
         }
       ],
       "volumes": [

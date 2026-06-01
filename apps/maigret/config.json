@@ -6,7 +6,7 @@
   "name": "Maigret",
   "description": "Open-source OSINT tool collecting detailed dossiers from 3,000+ websites by username. Features built-in web UI, recursive search, AI profiling, and multiple report formats.",
   "version": "0.6.1",
-  "tipi_version": 1,
+  "tipi_version": 2,
   "short_desc": "OSINT username investigation tool",
   "author": "soxoj",
   "source": "https://github.com/soxoj/maigret",
@@ -34,6 +34,14 @@
       "required": false,
       "env_variable": "MAIGRET_OPENAI_API_KEY",
       "placeholder": "sk-..."
+    },
+    {
+      "type": "url",
+      "label": "Cloudflare Bypass > FlareSolverr URL",
+      "hint": "Optional. URL to your FlareSolverr instance for bypassing Cloudflare protection on target sites.",
+      "required": false,
+      "env_variable": "MAIGRET_FLARESOLVERR_URL",
+      "placeholder": "http://flaresolverr:8191"
     }
   ],
   "exposable": true,
@@ -45,5 +53,5 @@
   "dynamic_config": true,
   "min_tipi_version": "4.6.5",
   "created_at": 1780270839237,
-  "updated_at": 1780270839237
+  "updated_at": 1780272662561
 }
