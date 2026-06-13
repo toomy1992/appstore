@@ -5,8 +5,8 @@
   "port": 9876,
   "name": "Lingarr",
   "description": "Automates subtitle translation for Sonarr and Radarr libraries using multiple providers including Google, LibreTranslate, DeepL, OpenAI, Anthropic, Gemini, DeepSeek, and local AI backends.",
-  "version": "1.0.9",
-  "tipi_version": 1,
+  "version": "1.2.4",
+  "tipi_version": 2,
   "short_desc": "Automated subtitle translation tool",
   "author": "lingarr-translate",
   "source": "https://github.com/lingarr-translate/lingarr",
@@ -272,5 +272,5 @@
   "dynamic_config": true,
   "min_tipi_version": "4.6.5",
   "created_at": 1776604467123,
-  "updated_at": 1776604467123
+  "updated_at": 1780279310490
 }
