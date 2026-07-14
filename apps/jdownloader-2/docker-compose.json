@@ -4,7 +4,7 @@
   "services": [
     {
       "name": "jdownloader-2",
-      "image": "ghcr.io/jlesage/jdownloader-2:v26.03.1",
+      "image": "ghcr.io/jlesage/jdownloader-2:v26.07.2",
       "isMain": true,
       "internalPort": 5800,
       "addPorts": [

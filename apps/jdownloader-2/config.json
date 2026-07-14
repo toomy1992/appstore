@@ -5,8 +5,8 @@
   "port": 5800,
   "name": "JDownloader 2",
   "description": "JDownloader 2 is a feature-rich download manager with a browser-based desktop, MyJDownloader integration, archive extraction, and automated handling for download links and file hosts.",
-  "version": "v26.03.1",
-  "tipi_version": 1,
+  "version": "v26.07.2",
+  "tipi_version": 2,
   "short_desc": "Self-hosted download manager GUI",
   "author": "jlesage",
   "source": "https://github.com/jlesage/docker-jdownloader-2",
@@ -216,5 +216,5 @@
   "dynamic_config": true,
   "min_tipi_version": "4.6.5",
   "created_at": 1775474269117,
-  "updated_at": 1775476989417
+  "updated_at": 1784002592573
 }
