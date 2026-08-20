@@ -48,7 +48,7 @@
     },
     {
       "name": "tradenote-db",
-      "image": "docker.io/library/mongo:7.0",
+      "image": "docker.io/library/mongo:4.4.18",
       "environment": [
         {
           "key": "MONGO_INITDB_ROOT_USERNAME",
@@ -70,7 +70,7 @@
         }
       ],
       "healthCheck": {
-        "test": "mongosh --quiet -u \"$MONGO_INITDB_ROOT_USERNAME\" -p \"$MONGO_INITDB_ROOT_PASSWORD\" --authenticationDatabase admin --eval \"db.adminCommand('ping')\"",
+        "test": "mongo --quiet -u \"$MONGO_INITDB_ROOT_USERNAME\" -p \"$MONGO_INITDB_ROOT_PASSWORD\" --authenticationDatabase admin --eval \"db.adminCommand('ping')\"",
         "interval": "10s",
         "timeout": "5s",
         "retries": 10,

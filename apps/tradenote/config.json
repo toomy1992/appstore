@@ -6,7 +6,7 @@
   "name": "TradeNote",
   "description": "Open source trading journal that helps traders store, discover and recollect all their trades so they can become and remain consistent and profitable traders. Import broker executions, visualize performance, keep a diary, and annotate setups.",
   "version": "19.0.0",
-  "tipi_version": 1,
+  "tipi_version": 2,
   "short_desc": "Open source trading journal",
   "author": "Eleven Trading",
   "source": "https://github.com/Eleven-Trading/TradeNote",
@@ -73,5 +73,5 @@
   "dynamic_config": true,
   "min_tipi_version": "4.6.5",
   "created_at": 1787257430025,
-  "updated_at": 1787257430025
+  "updated_at": 1787259528719
 }

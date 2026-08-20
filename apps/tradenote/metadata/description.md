@@ -31,8 +31,7 @@ TradeNote is a privacy-focused, self-hosted trading journal. Import executions f
 
 ## 📋 PREREQUISITES
 
-- MongoDB 7 is bundled with this installation
-- x86_64 CPUs must support AVX (required by MongoDB 5.0+)
+- MongoDB 4.4.18 is bundled with this installation (last official image that runs without CPU AVX)
 - After install, register a user at `/register` before logging in
 
 ---
@@ -41,7 +40,7 @@ TradeNote is a privacy-focused, self-hosted trading journal. Import executions f
 
 - **Based on [Eleven-Trading/TradeNote](https://github.com/Eleven-Trading/TradeNote)**
 - Application image: `docker.io/eleventrading/tradenote:19.0.0_stable`
-- Database image: `docker.io/library/mongo:7.0`
+- Database image: `docker.io/library/mongo:4.4.18`
 - Multi-architecture support: amd64, arm64
 - License: GPL-3.0
 
@@ -114,7 +113,7 @@ curl -X POST "http://<your-host>/api/trades" \
 ## ⚠️ IMPORTANT
 
 - Always create your first user at `/register`. There is no default admin account.
-- MongoDB 5.0+ requires CPU AVX support. Raspberry Pi and some virtualized Windows/Ubuntu setups may need an older MongoDB image (see [troubleshooting](https://tradenote.co/troubleshooting.html)).
+- This package uses MongoDB 4.4.18 so it starts on QEMU/VMs, NAS boxes, and other CPUs without AVX. MongoDB 5.0+ would crash with `Illegal instruction` on those hosts. See [TradeNote troubleshooting](https://tradenote.co/troubleshooting.html).
 - The MongoDB port is not exposed. Do not publish `27017` to the host.
 - Application ID and Master Key are secrets. Treat them like passwords.
 - PostHog analytics are disabled in this Runtipi package (`ANALYTICS_OFF=true`).
