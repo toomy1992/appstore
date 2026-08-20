@@ -8,7 +8,7 @@ This directory contains all the applications available in this app store. Each a
   - `description.md`: Markdown description of the app
   - `logo.jpg`: App logo image
 
-## Total Applications: 28
+## Total Applications: 29
 
 ### AI
 - **Actual AI**: AI for Actual Budget.
@@ -17,6 +17,7 @@ This directory contains all the applications available in this app store. Each a
 
 ### Finance
 - **OpenBB**: Open-source financial data platform for analysts, quants, and AI agents.
+- **TradeNote**: Open source trading journal for storing, analyzing, and reflecting on trades.
 - **Wealthfolio**: Investment tracking app.
 
 ### Fitness

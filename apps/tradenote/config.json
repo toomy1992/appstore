@@ -1,0 +1,77 @@
+{
+  "$schema": "https://schemas.runtipi.io/v2/app-info.json",
+  "id": "tradenote",
+  "available": true,
+  "port": 8080,
+  "name": "TradeNote",
+  "description": "Open source trading journal that helps traders store, discover and recollect all their trades so they can become and remain consistent and profitable traders. Import broker executions, visualize performance, keep a diary, and annotate setups.",
+  "version": "19.0.0",
+  "tipi_version": 1,
+  "short_desc": "Open source trading journal",
+  "author": "Eleven Trading",
+  "source": "https://github.com/Eleven-Trading/TradeNote",
+  "website": "https://tradenote.co",
+  "categories": [
+    "finance"
+  ],
+  "form_fields": [
+    {
+      "type": "random",
+      "label": "Application ID",
+      "hint": "Random string used by the frontend to connect to the Parse backend. Auto-generated on install. Do not change after first start.",
+      "required": true,
+      "env_variable": "TRADENOTE_APP_ID",
+      "min": 16,
+      "max": 32,
+      "encoding": "hex"
+    },
+    {
+      "type": "random",
+      "label": "Master Key",
+      "hint": "Secret master key for root connections to the Parse backend. Auto-generated on install. Keep this private and do not change after first start.",
+      "required": true,
+      "env_variable": "TRADENOTE_MASTER_KEY",
+      "min": 32,
+      "max": 64,
+      "encoding": "hex"
+    },
+    {
+      "type": "text",
+      "label": "MongoDB Username",
+      "hint": "Root username for the bundled MongoDB instance. Must match the user in the connection string.",
+      "required": true,
+      "env_variable": "TRADENOTE_MONGO_USER",
+      "default": "tradenote",
+      "placeholder": "tradenote"
+    },
+    {
+      "type": "random",
+      "label": "MongoDB Password",
+      "hint": "Root password for the bundled MongoDB instance. Auto-generated on install. Do not change after first start or the database will be inaccessible.",
+      "required": true,
+      "env_variable": "TRADENOTE_MONGO_PASSWORD",
+      "min": 16,
+      "max": 32,
+      "encoding": "hex"
+    },
+    {
+      "type": "text",
+      "label": "Database Name",
+      "hint": "MongoDB database name used by TradeNote to store trades, diaries, and user data.",
+      "required": true,
+      "env_variable": "TRADENOTE_DATABASE",
+      "default": "tradenote",
+      "placeholder": "tradenote"
+    }
+  ],
+  "exposable": true,
+  "no_gui": false,
+  "supported_architectures": [
+    "amd64",
+    "arm64"
+  ],
+  "dynamic_config": true,
+  "min_tipi_version": "4.6.5",
+  "created_at": 1787257430025,
+  "updated_at": 1787257430025
+}

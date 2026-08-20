@@ -1,0 +1,81 @@
+{
+  "$schema": "https://schemas.runtipi.io/v2/dynamic-compose.json",
+  "schemaVersion": 2,
+  "services": [
+    {
+      "name": "tradenote",
+      "image": "docker.io/eleventrading/tradenote:19.0.0_stable",
+      "isMain": true,
+      "internalPort": 8080,
+      "dependsOn": {
+        "tradenote-db": {
+          "condition": "service_healthy"
+        }
+      },
+      "environment": [
+        {
+          "key": "MONGO_URI",
+          "value": "mongodb://${TRADENOTE_MONGO_USER:-tradenote}:${TRADENOTE_MONGO_PASSWORD}@tradenote-db:27017/${TRADENOTE_DATABASE:-tradenote}?authSource=admin"
+        },
+        {
+          "key": "TRADENOTE_DATABASE",
+          "value": "${TRADENOTE_DATABASE:-tradenote}"
+        },
+        {
+          "key": "APP_ID",
+          "value": "${TRADENOTE_APP_ID}"
+        },
+        {
+          "key": "MASTER_KEY",
+          "value": "${TRADENOTE_MASTER_KEY}"
+        },
+        {
+          "key": "TRADENOTE_PORT",
+          "value": "8080"
+        },
+        {
+          "key": "ANALYTICS_OFF",
+          "value": "true"
+        }
+      ],
+      "healthCheck": {
+        "test": "node -e \"require('http').get('http://127.0.0.1:8080/', r => process.exit(r.statusCode < 500 ? 0 : 1)).on('error', () => process.exit(1))\"",
+        "interval": "30s",
+        "timeout": "10s",
+        "retries": 5,
+        "startPeriod": "90s"
+      }
+    },
+    {
+      "name": "tradenote-db",
+      "image": "docker.io/library/mongo:7.0",
+      "environment": [
+        {
+          "key": "MONGO_INITDB_ROOT_USERNAME",
+          "value": "${TRADENOTE_MONGO_USER:-tradenote}"
+        },
+        {
+          "key": "MONGO_INITDB_ROOT_PASSWORD",
+          "value": "${TRADENOTE_MONGO_PASSWORD}"
+        },
+        {
+          "key": "MONGO_INITDB_DATABASE",
+          "value": "${TRADENOTE_DATABASE:-tradenote}"
+        }
+      ],
+      "volumes": [
+        {
+          "hostPath": "${APP_DATA_DIR}/data",
+          "containerPath": "/data/db"
+        }
+      ],
+      "healthCheck": {
+        "test": "mongosh --quiet -u \"$MONGO_INITDB_ROOT_USERNAME\" -p \"$MONGO_INITDB_ROOT_PASSWORD\" --authenticationDatabase admin --eval \"db.adminCommand('ping')\"",
+        "interval": "10s",
+        "timeout": "5s",
+        "retries": 10,
+        "startPeriod": "40s"
+      }
+    }
+  ]
+}
