@@ -10,6 +10,28 @@ type AppConfig = {
     updated_at: number;
 };
 
+type ComposeService = {
+    isMain?: boolean;
+    image?: string;
+};
+
+type DynamicCompose = {
+    services?: ComposeService[];
+};
+
+const isMainImageUpdate = async (composePath: string, version: string) => {
+    try {
+        const compose = JSON.parse(await fs.readFile(composePath, "utf-8")) as DynamicCompose;
+        const services = compose.services ?? [];
+        const main = services.find((service) => service.isMain) ?? services[0];
+        const image = main?.image ?? "";
+
+        return image.endsWith(`:${version}`);
+    } catch {
+        return true;
+    }
+};
+
 const updateAppConfig = async (packageFile: string, newVersion: string) => {
     try {
         const packageRoot = path.dirname(packageFile);
@@ -19,7 +41,9 @@ const updateAppConfig = async (packageFile: string, newVersion: string) => {
         const configParsed = JSON.parse(config) as AppConfig;
 
         configParsed.tipi_version = configParsed.tipi_version + 1;
-        configParsed.version = newVersion;
+        if (await isMainImageUpdate(packageFile, newVersion)) {
+            configParsed.version = newVersion;
+        }
         configParsed.updated_at = new Date().getTime();
 
         await fs.writeFile(configPath, JSON.stringify(configParsed, null, 2));
