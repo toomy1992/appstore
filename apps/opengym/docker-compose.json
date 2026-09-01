@@ -1,0 +1,128 @@
+{
+  "$schema": "https://schemas.runtipi.io/v2/dynamic-compose.json",
+  "schemaVersion": 2,
+  "services": [
+    {
+      "name": "media",
+      "image": "alpine/git:2.54.0",
+      "entrypoint": ["/bin/sh", "-c"],
+      "command": "set -e; if ! ls /out/img/*.jpg >/dev/null 2>&1; then echo 'Downloading exercise media (~140 MB, one time)…'; git clone --depth 1 https://github.com/hasaneyldrm/exercises-dataset /tmp/ds; mkdir -p /out/img /out/gif; cp /tmp/ds/images/*.jpg /out/img/; cp /tmp/ds/videos/*.gif /out/gif/; echo 'Exercise media ready.'; else echo 'Exercise media already present — skipping download.'; fi",
+      "volumes": [
+        {
+          "hostPath": "${APP_DATA_DIR}/media/img",
+          "containerPath": "/out/img"
+        },
+        {
+          "hostPath": "${APP_DATA_DIR}/media/gif",
+          "containerPath": "/out/gif"
+        }
+      ]
+    },
+    {
+      "name": "api",
+      "image": "registry.gitlab.com/duartesantos8/opengym/api:1.2.14",
+      "environment": [
+        {
+          "key": "PORT",
+          "value": "3000"
+        },
+        {
+          "key": "DATA_DIR",
+          "value": "/data"
+        },
+        {
+          "key": "RP_ID",
+          "value": "${OPENGYM_RP_ID:-localhost}"
+        },
+        {
+          "key": "ORIGIN",
+          "value": "${OPENGYM_ORIGIN:-http://localhost:8088}"
+        },
+        {
+          "key": "RP_NAME",
+          "value": "${OPENGYM_RP_NAME:-openGym}"
+        },
+        {
+          "key": "SESSION_DAYS",
+          "value": "${OPENGYM_SESSION_DAYS:-90}"
+        },
+        {
+          "key": "ALLOW_GUEST",
+          "value": "${OPENGYM_ALLOW_GUEST:-true}"
+        },
+        {
+          "key": "INVITE_ONLY",
+          "value": "${OPENGYM_INVITE_ONLY:-false}"
+        },
+        {
+          "key": "ADMIN_UIDS",
+          "value": "${OPENGYM_ADMIN_UIDS:-}"
+        },
+        {
+          "key": "TZ",
+          "value": "${TZ}"
+        }
+      ],
+      "volumes": [
+        {
+          "hostPath": "${APP_DATA_DIR}/data",
+          "containerPath": "/data"
+        }
+      ],
+      "healthCheck": {
+        "test": "node -e \"require('http').get('http://127.0.0.1:3000/api/health',r=>process.exit(r.statusCode===200?0:1)).on('error',()=>process.exit(1))\"",
+        "interval": "30s",
+        "timeout": "10s",
+        "retries": 5,
+        "startPeriod": "20s"
+      }
+    },
+    {
+      "name": "web",
+      "image": "registry.gitlab.com/duartesantos8/opengym/web:1.2.14",
+      "isMain": true,
+      "internalPort": 80,
+      "dependsOn": {
+        "media": {
+          "condition": "service_completed_successfully"
+        },
+        "api": {
+          "condition": "service_started"
+        }
+      },
+      "environment": [
+        {
+          "key": "NGINX_PORT",
+          "value": "80"
+        },
+        {
+          "key": "BACKEND",
+          "value": "api"
+        },
+        {
+          "key": "PORT",
+          "value": "3000"
+        }
+      ],
+      "volumes": [
+        {
+          "hostPath": "${APP_DATA_DIR}/media/img",
+          "containerPath": "/usr/share/nginx/html/img",
+          "readOnly": true
+        },
+        {
+          "hostPath": "${APP_DATA_DIR}/media/gif",
+          "containerPath": "/usr/share/nginx/html/gif",
+          "readOnly": true
+        }
+      ],
+      "healthCheck": {
+        "test": "wget -qO- http://127.0.0.1/api/health || curl -fsS http://127.0.0.1/api/health || exit 1",
+        "interval": "30s",
+        "timeout": "10s",
+        "retries": 5,
+        "startPeriod": "20s"
+      }
+    }
+  ]
+}

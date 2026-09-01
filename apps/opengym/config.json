@@ -1,0 +1,90 @@
+{
+  "$schema": "https://schemas.runtipi.io/v2/app-info.json",
+  "id": "opengym",
+  "available": true,
+  "port": 8088,
+  "name": "openGym",
+  "description": "Self-hosted gym and body-weight tracker. Plan routines, log workouts (supersets and cardio), track weight and progress, and sign in with passkeys. Your data stays on your server.",
+  "version": "1.2.14",
+  "tipi_version": 1,
+  "short_desc": "Home gym workout tracker",
+  "author": "DuarteSantos8",
+  "source": "https://gitlab.com/DuarteSantos8/opengym",
+  "website": "https://opengym.duarte-santos.ch",
+  "categories": [
+    "utilities"
+  ],
+  "form_fields": [
+    {
+      "type": "text",
+      "label": "Passkey RP ID",
+      "hint": "Hostname only — no https://, no port, no trailing slash. Must match the hostname in the browser address bar. localhost works only in a browser on the Runtipi host. For phones, expose the app with HTTPS and set this to that hostname (e.g. gym.home.arpa or opengym.example.com). Changing this later invalidates existing passkeys.",
+      "placeholder": "localhost",
+      "required": true,
+      "default": "localhost",
+      "env_variable": "OPENGYM_RP_ID"
+    },
+    {
+      "type": "text",
+      "label": "Passkey Origin",
+      "hint": "Full origin with scheme and no trailing slash. Must match the address bar exactly. Examples: http://localhost:8088 (host browser only) or https://opengym.example.com (HTTPS expose). After changing RP ID or Origin, recreate the containers — restart is not enough.",
+      "placeholder": "http://localhost:8088",
+      "required": true,
+      "default": "http://localhost:8088",
+      "env_variable": "OPENGYM_ORIGIN"
+    },
+    {
+      "type": "text",
+      "label": "Passkey RP Name",
+      "hint": "Name shown in the browser passkey prompt",
+      "placeholder": "openGym",
+      "required": false,
+      "default": "openGym",
+      "env_variable": "OPENGYM_RP_NAME"
+    },
+    {
+      "type": "number",
+      "label": "Session length (days)",
+      "hint": "How long a sign-in lasts. Only affects new sign-ins. Users can still sign out everywhere from Settings.",
+      "required": false,
+      "default": 90,
+      "min": 1,
+      "max": 365,
+      "env_variable": "OPENGYM_SESSION_DAYS"
+    },
+    {
+      "type": "boolean",
+      "label": "Allow guest mode",
+      "hint": "Offer Continue without account. Guest data stays in that browser and never hits the server. Turn off for a private household instance.",
+      "required": false,
+      "default": true,
+      "env_variable": "OPENGYM_ALLOW_GUEST"
+    },
+    {
+      "type": "boolean",
+      "label": "Invite-only signup",
+      "hint": "Require an invite code to create a profile. Existing accounts keep working. Generate codes from the admin dashboard after setting Admin user IDs.",
+      "required": false,
+      "default": false,
+      "env_variable": "OPENGYM_INVITE_ONLY"
+    },
+    {
+      "type": "text",
+      "label": "Admin user IDs",
+      "hint": "Comma-separated user ids that get the admin dashboard. Register a passkey first, then copy users[].id from the data volume db.json.",
+      "placeholder": "youruserid",
+      "required": false,
+      "env_variable": "OPENGYM_ADMIN_UIDS"
+    }
+  ],
+  "exposable": true,
+  "no_gui": false,
+  "supported_architectures": [
+    "amd64",
+    "arm64"
+  ],
+  "dynamic_config": true,
+  "min_tipi_version": "4.6.5",
+  "created_at": 1788303156726,
+  "updated_at": 1788303156726
+}

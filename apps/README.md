@@ -8,7 +8,7 @@ This directory contains all the applications available in this app store. Each a
   - `description.md`: Markdown description of the app
   - `logo.jpg`: App logo image
 
-## Total Applications: 29
+## Total Applications: 30
 
 ### AI
 - **Actual AI**: AI for Actual Budget.
@@ -22,6 +22,7 @@ This directory contains all the applications available in this app store. Each a
 
 ### Fitness
 - **Endurain**: Self-hosted fitness tracking service with activity tracking, gear management, and cloud integrations.
+- **openGym**: Home gym workout tracker with passkey login, routines, and equipment profiles.
 
 ### Security
 - **Keycloak**: Open source identity and access management solution.

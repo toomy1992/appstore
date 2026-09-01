@@ -30,7 +30,7 @@ This repository is intended to serve as a template for creating your own app sto
 For detailed instructions on creating your own app store, please refer to the official guide:
 [Create Your Own App Store Guide](https://runtipi.io/docs/guides/create-your-own-app-store)
 
-## Applications (29 Total)
+## Applications (30 Total)
 
 ### AI
 - **Actual AI**: AI for Actual Budget.
@@ -44,6 +44,7 @@ For detailed instructions on creating your own app store, please refer to the of
 
 ### Fitness
 - **Endurain**: Self-hosted fitness tracking service for athletes and fitness enthusiasts.
+- **openGym**: Home gym workout tracker with passkeys and equipment profiles.
 
 ### Security
 - **Keycloak**: Open source identity and access management solution.
