@@ -6,7 +6,14 @@
       "name": "media",
       "image": "alpine/git:2.54.0",
       "entrypoint": ["/bin/sh", "-c"],
-      "command": "set -e; if ! ls /out/img/*.jpg >/dev/null 2>&1; then echo 'Downloading exercise media (~140 MB, one time)…'; git clone --depth 1 https://github.com/hasaneyldrm/exercises-dataset /tmp/ds; mkdir -p /out/img /out/gif; cp /tmp/ds/images/*.jpg /out/img/; cp /tmp/ds/videos/*.gif /out/gif/; echo 'Exercise media ready.'; else echo 'Exercise media already present — skipping download.'; fi",
+      "command": "set -e; if ! ls /out/img/*.jpg >/dev/null 2>&1; then echo 'Downloading exercise media (~140 MB, one time)…'; git clone --depth 1 https://github.com/hasaneyldrm/exercises-dataset /tmp/ds; mkdir -p /out/img /out/gif; cp /tmp/ds/images/*.jpg /out/img/; cp /tmp/ds/videos/*.gif /out/gif/; echo 'Exercise media ready.'; else echo 'Exercise media already present — skipping download.'; fi; exec sleep infinity",
+      "healthCheck": {
+        "test": "ls /out/img/*.jpg >/dev/null 2>&1",
+        "interval": "10s",
+        "timeout": "5s",
+        "retries": 30,
+        "startPeriod": "10s"
+      },
       "volumes": [
         {
           "hostPath": "${APP_DATA_DIR}/media/img",
@@ -32,11 +39,11 @@
         },
         {
           "key": "RP_ID",
-          "value": "${OPENGYM_RP_ID:-localhost}"
+          "value": "${OPENGYM_RP_ID:-${APP_HOST:-localhost}}"
         },
         {
           "key": "ORIGIN",
-          "value": "${OPENGYM_ORIGIN:-http://localhost:8088}"
+          "value": "${OPENGYM_ORIGIN:-${APP_PROTOCOL}://${APP_DOMAIN}}"
         },
         {
           "key": "RP_NAME",
@@ -84,7 +91,7 @@
       "internalPort": 80,
       "dependsOn": {
         "media": {
-          "condition": "service_completed_successfully"
+          "condition": "service_healthy"
         },
         "api": {
           "condition": "service_started"

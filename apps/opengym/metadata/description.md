@@ -71,23 +71,18 @@ These map into the API as `RP_ID`, `ORIGIN`, `RP_NAME`, `SESSION_DAYS`, `ALLOW_G
 
 ## ⚙️ CONFIGURATION
 
-### Local test (Runtipi host browser only)
-
-- RP ID: `localhost`
-- Origin: `http://localhost:8088`
-- Open the app from a browser **on the Runtipi host**
-
-A phone on `http://LAN-IP:8088` **cannot** register passkeys. Guest mode still works.
-
 ### Home use from a phone (required for passkeys)
 
 1. Enable **Expose app** in Runtipi and give it a hostname, e.g. `opengym.labruntipi.io`
 2. Turn on HTTPS
-3. Set **RP ID** to that hostname only: `opengym.labruntipi.io`
-4. Set **Origin** to the exact origin: `https://opengym.labruntipi.io`
-5. Recreate/start the app (restart does not re-read env)
+3. Leave RP ID / Origin empty (they follow the expose hostname) **or** set them explicitly:
+   - RP ID: `opengym.labruntipi.io`
+   - Origin: `https://opengym.labruntipi.io`
+4. Recreate/start the app (restart does not re-read env)
 
-Do **not** point RP ID at an IP address. Passkeys bind forever to RP ID.
+If RP ID is left at `localhost` while you open `https://opengym.labruntipi.io`, profile creation **will fail**. Do **not** point RP ID at an IP address. Passkeys bind forever to RP ID.
+
+A phone on `http://LAN-IP:8088` **cannot** register passkeys. Guest mode still works.
 
 ### Admin dashboard
 

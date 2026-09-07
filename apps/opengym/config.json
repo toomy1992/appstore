@@ -6,7 +6,7 @@
   "name": "openGym",
   "description": "Self-hosted gym and body-weight tracker. Plan routines, log workouts (supersets and cardio), track weight and progress, and sign in with passkeys. Your data stays on your server.",
   "version": "1.2.14",
-  "tipi_version": 1,
+  "tipi_version": 2,
   "short_desc": "Home gym workout tracker",
   "author": "DuarteSantos8",
   "source": "https://gitlab.com/DuarteSantos8/opengym",
@@ -18,19 +18,17 @@
     {
       "type": "text",
       "label": "Passkey RP ID",
-      "hint": "Hostname only — no https://, no port, no trailing slash. Must match the hostname in the browser address bar. localhost works only in a browser on the Runtipi host. For phones, expose the app with HTTPS and set this to that hostname (e.g. gym.home.arpa or opengym.example.com). Changing this later invalidates existing passkeys.",
-      "placeholder": "localhost",
-      "required": true,
-      "default": "localhost",
+      "hint": "Hostname only — no https://, no port, no trailing slash. Must match the browser address bar. Leave empty to use the Runtipi expose hostname (e.g. opengym.labruntipi.io). localhost works only on the Runtipi host. Changing this later invalidates existing passkeys. Recreate containers after changing — restart is not enough.",
+      "placeholder": "opengym.labruntipi.io",
+      "required": false,
       "env_variable": "OPENGYM_RP_ID"
     },
     {
       "type": "text",
       "label": "Passkey Origin",
-      "hint": "Full origin with scheme and no trailing slash. Must match the address bar exactly. Examples: http://localhost:8088 (host browser only) or https://opengym.example.com (HTTPS expose). After changing RP ID or Origin, recreate the containers — restart is not enough.",
-      "placeholder": "http://localhost:8088",
-      "required": true,
-      "default": "http://localhost:8088",
+      "hint": "Full origin with scheme and no trailing slash. Must match the address bar exactly. Leave empty to use https://<expose-domain>. Example when exposing: https://opengym.labruntipi.io",
+      "placeholder": "https://opengym.labruntipi.io",
+      "required": false,
       "env_variable": "OPENGYM_ORIGIN"
     },
     {
@@ -86,5 +84,5 @@
   "dynamic_config": true,
   "min_tipi_version": "4.6.5",
   "created_at": 1788303156726,
-  "updated_at": 1788303156726
+  "updated_at": 1788795217325
 }
