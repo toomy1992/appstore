@@ -44,12 +44,19 @@
             "automerge": false
         },
         {
+            "description": "Ignore bundled database sidecar images",
+            "matchDatasources": [
+                "docker"
+            ],
             "matchPackageNames": [
                 "mariadb",
                 "mysql",
-                "monogdb",
+                "mongo",
+                "mongodb",
                 "postgres",
-                "redis"
+                "postgresql",
+                "redis",
+                "/(^|\\/)(mariadb|mysql|mongo|mongodb|postgres|postgresql|redis)$/"
             ],
             "enabled": false
         }
