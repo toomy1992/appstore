@@ -5,8 +5,8 @@
   "port": 8088,
   "name": "openGym",
   "description": "Self-hosted gym and body-weight tracker. Plan routines, log workouts (supersets and cardio), track weight and progress, and sign in with passkeys. Your data stays on your server.",
-  "version": "1.3.1",
-  "tipi_version": 3,
+  "version": "1.3.8",
+  "tipi_version": 4,
   "short_desc": "Home gym workout tracker",
   "author": "DuarteSantos8",
   "source": "https://gitlab.com/DuarteSantos8/opengym",
@@ -84,6 +84,5 @@
   "dynamic_config": true,
   "min_tipi_version": "4.6.5",
   "created_at": 1788303156726,
-
-  "updated_at": 1788761136194
+  "updated_at": 1789971561840
 }
