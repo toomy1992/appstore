@@ -5,8 +5,8 @@
   "port": 8080,
   "name": "Endurain",
   "description": "Self-hosted fitness tracking service with full control over your data. Track activities, manage gear, integrate with Strava and Garmin Connect, and share your fitness journey with a private community.",
-  "version": "v0.17.7",
-  "tipi_version": 2,
+  "version": "v0.19.3",
+  "tipi_version": 3,
   "short_desc": "Self-hosted fitness tracking service",
   "author": "João Vitória Silva",
   "source": "https://github.com/endurain-project/endurain",
@@ -297,5 +297,5 @@
   "dynamic_config": true,
   "min_tipi_version": "4.6.5",
   "created_at": 1741139200000,
-  "updated_at": 1776485085766
+  "updated_at": 1791530573615
 }
