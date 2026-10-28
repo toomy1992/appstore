@@ -3,7 +3,7 @@
   "schemaVersion": 2,
   "services": [
     {
-      "image": "ghcr.io/11notes/prowlarr:2.6.5",
+      "image": "ghcr.io/11notes/prowlarr:2.7.0",
       "name": "prowlarr",
       "isMain": true,
       "internalPort": 9696,
