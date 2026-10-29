@@ -27,7 +27,7 @@
     },
     {
       "name": "api",
-      "image": "registry.gitlab.com/duartesantos8/opengym/api:1.4.1",
+      "image": "registry.gitlab.com/duartesantos8/opengym/api:1.4.2",
       "environment": [
         {
           "key": "PORT",
