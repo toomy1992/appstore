@@ -4,7 +4,7 @@
   "services": [
     {
       "name": "media",
-      "image": "alpine/git:2.54.0",
+      "image": "alpine/git:v2.54.1",
       "entrypoint": ["/bin/sh", "-c"],
       "command": "set -e; if ! ls /out/img/*.jpg >/dev/null 2>&1; then echo 'Downloading exercise media (~140 MB, one time)…'; git clone --depth 1 https://github.com/hasaneyldrm/exercises-dataset /tmp/ds; mkdir -p /out/img /out/gif; cp /tmp/ds/images/*.jpg /out/img/; cp /tmp/ds/videos/*.gif /out/gif/; echo 'Exercise media ready.'; else echo 'Exercise media already present — skipping download.'; fi; exec sleep infinity",
       "healthCheck": {
