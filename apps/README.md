@@ -41,6 +41,7 @@ This directory contains all the applications available in this app store. Each a
 - **Prowlarr**: Indexers manager & proxy.
 - **Releasarr**: Music release monitoring tool.
 - **Spottarr**: Spotnet indexer for *arr.
+- **Tdarr**: Distributed media transcoding.
 - **Ygégé**: YGG Torrent indexer.
 
 ### Data

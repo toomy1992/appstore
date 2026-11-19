@@ -66,6 +66,7 @@ For detailed instructions on creating your own app store, please refer to the of
 - **Prowlarr**: Indexers manager & proxy.
 - **Releasarr**: Music release monitoring tool.
 - **Spottarr**: Spotnet indexer for *arr.
+- **Tdarr**: Distributed media transcoding.
 - **Ygégé**: YGG Torrent indexer.
 
 ### Utilities
