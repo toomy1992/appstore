@@ -11,7 +11,6 @@ This directory contains all the applications available in this app store. Each a
 ## Total Applications: 30
 
 ### AI
-- **Actual AI**: AI for Actual Budget.
 - **Paperless-AI**: AI document analyzer for Paperless-ngx.
 - **Supergateway**: MCP Gateway: stdio ↔ SSE/WS/HTTP bridge.
 
