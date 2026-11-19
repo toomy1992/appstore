@@ -33,7 +33,6 @@ For detailed instructions on creating your own app store, please refer to the of
 ## Applications (30 Total)
 
 ### AI
-- **Actual AI**: AI for Actual Budget.
 - **Paperless-AI**: AI document analyzer for Paperless-ngx.
 - **Supergateway**: MCP Gateway: stdio ↔ SSE/WS/HTTP bridge.
 
@@ -67,6 +66,7 @@ For detailed instructions on creating your own app store, please refer to the of
 - **Prowlarr**: Indexers manager & proxy.
 - **Releasarr**: Music release monitoring tool.
 - **Spottarr**: Spotnet indexer for *arr.
+- **Tdarr**: Distributed media transcoding.
 - **Ygégé**: YGG Torrent indexer.
 
 ### Utilities

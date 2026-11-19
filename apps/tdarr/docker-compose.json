@@ -1,0 +1,164 @@
+{
+  "$schema": "https://schemas.runtipi.io/v2/dynamic-compose.json",
+  "schemaVersion": 2,
+  "services": [
+    {
+      "name": "tdarr",
+      "image": "ghcr.io/haveagitgat/tdarr:3.04.00",
+      "isMain": true,
+      "internalPort": 8265,
+      "restart": "unless-stopped",
+      "shmSize": "2gb",
+      "stopGracePeriod": "60s",
+      "addPorts": [
+        {
+          "containerPort": 8266,
+          "hostPort": 8266,
+          "tcp": true
+        }
+      ],
+      "environment": [
+        {
+          "key": "TZ",
+          "value": "${TZ}"
+        },
+        {
+          "key": "PUID",
+          "value": "1000"
+        },
+        {
+          "key": "PGID",
+          "value": "1000"
+        },
+        {
+          "key": "UMASK",
+          "value": "002"
+        },
+        {
+          "key": "serverIP",
+          "value": "0.0.0.0"
+        },
+        {
+          "key": "serverPort",
+          "value": "8266"
+        },
+        {
+          "key": "webUIPort",
+          "value": "8265"
+        },
+        {
+          "key": "serverURL",
+          "value": "http://127.0.0.1:8266"
+        },
+        {
+          "key": "inContainer",
+          "value": "true"
+        },
+        {
+          "key": "internalNode",
+          "value": "${TDARR_INTERNAL_NODE:-true}"
+        },
+        {
+          "key": "nodeName",
+          "value": "${TDARR_NODE_NAME:-InternalNode}"
+        },
+        {
+          "key": "nodeType",
+          "value": "mapped"
+        },
+        {
+          "key": "ffmpegVersion",
+          "value": "${TDARR_FFMPEG_VERSION:-7}"
+        },
+        {
+          "key": "auth",
+          "value": "${TDARR_AUTH:-true}"
+        },
+        {
+          "key": "seededApiKey",
+          "value": "tapi_${TDARR_API_KEY}"
+        },
+        {
+          "key": "apiKey",
+          "value": "tapi_${TDARR_API_KEY}"
+        },
+        {
+          "key": "openBrowser",
+          "value": "false"
+        },
+        {
+          "key": "maxLogSizeMB",
+          "value": "${TDARR_MAX_LOG_SIZE_MB:-10}"
+        },
+        {
+          "key": "cronPluginUpdate",
+          "value": "${TDARR_CRON_PLUGIN_UPDATE:-}"
+        },
+        {
+          "key": "priority",
+          "value": "${TDARR_NODE_PRIORITY:--1}"
+        },
+        {
+          "key": "pollInterval",
+          "value": "${TDARR_POLL_INTERVAL:-2000}"
+        },
+        {
+          "key": "startPaused",
+          "value": "${TDARR_START_PAUSED:-false}"
+        },
+        {
+          "key": "transcodecpuWorkers",
+          "value": "${TDARR_TRANSCODE_CPU_WORKERS:-2}"
+        },
+        {
+          "key": "transcodegpuWorkers",
+          "value": "${TDARR_TRANSCODE_GPU_WORKERS:-0}"
+        },
+        {
+          "key": "healthcheckcpuWorkers",
+          "value": "${TDARR_HEALTHCHECK_CPU_WORKERS:-1}"
+        },
+        {
+          "key": "healthcheckgpuWorkers",
+          "value": "${TDARR_HEALTHCHECK_GPU_WORKERS:-0}"
+        }
+      ],
+      "volumes": [
+        {
+          "hostPath": "${APP_DATA_DIR}/data/server",
+          "containerPath": "/app/server"
+        },
+        {
+          "hostPath": "${APP_DATA_DIR}/data/configs",
+          "containerPath": "/app/configs"
+        },
+        {
+          "hostPath": "${APP_DATA_DIR}/data/logs",
+          "containerPath": "/app/logs"
+        },
+        {
+          "hostPath": "${APP_DATA_DIR}/data/temp",
+          "containerPath": "/temp"
+        },
+        {
+          "hostPath": "${ROOT_FOLDER_HOST}/media/data",
+          "containerPath": "/media/data"
+        }
+      ],
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "5"
+        }
+      },
+      "healthCheck": {
+        "test": "curl -fsS http://127.0.0.1:8265/",
+        "interval": "30s",
+        "timeout": "10s",
+        "retries": 5,
+        "startPeriod": "180s"
+      }
+    }
+  ]
+}

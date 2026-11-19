@@ -1,0 +1,172 @@
+{
+  "$schema": "https://schemas.runtipi.io/v2/app-info.json",
+  "id": "tdarr",
+  "available": true,
+  "port": 8265,
+  "name": "Tdarr",
+  "description": "Tdarr is a distributed transcoding system for media libraries. It scans movies and series, checks file health, and remuxes or transcodes them with FFmpeg or HandBrake according to the rules you set. A server keeps the library and plugin stack, and nodes on this machine or others do the work. It is built to sit next to Sonarr, Radarr, and Jellyfin.",
+  "version": "3.04.00",
+  "tipi_version": 1,
+  "short_desc": "Distributed media transcoding",
+  "author": "HaveAGitGat",
+  "source": "https://github.com/HaveAGitGat/Tdarr",
+  "website": "https://tdarr.io/",
+  "categories": [
+    "media",
+    "automation"
+  ],
+  "form_fields": [
+    {
+      "type": "boolean",
+      "label": "Security > Enable authentication",
+      "hint": "Tdarr 3 requires a sign-in by default. Turn this off only when the web UI and server port are not reachable by anyone else.",
+      "required": false,
+      "default": true,
+      "env_variable": "TDARR_AUTH"
+    },
+    {
+      "type": "random",
+      "label": "Security > API key secret",
+      "hint": "Generated once. The admin password and the internal node API key are tapi_ plus this value, for example tapi_ followed by the hex shown here. Sign in as admin, then change the password in the web UI if you want it to differ from the API key. Do not change this after the first start.",
+      "required": true,
+      "min": 32,
+      "max": 32,
+      "encoding": "hex",
+      "env_variable": "TDARR_API_KEY"
+    },
+    {
+      "type": "boolean",
+      "label": "Node > Enable internal node",
+      "hint": "Run a transcode node inside the server container. Leave this on for a single-machine install, the same way a normal *arr app runs on one host.",
+      "required": false,
+      "default": true,
+      "env_variable": "TDARR_INTERNAL_NODE"
+    },
+    {
+      "type": "text",
+      "label": "Node > Node name",
+      "hint": "Name shown for the internal node on the Tdarr tab.",
+      "required": false,
+      "default": "InternalNode",
+      "placeholder": "InternalNode",
+      "env_variable": "TDARR_NODE_NAME"
+    },
+    {
+      "type": "text",
+      "label": "Node > FFmpeg version",
+      "hint": "FFmpeg major version the container downloads on startup. Use 7 (current Tdarr Docker example) or 6.",
+      "required": false,
+      "default": "7",
+      "placeholder": "7",
+      "regex": "^[67]$",
+      "pattern_error": "Enter 7 or 6",
+      "env_variable": "TDARR_FFMPEG_VERSION"
+    },
+    {
+      "type": "number",
+      "label": "Node > CPU transcode workers",
+      "hint": "CPU workers started with the internal node. Applied again on each start. 2 is a safe start on a small server.",
+      "required": false,
+      "default": 2,
+      "min": 0,
+      "max": 32,
+      "placeholder": "2",
+      "env_variable": "TDARR_TRANSCODE_CPU_WORKERS"
+    },
+    {
+      "type": "number",
+      "label": "Node > GPU transcode workers",
+      "hint": "GPU workers started with the internal node. Leave at 0 unless the host GPU is passed into the container. This package does not mount /dev/dri or an NVIDIA GPU, so a GPU worker would have nothing to use.",
+      "required": false,
+      "default": 0,
+      "min": 0,
+      "max": 16,
+      "placeholder": "0",
+      "env_variable": "TDARR_TRANSCODE_GPU_WORKERS"
+    },
+    {
+      "type": "number",
+      "label": "Node > CPU health-check workers",
+      "hint": "Workers that scan files for corruption. 1 is enough for most libraries.",
+      "required": false,
+      "default": 1,
+      "min": 0,
+      "max": 16,
+      "placeholder": "1",
+      "env_variable": "TDARR_HEALTHCHECK_CPU_WORKERS"
+    },
+    {
+      "type": "number",
+      "label": "Node > GPU health-check workers",
+      "hint": "GPU health-check workers. Leave at 0 unless a GPU is passed into the container.",
+      "required": false,
+      "default": 0,
+      "min": 0,
+      "max": 16,
+      "placeholder": "0",
+      "env_variable": "TDARR_HEALTHCHECK_GPU_WORKERS"
+    },
+    {
+      "type": "number",
+      "label": "Node > Poll interval (ms)",
+      "hint": "How often the internal node asks the server for work.",
+      "required": false,
+      "default": 2000,
+      "min": 500,
+      "max": 60000,
+      "placeholder": "2000",
+      "env_variable": "TDARR_POLL_INTERVAL"
+    },
+    {
+      "type": "number",
+      "label": "Node > Priority",
+      "hint": "Worker priority. -1 means no priority. 0 is the highest priority, then 1, and so on.",
+      "required": false,
+      "default": -1,
+      "min": -1,
+      "max": 100,
+      "placeholder": "-1",
+      "env_variable": "TDARR_NODE_PRIORITY"
+    },
+    {
+      "type": "boolean",
+      "label": "Node > Start paused",
+      "hint": "Start the internal node paused so it does not pick up jobs until you resume it in the web UI.",
+      "required": false,
+      "default": false,
+      "env_variable": "TDARR_START_PAUSED"
+    },
+    {
+      "type": "number",
+      "label": "Logs > Max log size (MB)",
+      "hint": "Tdarr rotates its own log files at this size.",
+      "required": false,
+      "default": 10,
+      "min": 1,
+      "max": 200,
+      "placeholder": "10",
+      "env_variable": "TDARR_MAX_LOG_SIZE_MB"
+    },
+    {
+      "type": "text",
+      "label": "Plugins > Update schedule",
+      "hint": "Optional cron expression for automatic community plugin updates. Leave empty to update plugins yourself from the web UI.",
+      "required": false,
+      "default": "",
+      "placeholder": "0 3 * * *",
+      "env_variable": "TDARR_CRON_PLUGIN_UPDATE"
+    }
+  ],
+  "exposable": true,
+  "no_gui": false,
+  "supported_architectures": [
+    "amd64",
+    "arm64"
+  ],
+  "uid": 1000,
+  "gid": 1000,
+  "dynamic_config": true,
+  "min_tipi_version": "4.6.5",
+  "created_at": 1795130293737,
+  "updated_at": 1795130293737
+}
