@@ -5,8 +5,8 @@
   "port": 8265,
   "name": "Tdarr",
   "description": "Tdarr is a distributed transcoding system for media libraries. It scans movies and series, checks file health, and remuxes or transcodes them with FFmpeg or HandBrake according to the rules you set. A server keeps the library and plugin stack, and nodes on this machine or others do the work. It is built to sit next to Sonarr, Radarr, and Jellyfin.",
-  "version": "3.04.00",
-  "tipi_version": 1,
+  "version": "3.10.00",
+  "tipi_version": 2,
   "short_desc": "Distributed media transcoding",
   "author": "HaveAGitGat",
   "source": "https://github.com/HaveAGitGat/Tdarr",
@@ -168,5 +168,5 @@
   "dynamic_config": true,
   "min_tipi_version": "4.6.5",
   "created_at": 1795130293737,
-  "updated_at": 1795130293737
+  "updated_at": 1795685422026
 }

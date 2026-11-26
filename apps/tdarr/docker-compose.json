@@ -4,7 +4,7 @@
   "services": [
     {
       "name": "tdarr",
-      "image": "ghcr.io/haveagitgat/tdarr:3.04.00",
+      "image": "ghcr.io/haveagitgat/tdarr:3.10.00",
       "isMain": true,
       "internalPort": 8265,
       "restart": "unless-stopped",
